@@ -32,7 +32,7 @@ Vercel 에서 이 저장소를 가져오면 Next.js 로 알아서 잡힙니다. 
 - 프리뷰 배포와 로컬(`npm run dev`)에서는 늘 랜딩 전체가 보입니다.
 - 출시할 때: Vercel → Settings → Environment Variables 에 `LANDING_PUBLIC=true` (Production)를 넣고 **다시 배포**하세요. `robots.txt` · 사이트맵은 빌드 때 만들어지므로 변수만 바꾸고 재배포하지 않으면 반영되지 않습니다.
 
-`/beta` 는 인스타그램 스토리 → 구글 설문에서 들어오는 Android 베타 테스터 안내입니다. `public/beta.html` 한 파일로, Next 레이아웃 · 글꼴 · 스크립트 없이 그대로 나갑니다(`next.config.ts` 의 rewrite). 인스타그램 앱 내 브라우저는 구글에 로그인돼 있지 않아 그룹 가입이 막히므로, `<head>` 첫 스크립트가 `intent://` 로 Chrome 에서 다시 엽니다. 그다음 ① [테스터 그룹](https://groups.google.com/g/dinary-testers) 가입 ② [Play 테스트 참여](https://play.google.com/apps/testing/app.dinary) 순서로 안내합니다. 검색에는 나오지 않습니다(`noindex`).
+`/beta` 는 인스타그램 스토리 → 구글 설문에서 들어오는 Android 베타 테스터 안내입니다. `public/beta.html` 한 파일로, Next 레이아웃 · 글꼴 · 스크립트 없이 그대로 나갑니다(`next.config.ts` 의 rewrite). 인스타그램 앱 내 브라우저는 구글에 로그인돼 있지 않아 그룹 가입이 막히므로, `<head>` 첫 스크립트가 `intent://` 로 Chrome 에서 다시 엽니다. 그다음 ① [테스터 그룹](https://groups.google.com/g/dinary-testers) 가입 ② [Play 테스트 참여](https://play.google.com/apps/testing/app.dinary) ③ [Play 스토어에서 설치](https://play.google.com/store/apps/details?id=app.dinary) 순서로 안내합니다. 검색에는 나오지 않습니다(`noindex`).
 
 ## 바꿀 곳
 
