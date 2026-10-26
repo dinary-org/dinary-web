@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>다이너리 베타 참여</title>
+<script>
+  // 1) Instagram 등 앱 내 브라우저(Android WebView)면 Chrome으로 다시 열기
+  (function () {
+    var ua = navigator.userAgent || "";
+    var isAndroid = /Android/i.test(ua);
+    var isInApp = /Instagram|FBAN|FBAV|; wv\)/i.test(ua);
+    if (isAndroid && isInApp) {
+      var url = location.href.replace(/^https?:\/\//, "");
+      location.href = "intent://" + url +
+        "#Intent;scheme=https;package=com.android.chrome;end";
+    }
+  })();
+</script>
+<style>
+  :root { --bg:#fff; --fg:#1a1a1a; --sub:#666; --btn:#3d5afe; --card:#f4f5f8; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#121212; --fg:#eee; --sub:#aaa; --btn:#6c80ff; --card:#1e1e1e; }
+  }
+  body { margin:0; background:var(--bg); color:var(--fg);
+         font-family:-apple-system,"Noto Sans KR",sans-serif; }
+  main { max-width:420px; margin:0 auto; padding:32px 16px; }
+  h1 { font-size:22px; margin:0 0 8px; }
+  p { color:var(--sub); font-size:14px; line-height:1.5; }
+  .step { background:var(--card); border-radius:14px; padding:16px; margin:16px 0; }
+  .step b { display:block; margin-bottom:10px; }
+  a.btn { display:block; text-align:center; background:var(--btn); color:#fff;
+          text-decoration:none; padding:14px; border-radius:10px; font-weight:600; }
+  #fallback { display:none; margin-top:24px; font-size:13px; }
+  button { margin-top:8px; padding:10px; width:100%; border-radius:10px;
+           border:1px solid var(--sub); background:none; color:var(--fg); }
+</style>
+</head>
+<body>
+<main>
+  <h1>다이너리 베타 참여 방법</h1>
+  <p>아래 두 단계를 <b>순서대로</b> 진행해 주세요.</p>
+
+  <div class="step">
+    <b>1단계 · 테스터 그룹 가입</b>
+    <a class="btn" href="https://groups.google.com/g/dinary-testers">그룹 가입하기</a>
+    <p>'그룹 가입' 버튼을 누른 뒤 이 페이지로 돌아와 주세요.</p>
+  </div>
+
+  <div class="step">
+    <b>2단계 · 테스터 등록 & 설치</b>
+    <a class="btn" href="https://play.google.com/apps/testing/app.dinary">테스터 참여하기</a>
+    <p>'테스터 되기'를 누른 뒤 Play 스토어에서 설치해 주세요. 반영까지 몇 분 걸릴 수 있어요.</p>
+  </div>
+
+  <div id="fallback">
+    <p>Chrome으로 자동 이동되지 않았다면, 오른쪽 위 ⋮ 메뉴에서 'Chrome에서 열기'를 누르거나 아래 버튼으로 링크를 복사해 Chrome에 붙여넣어 주세요.</p>
+    <button onclick="navigator.clipboard.writeText(location.href).then(function(){alert('링크가 복사되었어요');})">링크 복사</button>
+  </div>
+</main>
+<script>
+  // 아직 앱 내 브라우저에 남아 있으면 안내 표시
+  if (/Instagram|FBAN|FBAV|; wv\)/i.test(navigator.userAgent)) {
+    document.getElementById("fallback").style.display = "block";
+  }
+</script>
+</body>
+</html>
