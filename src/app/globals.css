@@ -169,36 +169,161 @@ a:hover {
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
 }
 
-/* ── 휴대폰(639px 이하) ─────────────────────────────────────────────
-   넓은 화면용 디자인은 그대로 두고, 좁은 화면에서 겹치거나 화면 밖으로 나가는 곳만 고칩니다.
-   인라인 스타일을 이겨야 해서 !important 를 씁니다. */
-@media (max-width: 639.98px) {
-  /* 첫 화면 · 마지막 장의 베타 참여 단추: 같은 너비로 한 줄에 하나씩 */
-  .cta-row > a { flex: 1 1 100% !important; min-width: 0 !important; box-sizing: border-box; }
-  .cta-row > a[href="#capture"] { justify-content: center; }
+/* ── 휴대폰(719px 이하) ─────────────────────────────────────────────
+   큰 흐름(장의 순서)은 데스크톱과 같고, 각 장 안은 휴대폰에 맞게 다시 배치합니다.
+   · 조작(탭 · 토글)은 폰 목업 바로 위에, 설명은 아래에
+   · 긴 목록 · 카드 묶음은 옆으로 넘기는 줄로
+   · 장식용으로 겹치던 사진은 덜어 냄
+   인라인 스타일을 이겨야 하는 곳은 !important 를 씁니다. */
+.m-only { display: none !important; }
+.m-menu[hidden] { display: none !important; }
 
-  /* 첫 화면: 폰이 왼쪽 끝을 넘지 않게, 사진은 조금 작게 */
-  .hero-phone { left: 18px !important; }
-  .hero-photo { width: 60% !important; right: 4px !important; }
+@media (max-width: 719.98px) {
+  :root { --ph: 0.7; --diary-h: auto; }
+  section[id] { scroll-margin-top: 56px; }
+  .d-only { display: none !important; }
+  .m-only { display: revert !important; }
 
-  /* 지도: 고른 가게 사진을 조금 작게 */
-  .map-photo { width: min(100%, 210px) !important; }
+  /* 장 사이 여백을 줄여 덜 휑하게 */
+  #map, #diary, #wishlist, #recommend, #together, #labels, #community { padding-top: 72px !important; padding-bottom: 72px !important; }
+  #capture { padding-bottom: 72px !important; }
+  #story > div:last-child { padding-top: 64px !important; padding-bottom: 40px !important; }
+  section h2 { letter-spacing: -.025em !important; }
 
-  /* 계절의 식탁 카드: 화면 안에 들어오게 전체를 살짝 줄임 */
-  .share-stack { height: 390px !important; transform: scale(0.84); transform-origin: top center; }
+  /* ── 머리글: 짧은 단추 + 메뉴 */
+  .nav-bar { gap: 10px !important; }
+  .nav-bar a.hv-brick { padding: 9px 16px !important; }
+  .nav-burger {
+    display: flex !important; align-items: center; justify-content: center;
+    width: 40px; height: 40px; border-radius: 20px; border: 1px solid #d8d3c8; background: #fbfaf6; cursor: pointer; padding: 0;
+  }
+  .m-menu {
+    position: fixed; z-index: 49; top: 65px; left: 0; right: 0; bottom: 0; overflow-y: auto;
+    background: #f6f3ec; padding: 8px 20px calc(24px + env(safe-area-inset-bottom));
+    display: flex; flex-direction: column; animation: fadeUp .35s cubic-bezier(.22,1,.36,1) both;
+  }
+  .m-menu ul { list-style: none; margin: 0; padding: 0; }
+  .m-menu li a {
+    display: flex; align-items: baseline; gap: 16px; padding: 16px 4px; border-bottom: 1px solid #e2ddd2;
+    font-family: var(--dinary-font-serif); font-size: 22px; color: #1c1a17;
+  }
+  .m-menu-no { font-family: var(--dinary-font-mono); font-size: 11px; color: #b4552d; letter-spacing: .1em; }
+  .m-menu-cta { margin-top: auto; padding-top: 28px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .m-menu-cta a {
+    display: flex; align-items: center; justify-content: center; height: 54px; border-radius: 16px;
+    background: #1c1a17; color: #fbfaf6; font-size: 14.5px; font-weight: 500;
+  }
+  .m-menu-cta a:last-child { background: #b4552d; }
 
-  /* 위시리스트: 제목 · 설명을 폰보다 먼저, 뒤의 사진은 화면 안으로 */
+  /* ── 베타 참여 단추: 두 개를 나란히 */
+  .cta-row { display: grid !important; grid-template-columns: 1fr 1fr; gap: 10px !important; }
+  .cta-row > a { min-width: 0 !important; padding: 0 16px !important; box-sizing: border-box; }
+  .cta-row > a > span:last-child { font-size: 15.5px !important; }
+
+  /* ── 첫 화면: 폰을 가운데, 사진은 뒤로 */
+  #top { padding-top: 104px !important; padding-bottom: 56px !important; }
+  #top h1 { margin-top: 22px !important; }
+  #top p { margin-top: 22px !important; }
+  #top .cta-row { margin-top: 28px !important; }
+  .hero-photo { width: 56% !important; right: 0 !important; top: 8px !important; }
+  .hero-phone { left: 6% !important; }
+
+  /* ── 여러 장의 공통: 조작 → 폰 → 설명 순서로 한 줄에 쌓기 */
+  .m-stack { display: flex !important; flex-direction: column; align-items: stretch !important; gap: 0 !important; }
+  .m-contents { display: contents !important; }
+  .m-o1 { order: 1; }
+  .m-o2 { order: 2; }
+  .m-o3 { order: 3; }
+  .m-phone { margin-top: 28px; }
+
+  /* 탭을 알약 모양 분할 단추로 */
+  .m-seg {
+    display: flex !important; flex-direction: row !important; gap: 4px !important; margin-top: 28px !important; align-self: stretch !important;
+    padding: 4px; border-radius: 999px !important; border: 1px solid #d8d3c8 !important; background: #ede8dd !important; overflow: visible !important;
+  }
+  .m-seg > button {
+    flex: 1 1 0 !important; min-width: 0 !important; display: flex !important; align-items: center !important; justify-content: center !important;
+    padding: 10px 6px !important; border-radius: 999px !important; border: none !important; background: transparent !important;
+    text-align: center; font-size: 14px; color: #6b665e;
+  }
+  .m-seg > button[aria-selected="true"] { background: #fbfaf6 !important; color: #1c1a17; box-shadow: 0 2px 8px rgba(28,26,23,.1); }
+  .m-seg > button span { font-size: 15px !important; color: inherit !important; }
+  .m-seg > button > span { gap: 0 !important; }
+
+  /* ── 기록하기: 단계 탭 → 폰 → 단계 설명 */
+  .cap-tabs { margin-top: 0; }
+  .cap-text { margin-top: 24px !important; min-height: 0 !important; }
+  .cap-text h3 { margin-top: 0 !important; font-size: 23px !important; }
+
+  /* ── 지도: 맛집/카페 → 가게 칩(옆으로 넘김) → 폰. 고른 가게 사진은 덜어 냄 */
+  .map-box { padding: 24px 0 32px !important; border-radius: 28px !important; margin-top: 40px !important; }
+  .map-box > .m-stack > .m-contents > div:first-child { padding: 0 20px; }
+  .map-kinds { margin: 14px 20px 0 !important; align-self: flex-start; }
+  .m-chips {
+    flex-direction: row !important; gap: 8px !important; margin: 14px 0 0 !important; padding: 0 20px 4px !important;
+    overflow-x: auto; scroll-snap-type: x proximity; scrollbar-width: none; scroll-padding: 0 20px;
+  }
+  .m-chips::-webkit-scrollbar { display: none; }
+  .m-chips > li { flex: none; scroll-snap-align: start; }
+  .m-chips button { width: auto !important; gap: 8px !important; padding: 10px 14px !important; background: #fbfaf6 !important; border: 1px solid #d8d3c8; }
+  .m-chips button[aria-pressed="true"] { border-color: #1c1a17; box-shadow: none !important; }
+  .m-chips button > span:last-child { display: none; }
+  .map-box .m-phone { margin-top: 24px; }
+
+  /* ── 캘린더: 둘레 사진은 덜고, 계절 카드는 옆으로 넘기기 */
+  .diary-photo { display: none !important; }
+  .share-stack {
+    display: flex; gap: 12px; height: auto !important; overflow-x: auto; scroll-snap-type: x mandatory;
+    margin: 0 -20px; padding: 8px 20px 24px; scrollbar-width: none;
+  }
+  .share-stack::-webkit-scrollbar { display: none; }
+  .share-stack > div {
+    position: relative !important; left: auto !important; top: auto !important; transform: none !important;
+    flex: 0 0 210px; scroll-snap-align: center; box-shadow: 0 16px 30px -22px rgba(28,26,23,.5) !important;
+  }
+
+  /* ── 옆으로 넘기는 카드 줄(위시 세 단계 · 연인 네 가지) */
+  .m-swipe {
+    display: flex !important; gap: 10px !important; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
+    margin-left: -20px !important; margin-right: -20px !important; padding: 0 20px 6px !important; scroll-padding: 0 20px;
+    border: none !important; background: transparent !important; border-radius: 0 !important;
+  }
+  .m-swipe::-webkit-scrollbar { display: none; }
+  .m-swipe > li {
+    flex: 0 0 78%; scroll-snap-align: start; box-sizing: border-box;
+    border: 1px solid #d8d3c8 !important; border-radius: 22px; background: #fbfaf6 !important; padding: 20px !important;
+  }
+
+  /* ── 위시리스트: 제목 → 폰 → 세 단계. 뒤의 사진은 덜어 냄 */
   .wish-text { order: -1; }
-  .wish-photo { width: 34% !important; right: 10px !important; }
+  .wish-photo { display: none !important; }
+  .wish-steps { margin-top: 32px !important; }
+  #wishlist > div { gap: 40px !important; }
 
-  /* 연인 기록: 기념일 카드가 폰 화면을 가리지 않게 폰 아래로 */
+  /* ── 연인 기록: 폰 → 기념일 카드 → 콕 찌르기 → 네 가지(넘기기) */
   .together-stage { flex-direction: column; align-items: center; justify-content: flex-start !important; }
   .together-card {
     position: relative !important; top: auto !important; right: auto !important;
     transform: rotate(-2deg) !important; width: min(300px, 100%) !important; margin-top: -48px;
   }
+  .tg-poke { margin-top: 24px !important; text-align: center; }
+  .tg-points { margin-top: 32px !important; }
+  .tg-points > li { flex-direction: column; gap: 12px !important; border-color: #e0c3b1 !important; }
 
-  /* 바닥글: 메뉴를 두 칸으로 */
-  .foot-grid { grid-template-columns: 1fr 1fr !important; gap: 40px 24px !important; }
+  /* ── 도장과 라벨: 라벨 목록은 네 개까지만 */
+  .label-list > div:nth-child(n + 5) { display: none !important; }
+
+  /* ── 커뮤니티: 짧은 탭 → 폰 → 고른 탭 설명 */
+  .comm-tabs > button { padding: 10px 4px !important; }
+  .comm-caption { margin-top: 20px; text-align: center; }
+  .comm-caption strong { font-family: var(--dinary-font-serif); font-weight: 400; font-size: 19px; }
+  .comm-caption p { margin: 8px auto 0; max-width: 26em; font-size: 14px; line-height: 1.8; color: #6b665e; }
+
+  /* ── 마지막 장 · 바닥글 */
+  #start > div:first-child { padding-top: 72px !important; }
+  #start .cta-row { margin-top: 28px !important; }
+  #start .cta-row > a { align-items: flex-start !important; }
+  .foot-grid { grid-template-columns: 1fr 1fr !important; gap: 36px 24px !important; }
   .foot-grid > :first-child, .foot-grid > :last-child { grid-column: 1 / -1 !important; }
+  footer > div { padding-top: 56px !important; padding-bottom: 104px !important; }
 }

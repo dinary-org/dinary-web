@@ -6,15 +6,18 @@ import TabBar from "@/components/TabBar";
 import { BOARDS, COMMUNITY, PEOPLE } from "@/lib/content";
 
 const IDS = ["friends", "gallery", "ranking", "board"] as const;
+/** 휴대폰의 짧은 탭 이름 — 앱 커뮤니티 탭 바와 같은 말 */
+const SHORT = ["친구", "갤러리", "랭킹", "게시판"];
 const rankCards = BOARDS.map(([, name, rule], i) => ({ name, rule, top: PEOPLE[0][0], mine: ["3위", "2위", "—", "4위", "1위"][i] }));
 
 export default function Community() {
   const [comm, setComm] = useState<(typeof IDS)[number]>("friends");
   const community = COMMUNITY.map((c, i) => {
     const on = comm === IDS[i];
-    return { ...c, active: on, bg: on ? "#fbfaf6" : "#f6f3ec", enColor: on ? "#b4552d" : "#a29a8c", pick: () => setComm(IDS[i]) };
+    return { ...c, short: SHORT[i], active: on, bg: on ? "#fbfaf6" : "#f6f3ec", enColor: on ? "#b4552d" : "#a29a8c", pick: () => setComm(IDS[i]) };
   });
   const [commFriends, commGallery, commRanking, commBoard] = IDS.map((id) => comm === id);
+  const activeTab = COMMUNITY[IDS.indexOf(comm)];
   return (
     <section id="community" aria-labelledby="community-title" style={{ padding: "clamp(96px,10vw,140px) 0" }}>
       <div style={{ maxWidth: "1320px", margin: "0 auto", padding: "0 clamp(20px,4vw,40px)" }}>
@@ -34,8 +37,8 @@ export default function Community() {
           <p style={{ margin: "28px 0 0", maxWidth: "31em", fontSize: "clamp(15.5px,1.3vw,16.5px)", lineHeight: "1.9", color: "#6b665e" }}>커뮤니티는 내 기록장과 따로 열려요. 친구의 한 끼를 구경하고, 랭킹으로 겨루고, 다녀온 코스를 나눠요. 셈에 들어가는 건 모두 인증된 방문뿐이에요.</p>
         </div>
         {" "}
-        <div style={{ marginTop: "clamp(48px,6vw,72px)", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,400px),1fr))", gap: "24px", alignItems: "start" }}>
-          <div style={{ display: "flex", justifyContent: "center" }}>
+        <div className="m-stack" style={{ marginTop: "clamp(48px,6vw,72px)", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,400px),1fr))", gap: "24px", alignItems: "start" }}>
+          <div className="m-o2 m-phone" style={{ display: "flex", justifyContent: "center" }}>
             <Phone>
               {commFriends && (
                 <>
@@ -307,16 +310,21 @@ export default function Community() {
               )}
             </Phone>
           </div>
-          <div role="tablist" aria-label="커뮤니티 화면" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,220px),1fr))", gap: "1px", borderRadius: "28px", overflow: "hidden", border: "1px solid #d8d3c8", background: "#d8d3c8", alignSelf: "center" }}>
+          <div role="tablist" aria-label="커뮤니티 화면" className="m-o1 m-seg comm-tabs" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,220px),1fr))", gap: "1px", borderRadius: "28px", overflow: "hidden", border: "1px solid #d8d3c8", background: "#d8d3c8", alignSelf: "center" }}>
             {community.map((c, cI) => (
               <button key={cI} type="button" role="tab" aria-selected={c.active} onClick={c.pick} style={{ all: "unset", cursor: "pointer", boxSizing: "border-box", display: "block", background: c.bg, padding: "26px", transition: "background .3s" }}>
-                <div style={{ fontFamily: "var(--dinary-font-mono)", fontSize: "11px", letterSpacing: ".2em", color: c.enColor }}>{c.en}</div>
+                <div className="d-only" style={{ fontFamily: "var(--dinary-font-mono)", fontSize: "11px", letterSpacing: ".2em", color: c.enColor }}>{c.en}</div>
                 {" "}
-                <h3 style={{ margin: "18px 0 0", fontFamily: "var(--dinary-font-serif)", fontWeight: "400", fontSize: "21px" }}>{c.title}</h3>
+                <h3 className="d-only" style={{ margin: "18px 0 0", fontFamily: "var(--dinary-font-serif)", fontWeight: "400", fontSize: "21px" }}>{c.title}</h3>
+                <span className="m-only">{c.short}</span>
                 {" "}
-                <p style={{ margin: "10px 0 0", fontSize: "14px", lineHeight: "1.8", color: "#6b665e" }}>{c.body}</p>
+                <p className="d-only" style={{ margin: "10px 0 0", fontSize: "14px", lineHeight: "1.8", color: "#6b665e" }}>{c.body}</p>
               </button>
             ))}
+          </div>
+          <div className="m-only m-o3 comm-caption" aria-live="polite">
+            <strong>{activeTab.title}</strong>
+            <p>{activeTab.body}</p>
           </div>
         </div>
         {" "}

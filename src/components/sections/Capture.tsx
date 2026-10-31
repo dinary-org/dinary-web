@@ -41,9 +41,9 @@ export default function Capture() {
         {" "}
         <p style={{ margin: "28px 0 0", maxWidth: "31em", fontSize: "clamp(15.5px,1.3vw,16.5px)", lineHeight: "1.9", color: "#6b665e" }}>리뷰를 쓰려고 애쓸 필요 없어요. 사진을 찍는 일이 곧 기록이 되도록, DINARY는 찍는 순간부터 남는 순간까지를 짧게 이었어요.</p>
         {" "}
-        <div style={{ marginTop: "clamp(48px,6vw,80px)", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,440px),1fr))", gap: "clamp(40px,5vw,72px)", alignItems: "center" }}>
-          <div>
-            <div role="tablist" aria-label="기록되는 순서" style={{ display: "grid", gridTemplateColumns: "repeat(4,minmax(0,1fr))", gap: "8px" }}>
+        <div className="m-stack" style={{ marginTop: "clamp(48px,6vw,80px)", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,440px),1fr))", gap: "clamp(40px,5vw,72px)", alignItems: "center" }}>
+          <div className="m-contents">
+            <div role="tablist" aria-label="기록되는 순서" className="m-o1 cap-tabs" style={{ display: "grid", gridTemplateColumns: "repeat(4,minmax(0,1fr))", gap: "8px" }}>
               {steps.map((s, sI) => (
                 <button key={sI} type="button" role="tab" aria-selected={s.active} onClick={s.pick} style={{ all: "unset", cursor: "pointer", padding: "12px 0 0", minHeight: "44px" }}>
                   <div style={{ fontFamily: "var(--dinary-font-mono)", fontSize: "11px", letterSpacing: ".16em", color: s.color, transition: "color .4s" }}>0{s.n} {s.verb}</div>
@@ -53,8 +53,8 @@ export default function Capture() {
               ))}
             </div>
             {" "}
-            <div aria-live="polite" style={{ marginTop: "36px", minHeight: "300px" }}>
-              <div style={{ fontFamily: "var(--dinary-font-mono)", fontSize: "clamp(48px,6vw,80px)", lineHeight: "1", color: "#b4552d", letterSpacing: "-.04em" }}>{step.no}</div>
+            <div aria-live="polite" className="m-o3 cap-text" style={{ marginTop: "36px", minHeight: "300px" }}>
+              <div className="d-only" style={{ fontFamily: "var(--dinary-font-mono)", fontSize: "clamp(48px,6vw,80px)", lineHeight: "1", color: "#b4552d", letterSpacing: "-.04em" }}>{step.no}</div>
               {" "}
               <h3 style={{ margin: "20px 0 0", fontFamily: "var(--dinary-font-serif)", fontWeight: "400", fontSize: "clamp(24px,2.6vw,34px)", lineHeight: "1.35" }}>{step.title}</h3>
               {" "}
@@ -71,7 +71,7 @@ export default function Capture() {
               </div>
             </div>
           </div>
-          <div style={{ position: "relative", display: "flex", justifyContent: "center" }}>
+          <div className="m-o2 m-phone" style={{ position: "relative", display: "flex", justifyContent: "center" }}>
             <div style={{ position: "absolute", top: "50%", left: "50%", width: "min(520px,90%)", aspectRatio: "1", transform: "translate(-50%,-50%)", borderRadius: "50%", background: "#f7ece5", filter: "blur(30px)" }} />
             <Phone>
               {isStep3 && <RecordScreen />}

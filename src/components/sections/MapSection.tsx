@@ -73,21 +73,21 @@ export default function MapSection() {
           </ul>
         </div>
         {" "}
-        <div style={{ marginTop: "clamp(56px,6vw,80px)", borderRadius: "clamp(28px,3vw,40px)", border: "1px solid #d8d3c8", backgroundColor: "#e7e3d8", backgroundImage: "linear-gradient(#dcd7c9 1px,transparent 1px),linear-gradient(90deg,#dcd7c9 1px,transparent 1px)", backgroundSize: "44px 44px", padding: "clamp(32px,4vw,64px) clamp(20px,4vw,48px)" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,280px),1fr))", gap: "40px", alignItems: "center" }}>
-            <div>
+        <div className="map-box" style={{ marginTop: "clamp(56px,6vw,80px)", borderRadius: "clamp(28px,3vw,40px)", border: "1px solid #d8d3c8", backgroundColor: "#e7e3d8", backgroundImage: "linear-gradient(#dcd7c9 1px,transparent 1px),linear-gradient(90deg,#dcd7c9 1px,transparent 1px)", backgroundSize: "44px 44px", padding: "clamp(32px,4vw,64px) clamp(20px,4vw,48px)" }}>
+          <div className="m-stack" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,280px),1fr))", gap: "40px", alignItems: "center" }}>
+            <div className="m-contents">
               <div style={{ fontFamily: "var(--dinary-font-mono)", fontSize: "10.5px", letterSpacing: ".24em", color: "#6b665e" }}>직접 눌러 보세요</div>
               {" "}
-              <div role="group" aria-label="맛집 · 카페" style={{ marginTop: "16px", display: "inline-flex", padding: "4px", borderRadius: "999px", background: "#fbfaf6", border: "1px solid #d8d3c8" }}>
+              <div role="group" aria-label="맛집 · 카페" className="m-o1 map-kinds" style={{ marginTop: "16px", display: "inline-flex", padding: "4px", borderRadius: "999px", background: "#fbfaf6", border: "1px solid #d8d3c8" }}>
                 {kinds.map((k, kI) => (
                   <button key={kI} type="button" aria-pressed={k.active} onClick={k.pick} style={{ all: "unset", cursor: "pointer", padding: "10px 22px", borderRadius: "999px", fontSize: "14px", background: k.bg, color: k.fg, transition: "all .3s" }}>{k.label}</button>
                 ))}
               </div>
               {" "}
-              <ul style={{ listStyle: "none", margin: "24px 0 0", padding: "0", display: "flex", flexDirection: "column", gap: "4px" }}>
+              <ul className="m-o2 m-chips" style={{ listStyle: "none", margin: "24px 0 0", padding: "0", display: "flex", flexDirection: "column", gap: "4px" }}>
                 {shownPlaces.map((p, pI) => (
                   <li key={pI}>
-                    <button type="button" onClick={p.pick} style={{ all: "unset", cursor: "pointer", boxSizing: "border-box", width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "12px", padding: "12px 16px", borderRadius: "16px", background: p.bg, boxShadow: p.shadow, transition: "background .3s" }}>
+                    <button type="button" aria-pressed={p.pressed} onClick={p.pick} style={{ all: "unset", cursor: "pointer", boxSizing: "border-box", width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "12px", padding: "12px 16px", borderRadius: "16px", background: p.bg, boxShadow: p.shadow, transition: "background .3s" }}>
                       <span style={{ display: "flex", alignItems: "center", gap: "12px" }}>
                         <span style={{ width: "10px", height: "10px", borderRadius: "50%", background: p.color }} />
                         <span style={{ fontSize: "14.5px", color: "#1c1a17" }}>{p.name}</span>
@@ -97,7 +97,7 @@ export default function MapSection() {
                   </li>
                 ))}
               </ul>
-              <div style={{ marginTop: "clamp(40px,4vw,56px)", display: "flex", justifyContent: "center" }}>
+              <div className="d-only" style={{ marginTop: "clamp(40px,4vw,56px)", display: "flex", justifyContent: "center" }}>
                 <figure className="map-photo" style={{ margin: "0", width: "min(100%,260px)", position: "relative", background: "#fbfaf6", padding: "10px 10px 44px", transform: "rotate(3deg)", boxShadow: "0 18px 40px -18px rgba(28,26,23,.35),0 4px 10px -4px rgba(28,26,23,.12)" }}>
                   <div style={{ aspectRatio: "4/5", overflow: "hidden" }}>
                     <img src={active.src} alt={active.alt} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
@@ -110,7 +110,7 @@ export default function MapSection() {
                 </figure>
               </div>
             </div>
-            <div style={{ display: "flex", justifyContent: "center" }}>
+            <div className="m-o3 m-phone" style={{ display: "flex", justifyContent: "center" }}>
               <Phone>
                 <div style={{ position: "absolute", inset: "0", overflow: "hidden" }}>
                   <div style={{ position: "absolute", inset: "0", overflow: "hidden" }}>

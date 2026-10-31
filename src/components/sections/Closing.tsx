@@ -39,11 +39,11 @@ export default function Closing() {
           {" "}
           <div className="cta-row" style={{ marginTop: "40px", display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "12px" }}>
             <a className="hv-blush" href={iosBetaUrl} style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "flex-start", minWidth: "180px", height: "62px", padding: "0 26px", borderRadius: "16px", background: "#fbfaf6", color: "#1c1a17", boxSizing: "border-box", transition: "background .3s" }}>
-              <span style={{ fontFamily: "var(--dinary-font-mono)", fontSize: "9.5px", letterSpacing: ".16em", color: "#6b665e" }}>JOIN THE BETA · iOS</span>
+              <span style={{ fontFamily: "var(--dinary-font-mono)", fontSize: "9.5px", letterSpacing: ".16em", color: "#6b665e" }}><span className="d-only">JOIN THE BETA · </span>iOS</span>
               <span style={{ fontSize: "18px", fontWeight: "500", marginTop: "2px" }}>iPhone으로 참여</span>
             </a>
             <a className="hv-blush" href={androidBetaUrl} style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "flex-start", minWidth: "180px", height: "62px", padding: "0 26px", borderRadius: "16px", background: "#fbfaf6", color: "#1c1a17", boxSizing: "border-box", transition: "background .3s" }}>
-              <span style={{ fontFamily: "var(--dinary-font-mono)", fontSize: "9.5px", letterSpacing: ".16em", color: "#6b665e" }}>JOIN THE BETA · ANDROID</span>
+              <span style={{ fontFamily: "var(--dinary-font-mono)", fontSize: "9.5px", letterSpacing: ".16em", color: "#6b665e" }}><span className="d-only">JOIN THE BETA · </span>ANDROID</span>
               <span style={{ fontSize: "18px", fontWeight: "500", marginTop: "2px" }}>Android로 참여</span>
             </a>
           </div>

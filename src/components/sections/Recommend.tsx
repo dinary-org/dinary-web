@@ -60,8 +60,8 @@ export default function Recommend() {
   });
   return (
     <section id="recommend" aria-labelledby="rec-title" style={{ padding: "clamp(96px,10vw,140px) 0", borderTop: "1px solid #d8d3c8" }}>
-      <div style={{ maxWidth: "1320px", margin: "0 auto", padding: "0 clamp(20px,4vw,40px)", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,460px),1fr))", gap: "clamp(56px,6vw,80px)", alignItems: "center" }}>
-        <div>
+      <div className="m-stack" style={{ maxWidth: "1320px", margin: "0 auto", padding: "0 clamp(20px,4vw,40px)", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,460px),1fr))", gap: "clamp(56px,6vw,80px)", alignItems: "center" }}>
+        <div className="m-contents">
           <div style={{ display: "flex", alignItems: "center", gap: "16px", fontFamily: "var(--dinary-font-mono)", fontSize: "11px", letterSpacing: ".28em", color: "#8a8377" }}>
             <span>05</span>
             <span style={{ width: "40px", height: "1px", background: "#b4552d" }} />
@@ -78,13 +78,13 @@ export default function Recommend() {
             지금 있는 곳과 시각, 점심인지 저녁인지를 보고 근처에서 다섯 곳을 골라 드려요. 셈에는 DINARY에서 인증된 방문만 써요. 다른 사람의 기록은 사진도 이름도 없이, 숫자로만 더해져요.
           </p>
           {" "}
-          <div role="tablist" aria-label="추천 방식" style={{ marginTop: "40px", display: "flex", flexDirection: "column", gap: "6px" }}>
+          <div role="tablist" aria-label="추천 방식" className="m-o1 m-seg rec-tabs" style={{ marginTop: "40px", display: "flex", flexDirection: "column", gap: "6px" }}>
             {recModes.map((m, mI) => (
               <button key={mI} type="button" role="tab" aria-selected={m.active} onClick={m.pick} style={{ all: "unset", cursor: "pointer", boxSizing: "border-box", display: "flex", gap: "18px", alignItems: "flex-start", padding: "18px 20px", borderRadius: "20px", background: m.bg, border: `1px solid ${m.border}`, transition: "all .3s" }}>
-                <span style={{ fontFamily: "var(--dinary-font-mono)", fontSize: "12px", color: m.numColor, paddingTop: "4px" }}>0{m.n}</span>
+                <span className="d-only" style={{ fontFamily: "var(--dinary-font-mono)", fontSize: "12px", color: m.numColor, paddingTop: "4px" }}>0{m.n}</span>
                 <span style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
                   <span style={{ fontFamily: "var(--dinary-font-serif)", fontSize: "20px", color: "#1c1a17" }}>{m.label}</span>
-                  <span style={{ fontSize: "14px", lineHeight: "1.75", color: "#6b665e" }}>{m.body}</span>
+                  <span className="d-only" style={{ fontSize: "14px", lineHeight: "1.75", color: "#6b665e" }}>{m.body}</span>
                 </span>
               </button>
             ))}
@@ -92,14 +92,14 @@ export default function Recommend() {
           {" "}
           {recHasAction && (
             <>
-              <div style={{ marginTop: "24px", display: "flex", flexWrap: "wrap", alignItems: "center", gap: "14px" }}>
+              <div className="m-o3" style={{ marginTop: "24px", display: "flex", flexWrap: "wrap", alignItems: "center", gap: "14px" }}>
                 <button className="hv-brick" type="button" onClick={recAction} style={{ all: "unset", cursor: "pointer", display: "inline-flex", alignItems: "center", gap: "10px", borderRadius: "999px", background: "#1c1a17", color: "#fbfaf6", padding: "14px 24px", fontSize: "14.5px", transition: "background .3s" }}>{recActionLabel}</button>
                 <span style={{ fontSize: "12.5px", color: "#6b665e" }}>{recActionNote}</span>
               </div>
             </>
           )}
         </div>
-        <div style={{ position: "relative", display: "flex", justifyContent: "center" }}>
+        <div className="m-o2 m-phone" style={{ position: "relative", display: "flex", justifyContent: "center" }}>
           <div style={{ position: "absolute", top: "50%", left: "50%", width: "min(520px,90%)", aspectRatio: "1", transform: "translate(-50%,-50%)", borderRadius: "50%", background: "#f7ece5", filter: "blur(30px)" }} />
           <Phone screenStyle={{ boxSizing: "border-box", padding: "58px 22px 0" }}>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>

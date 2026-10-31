@@ -58,7 +58,7 @@ export default function Diary() {
         {" "}
         <div style={{ position: "relative", maxWidth: "1100px", margin: "clamp(56px,6vw,80px) auto 0", height: "var(--diary-h)", display: "flex", alignItems: "center", justifyContent: "center" }}>
           {journal.map((j, jI) => (
-            <div key={jI} aria-hidden="true" style={{ position: "absolute", ...j.pos, width: `calc(${j.w}% + var(--journal-dw))`, background: "#fbfaf6", padding: "8px 8px 30px", transform: `rotate(${j.r}deg)`, boxShadow: "0 18px 40px -18px rgba(28,26,23,.35),0 4px 10px -4px rgba(28,26,23,.12)" }}>
+            <div key={jI} aria-hidden="true" className="diary-photo" style={{ position: "absolute", ...j.pos, width: `calc(${j.w}% + var(--journal-dw))`, background: "#fbfaf6", padding: "8px 8px 30px", transform: `rotate(${j.r}deg)`, boxShadow: "0 18px 40px -18px rgba(28,26,23,.35),0 4px 10px -4px rgba(28,26,23,.12)" }}>
               <div style={{ aspectRatio: "1", overflow: "hidden" }}>
                 <img src={j.src} alt="" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
               </div>

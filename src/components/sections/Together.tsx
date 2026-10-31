@@ -45,7 +45,7 @@ export default function Together() {
           <p style={{ margin: "28px 0 0", maxWidth: "31em", fontSize: "clamp(15.5px,1.3vw,16.5px)", lineHeight: "1.9", color: "#6b665e" }}>연인과 함께 쓰는 기록장을 열 수 있어요. 처음 데이트한 날의 떡볶이, 싸우고 화해한 날의 국밥. 둘이 앉았던 식탁이 하나씩 쌓여, 우리만 아는 지도가 돼요.</p>
         </div>
         {" "}
-        <div style={{ marginTop: "clamp(56px,6vw,96px)", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,460px),1fr))", gap: "48px", alignItems: "center" }}>
+        <div className="m-stack" style={{ marginTop: "clamp(56px,6vw,96px)", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,460px),1fr))", gap: "48px", alignItems: "center" }}>
           <div className="together-stage" style={{ position: "relative", display: "flex", justifyContent: "flex-start" }}>
             <Phone>
               <div style={{ position: "absolute", inset: "0", boxSizing: "border-box", padding: "61px 20px 0", background: "#f6f3ec" }}>
@@ -155,8 +155,8 @@ export default function Together() {
               </div>
             </div>
           </div>
-          <div>
-            <ul style={{ listStyle: "none", margin: "0", padding: "0", borderTop: "1px solid #e0c3b1" }}>
+          <div className="m-contents">
+            <ul className="m-o3 m-swipe tg-points" style={{ listStyle: "none", margin: "0", padding: "0", borderTop: "1px solid #e0c3b1" }}>
               {points.map((p, pI) => (
                 <li key={pI} style={{ display: "flex", gap: "20px", padding: "24px 0", borderBottom: "1px solid #e0c3b1" }}>
                   <span style={{ fontFamily: "var(--dinary-font-mono)", fontSize: "22px", lineHeight: "1", color: "#b4552d" }}>{p.n}</span>
@@ -168,7 +168,7 @@ export default function Together() {
               ))}
             </ul>
             {" "}
-            <div style={{ marginTop: "32px" }}>
+            <div className="m-o2 tg-poke" style={{ marginTop: "32px" }}>
               <button className="hv-brick" type="button" onClick={poke} style={{ all: "unset", cursor: "pointer", display: "inline-flex", alignItems: "center", gap: "12px", borderRadius: "999px", background: "#1c1a17", color: "#fbfaf6", padding: "14px 24px", fontSize: "14.5px", transition: "background .3s" }}>{pokeLabel}</button>
               {" "}
               <p style={{ margin: "12px 0 0", fontSize: "12.5px", color: "#6b665e" }}>눌러 보면, 상대의 한 줄이 도착하고 반쪽 도장이 채워져요.</p>

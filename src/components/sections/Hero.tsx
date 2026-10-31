@@ -30,14 +30,14 @@ export default function Hero() {
           {" "}
           <div className="cta-row" style={{ marginTop: "40px", display: "flex", flexWrap: "wrap", gap: "10px" }}>
             <a className="hv-brick" href={iosBetaUrl} style={{ display: "flex", flexDirection: "column", justifyContent: "center", minWidth: "168px", height: "58px", padding: "0 24px", borderRadius: "16px", background: "#1c1a17", color: "#fbfaf6", transition: "background .3s" }}>
-              <span style={{ fontFamily: "var(--dinary-font-mono)", fontSize: "9.5px", letterSpacing: ".16em", color: "#cdc6b8" }}>JOIN THE BETA · iOS</span>
+              <span style={{ fontFamily: "var(--dinary-font-mono)", fontSize: "9.5px", letterSpacing: ".16em", color: "#cdc6b8" }}><span className="d-only">JOIN THE BETA · </span>iOS</span>
               <span style={{ fontSize: "17px", fontWeight: "500", marginTop: "2px" }}>iPhone으로 참여</span>
             </a>
             <a className="hv-brick" href={androidBetaUrl} style={{ display: "flex", flexDirection: "column", justifyContent: "center", minWidth: "168px", height: "58px", padding: "0 24px", borderRadius: "16px", background: "#1c1a17", color: "#fbfaf6", transition: "background .3s" }}>
-              <span style={{ fontFamily: "var(--dinary-font-mono)", fontSize: "9.5px", letterSpacing: ".16em", color: "#cdc6b8" }}>JOIN THE BETA · ANDROID</span>
+              <span style={{ fontFamily: "var(--dinary-font-mono)", fontSize: "9.5px", letterSpacing: ".16em", color: "#cdc6b8" }}><span className="d-only">JOIN THE BETA · </span>ANDROID</span>
               <span style={{ fontSize: "17px", fontWeight: "500", marginTop: "2px" }}>Android로 참여</span>
             </a>
-            <a className="hv-outline" href="#capture" style={{ display: "inline-flex", alignItems: "center", gap: "10px", height: "58px", padding: "0 24px", borderRadius: "16px", border: "1px solid #d8d3c8", fontSize: "15px", color: "#1c1a17" }}>
+            <a className="hv-outline d-only" href="#capture" style={{ display: "inline-flex", alignItems: "center", gap: "10px", height: "58px", padding: "0 24px", borderRadius: "16px", border: "1px solid #d8d3c8", fontSize: "15px", color: "#1c1a17" }}>
               어떻게 남겨지나요{" "}
               <span>↓</span>
             </a>

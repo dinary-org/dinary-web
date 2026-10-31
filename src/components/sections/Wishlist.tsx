@@ -165,7 +165,7 @@ export default function Wishlist() {
             {" "}지나가다 본 간판, 친구가 보낸 링크, 언젠가 가 보자던 그 집. 잊어버리기 전에 위시리스트에 담아 두면, DINARY가 대신 기억하고 있다가 다시 데려다줘요.
           </p>
           {" "}
-          <ol style={{ listStyle: "none", margin: "48px 0 0", padding: "0", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,180px),1fr))", gap: "1px", borderRadius: "24px", overflow: "hidden", border: "1px solid #d8d3c8", background: "#d8d3c8" }}>
+          <ol className="m-swipe wish-steps" style={{ listStyle: "none", margin: "48px 0 0", padding: "0", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,180px),1fr))", gap: "1px", borderRadius: "24px", overflow: "hidden", border: "1px solid #d8d3c8", background: "#d8d3c8" }}>
             <li style={{ background: "#f6f3ec", padding: "24px" }}>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                 <span style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#b4552d" }} />

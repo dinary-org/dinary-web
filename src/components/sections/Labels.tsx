@@ -105,7 +105,7 @@ export default function Labels() {
               <span style={{ fontFamily: "var(--dinary-font-mono)", fontSize: "15px", color: "#1c1a17" }}>3 / 22</span>
             </div>
             {" "}
-            <div style={{ marginTop: "12px", borderRadius: "24px", border: "1px solid #e2ddd2", background: "#fbfaf6", overflow: "hidden" }}>
+            <div className="label-list" style={{ marginTop: "12px", borderRadius: "24px", border: "1px solid #e2ddd2", background: "#fbfaf6", overflow: "hidden" }}>
               <div style={{ display: "flex", alignItems: "center", gap: "14px", padding: "12px 16px" }}>
                 <svg aria-hidden="true" width="50" height="50" viewBox="0 0 60 60" style={{ flex: "none" }}>
                   <polygon points="58.0,30.0 53.9,35.5 55.2,42.1 49.2,45.3 47.5,51.9 40.6,52.1 36.2,57.3 30.0,54.5 23.8,57.3 19.4,52.1 12.5,51.9 10.8,45.3 4.8,42.1 6.1,35.5 2.0,30.0 6.1,24.5 4.8,17.9 10.8,14.7 12.5,8.1 19.4,7.9 23.8,2.7 30.0,5.5 36.2,2.7 40.6,7.9 47.5,8.1 49.2,14.7 55.2,17.9 53.9,24.5" fill="#6a5d94" />
@@ -239,7 +239,7 @@ export default function Labels() {
               </div>
             </div>
             {" "}
-            <div style={{ marginTop: "12px", textAlign: "center", fontSize: "13px", color: "#8a8377" }}>14개 더 보기 ⌄</div>
+            <div style={{ marginTop: "12px", textAlign: "center", fontSize: "13px", color: "#8a8377" }}><span className="d-only">14개</span><span className="m-only">18개</span> 더 보기 ⌄</div>
             {" "}
             <div style={{ marginTop: "26px", display: "flex", alignItems: "baseline", gap: "8px" }}>
               <span style={{ fontFamily: "var(--dinary-font-serif)", fontSize: "19px" }}>동네 칭호</span>
