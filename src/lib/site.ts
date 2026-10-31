@@ -4,10 +4,8 @@
  */
 export const site = {
   name: "DINARY",
-  // 정식 도메인이 생기면 NEXT_PUBLIC_SITE_URL 로 정하세요. 없으면 Vercel 프로덕션 주소를 씁니다.
-  url:
-    process.env.NEXT_PUBLIC_SITE_URL ??
-    (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : "http://localhost:3000"),
+  // 정식 주소. www.dinary.app 은 Vercel 에서 이 주소로 넘겨 줍니다. 다른 주소로 바꿀 때만 NEXT_PUBLIC_SITE_URL 을 쓰세요.
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://dinary.app",
   title: "DINARY — 먹은 순간이, 우리의 이야기가 되도록",
   description:
     "DINARY는 사진으로 쓰는 식사 일기예요. 셔터 한 번으로 그날의 한 끼가 가게와 날짜, 지도 위의 한 점으로 남아요. 별점이 아니라 기억을 모으는 앱.",
@@ -15,6 +13,12 @@ export const site = {
   privacyUrl: "/privacy",
   termsUrl: "/terms",
   deleteAccountUrl: "/delete-account",
+  /**
+   * 검색 등록 확인 코드. Google Search Console · 네이버 서치어드바이저의 「HTML 태그」 방식에서
+   * content="…" 안의 값만 넣으면 모든 페이지 <head> 에 확인 태그가 들어갑니다. 비어 있으면 넣지 않습니다.
+   */
+  googleVerification: "",
+  naverVerification: "",
 } as const;
 
 /**

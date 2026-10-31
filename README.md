@@ -21,7 +21,12 @@ Vercel 에서 이 저장소를 가져오면 Next.js 로 알아서 잡힙니다. 
 
 | 이름 | 설명 |
 |---|---|
-| `NEXT_PUBLIC_SITE_URL` | 정식 도메인(예: `https://dinary.app`). canonical · OG 주소에 씁니다. 없으면 Vercel 프로덕션 주소(`VERCEL_PROJECT_PRODUCTION_URL`)를 씁니다. |
+| `NEXT_PUBLIC_SITE_URL` | 정식 주소를 바꿀 때만. 기본값은 `https://dinary.app` 이고 canonical · OG · 사이트맵 주소에 씁니다. |
+
+## 주소 · 검색 등록
+
+- 정식 주소는 **https://dinary.app** (Vercel 에서 구입, DNS 도 Vercel). `www.dinary.app` 은 `dinary.app` 으로 308 넘김, `dinary-web.vercel.app` 도 그대로 열립니다(canonical 은 dinary.app).
+- 검색 등록: Google Search Console · 네이버 서치어드바이저의 「HTML 태그」 확인 코드를 `src/lib/site.ts` 의 `googleVerification` · `naverVerification` 에 넣고 배포한 뒤 각 콘솔에서 「확인」, 사이트맵 `https://dinary.app/sitemap.xml` 을 제출합니다.
 
 ## 베타 참여 안내 · `/beta/ios` · `/beta/android`
 

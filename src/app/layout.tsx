@@ -29,6 +29,10 @@ export const metadata: Metadata = {
     description: site.description,
   },
   formatDetection: { telephone: false, email: false, address: false },
+  verification: {
+    ...(site.googleVerification ? { google: site.googleVerification } : {}),
+    ...(site.naverVerification ? { other: { "naver-site-verification": site.naverVerification } } : {}),
+  },
 };
 
 export const viewport: Viewport = {
