@@ -1,126 +1,178 @@
 "use client";
 
-import { AnimatePresence, motion } from "motion/react";
-import Image from "next/image";
-import { useEffect, useState } from "react";
-import { Parallax, Reveal } from "@/components/motion";
-import Phone from "@/components/phone/Phone";
-import { CoupleRecordScreen } from "@/components/phone/screens";
-import { photos } from "@/lib/photos";
-import Chapter from "./Chapter";
+import { useState } from "react";
+import Phone from "@/components/Phone";
+import TabBar from "@/components/TabBar";
+import { POINTS } from "@/lib/content";
 
-const POINTS = [
-  ["초대 코드 하나로", "6자리 코드를 보내면 둘만의 기록장이 따로 열려요. 무료예요. 각자의 개인 기록은 그대로 남아요."],
-  ["사귄 날부터 세는 날들", "캘린더 머리에 D+N이 붙고, 100일과 1주년 같은 기념일엔 그날 먹은 한 끼를 함께 꺼내 봐요."],
-  ["같은 한 끼, 두 개의 한 줄", "같은 자리에서 먹어도 기억은 조금씩 달라요. 둘이 각자 한 줄과 별점을 남겨요."],
-  ["둘 다 쓰면 채워지는 도장", "한 사람만 쓰면 반쪽 도장. 상대가 잊었다면 「콕 찌르기」로 살짝 알려 주세요."],
-];
+const points = POINTS.map(([t, d], i) => ({ n: i + 1, t, d }));
 
 export default function Together() {
   const [poked, setPoked] = useState(false);
-  const [toast, setToast] = useState(false);
-
-  useEffect(() => {
-    if (!toast) return;
-    const t = setTimeout(() => {
-      setToast(false);
-      setPoked(true);
-    }, 1300);
-    return () => clearTimeout(t);
-  }, [toast]);
-
+  const partnerLine = poked ? "튀김은 꼭 국물에 찍어 먹기" : "모과의 한 줄을 기다리는 중";
+  const partnerColor = poked ? "#1c1a17" : "#a29a8c";
+  const full = poked ? 4 : 3;
+  const couple = {
+    n: full,
+    left: 10 - full,
+    pct: full * 10 + "%",
+    slots: Array.from({ length: 10 }, (_, i) =>
+      i < 3 || (i === 3 && poked)
+        ? { border: "none", bg: "linear-gradient(90deg,#b4552d 50%,#4f6b7a 50%)" }
+        : i === 3
+          ? { border: "1.5px dashed #b4552d", bg: "linear-gradient(90deg,#b4552d 50%,transparent 50%)" }
+          : { border: "1.5px dashed #d8d3c8", bg: "transparent" },
+    ),
+  };
+  const pokeLabel = poked ? "도장이 채워졌어요 · 다시 보기 ↺" : "콕 찌르기 눌러 보기 →";
+  const poke = () => setPoked((s) => !s);
   return (
-    <section id="together" aria-labelledby="together-title" className="relative overflow-hidden bg-brick-soft py-24 md:py-36">
-      <svg aria-hidden className="pointer-events-none absolute -top-24 -right-24 h-[420px] w-[420px] text-brick/10" viewBox="0 0 100 100">
-        <circle cx="38" cy="50" r="30" fill="none" stroke="currentColor" strokeWidth=".6" />
-        <circle cx="62" cy="50" r="30" fill="none" stroke="currentColor" strokeWidth=".6" />
-      </svg>
-
-      <div className="mx-auto max-w-[1320px] px-5 md:px-10">
-        <Chapter
-          className="max-w-[760px]"
-          no="05"
-          en="Memories together"
-          title={[<span key="a" id="together-title">둘이 먹은 날들은,</span>, "둘이 함께 기억해요."]}
-          body="연인과 함께 쓰는 기록장을 열 수 있어요. 처음 데이트한 날의 떡볶이, 싸우고 화해한 날의 국밥. 둘이 앉았던 식탁이 하나씩 쌓여, 우리만 아는 지도가 돼요."
-        />
-
-        <div className="relative mt-16 grid grid-cols-1 items-center gap-12 md:mt-24 lg:grid-cols-12">
-          {/* 사진 + 폰 */}
-          <div className="relative h-[600px] sm:h-[680px] lg:col-span-7 lg:h-[760px]">
-            <Parallax speed={40} className="absolute inset-y-[4%] left-0 w-[86%] sm:w-[74%]">
-              <div className="relative h-full overflow-hidden rounded-[28px] md:rounded-[36px]">
-                <Image src={photos.coffees} alt="카페 테이블 위에서 두 사람이 커피 잔을 맞대는 모습" fill sizes="(min-width:1024px) 640px, 90vw" placeholder="blur" className="object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-ink/55 via-transparent to-transparent" />
-                <div className="absolute bottom-6 left-6 font-mono text-[11px] tracking-[0.16em] text-card/90 md:bottom-8 md:left-8">
-                  2025.09.06~ <span className="text-[#f2c7b2]">♥ D+412</span>
-                </div>
-              </div>
-            </Parallax>
-
-            <div className="absolute top-1/2 right-0 -translate-y-1/2 sm:right-[2%]">
-              <Phone className="[--s:0.56] min-[400px]:[--s:0.62] md:[--s:0.76]" label="DINARY 연인 기록장의 한 끼 화면 예시">
-                <CoupleRecordScreen halfStamp={!poked} />
-              </Phone>
-              <AnimatePresence>
-                {toast && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10, x: "-50%" }}
-                    animate={{ opacity: 1, y: 0, x: "-50%" }}
-                    exit={{ opacity: 0, y: -10, x: "-50%" }}
-                    className="absolute bottom-[12%] left-1/2 rounded-full bg-ink px-4 py-2 font-sans text-[13px] whitespace-nowrap text-card shadow-lg"
-                  >
-                    찔렀어요 👉
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-
-            {/* 기념일 카드 */}
-            <Parallax speed={90} className="absolute top-[2%] right-[34%] z-10 hidden sm:block lg:right-[40%]">
-              <div className="w-[220px] rotate-[-4deg] rounded-[20px] border border-line bg-card p-4 shadow-[0_24px_40px_-22px_rgba(28,26,23,.5)]">
-                <div className="flex items-center justify-between font-mono text-[10px] tracking-[0.16em] text-faint">
-                  <span>우리의 기념일</span>
-                  <span className="text-brick">400일</span>
-                </div>
-                <div className="mt-3 flex items-center gap-3">
-                  <div className="relative h-12 w-12 flex-none overflow-hidden rounded-[10px]">
-                    <Image src={photos.pasta} alt="" fill sizes="48px" className="object-cover" />
-                  </div>
-                  <div>
-                    <div className="font-serif text-[16px] text-ink">한남 파스타</div>
-                    <div className="font-mono text-[10px] text-faint">2026.10.10 · 그날의 한 끼</div>
-                  </div>
-                </div>
-              </div>
-            </Parallax>
+    <section id="together" aria-labelledby="together-title" style={{ position: "relative", overflow: "hidden", background: "#f7ece5", padding: "clamp(96px,10vw,140px) 0" }}>
+      <div style={{ maxWidth: "1320px", margin: "0 auto", padding: "0 clamp(20px,4vw,40px)" }}>
+        <div style={{ maxWidth: "760px" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "16px", fontFamily: "var(--dinary-font-mono)", fontSize: "11px", letterSpacing: ".28em", color: "#8a8377" }}>
+            <span>06</span>
+            <span style={{ width: "40px", height: "1px", background: "#b4552d" }} />
+            <span>MEMORIES TOGETHER</span>
           </div>
-
-          {/* 설명 */}
-          <div className="flex flex-col lg:col-span-5">
-            <ul className="space-y-0 divide-y divide-[#e0c3b1] border-y border-[#e0c3b1]">
-              {POINTS.map(([t, d], i) => (
-                <Reveal as="li" key={t} delay={i * 0.08} className="flex gap-5 py-6">
-                  <span className="font-display text-[26px] leading-none text-brick italic">{i + 1}</span>
-                  <div>
-                    <div className="font-serif text-[20px] text-ink">{t}</div>
-                    <p className="mt-2 font-sans text-[14.5px] leading-[1.8] text-muted">{d}</p>
+          {" "}
+          <h2 id="together-title" style={{ margin: "24px 0 0", fontFamily: "var(--dinary-font-serif)", fontWeight: "400", fontSize: "clamp(32px,4.8vw,62px)", lineHeight: "1.22", letterSpacing: "-.03em" }}>
+            둘이 먹은 날들은,
+            <br />
+            둘이 함께 기억해요.
+          </h2>
+          {" "}
+          <p style={{ margin: "28px 0 0", maxWidth: "31em", fontSize: "clamp(15.5px,1.3vw,16.5px)", lineHeight: "1.9", color: "#6b665e" }}>연인과 함께 쓰는 기록장을 열 수 있어요. 처음 데이트한 날의 떡볶이, 싸우고 화해한 날의 국밥. 둘이 앉았던 식탁이 하나씩 쌓여, 우리만 아는 지도가 돼요.</p>
+        </div>
+        {" "}
+        <div style={{ marginTop: "clamp(56px,6vw,96px)", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,460px),1fr))", gap: "48px", alignItems: "center" }}>
+          <div style={{ position: "relative", display: "flex", justifyContent: "flex-start" }}>
+            <Phone>
+              <div style={{ position: "absolute", inset: "0", boxSizing: "border-box", padding: "61px 20px 0", background: "#f6f3ec" }}>
+                <div style={{ fontFamily: "var(--dinary-font-mono)", fontSize: "10px", letterSpacing: "3.2px", color: "#8a8377" }}>COUPLE</div>
+                {" "}
+                <div style={{ marginTop: "16px", display: "flex", alignItems: "center", gap: "14px" }}>
+                  <div style={{ display: "flex", flex: "none" }}>
+                    <span style={{ width: "52px", height: "52px", borderRadius: "26px", background: "#b4552d", color: "#fbfaf6", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "21px", fontWeight: "700" }}>보</span>
+                    <span style={{ marginLeft: "-12px", width: "52px", height: "52px", boxSizing: "border-box", borderRadius: "26px", border: "2px solid #f6f3ec", background: "#4f6b7a", color: "#fbfaf6", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "21px", fontWeight: "700" }}>모</span>
                   </div>
-                </Reveal>
+                  <div style={{ minWidth: "0" }}>
+                    <div style={{ fontFamily: "var(--dinary-font-serif)", fontSize: "22px", color: "#1c1a17" }}>보리 · 모과</div>
+                    {" "}
+                    <span style={{ marginTop: "6px", display: "inline-flex", alignItems: "center", gap: "6px", padding: "4px 10px", borderRadius: "12px", background: "#f7ece5", fontSize: "11px", color: "#6b665e" }}>
+                      <span style={{ width: "6px", height: "6px", borderRadius: "3px", background: "#b4552d" }} />
+                      연인 기록 함께 쓰는 중
+                    </span>
+                    {" "}
+                    <div style={{ marginTop: "6px", fontFamily: "var(--dinary-font-mono)", fontSize: "12px", color: "#1c1a17" }}>
+                      2025.05.14~{" "}
+                      <span style={{ color: "#b4552d" }}>♥ D+536일</span>
+                    </div>
+                  </div>
+                </div>
+                {" "}
+                <div style={{ marginTop: "16px", borderRadius: "22px", border: "1px solid #e2ddd2", background: "#fbfaf6", padding: "16px 18px" }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
+                    <span style={{ fontFamily: "var(--dinary-font-serif)", fontSize: "16px" }}>우리 도장</span>
+                    <span style={{ fontFamily: "var(--dinary-font-mono)", fontSize: "11px", color: "#8a8377" }}>0그릇 · {couple.n} / 10</span>
+                  </div>
+                  {" "}
+                  <div style={{ margin: "14px auto 0", maxWidth: "280px", display: "grid", gridTemplateColumns: "repeat(5,minmax(0,1fr))", gap: "12px" }}>
+                    {couple.slots.map((s, sI) => (
+                      <span key={sI} style={{ aspectRatio: "1", borderRadius: "50%", boxSizing: "border-box", border: s.border, background: s.bg, transition: "all .5s" }} />
+                    ))}
+                  </div>
+                  {" "}
+                  <div style={{ marginTop: "12px", display: "flex", justifyContent: "center", gap: "18px", fontSize: "11.5px", color: "#6b665e" }}>
+                    <span style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+                      <span style={{ width: "12px", height: "12px", borderRadius: "6px", background: "linear-gradient(90deg,#b4552d 50%,#4f6b7a 50%)" }} />
+                      둘 다 씀
+                    </span>
+                    <span style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+                      <span style={{ width: "12px", height: "12px", boxSizing: "border-box", borderRadius: "6px", border: "1px dashed #b4552d", background: "linear-gradient(90deg,#b4552d 50%,transparent 50%)" }} />
+                      한 줄 기다리는 중
+                    </span>
+                  </div>
+                </div>
+                {" "}
+                <div style={{ marginTop: "12px", borderRadius: "22px", border: "1px solid #e2ddd2", background: "#fbfaf6", padding: "16px 18px" }}>
+                  <div style={{ fontFamily: "var(--dinary-font-serif)", fontSize: "16px" }}>
+                    한 그릇까지{" "}
+                    <span style={{ color: "#b4552d" }}>{couple.left}</span>
+                  </div>
+                  {" "}
+                  <div style={{ marginTop: "12px", display: "flex", alignItems: "center", gap: "10px", fontFamily: "var(--dinary-font-mono)", fontSize: "11px", color: "#6b665e" }}>
+                    <span>0</span>
+                    <span style={{ flex: "1", height: "5px", borderRadius: "3px", background: "#ede8dd", overflow: "hidden" }}>
+                      <span style={{ display: "block", height: "100%", width: couple.pct, background: "#b4552d", transition: "width .5s" }} />
+                    </span>
+                    <span>10</span>
+                  </div>
+                  {" "}
+                  <div style={{ marginTop: "10px", fontSize: "12px", color: "#6b665e" }}>반쪽 도장은 상대가 한 줄을 쓰면 채워져요</div>
+                </div>
+                {" "}
+                <div style={{ marginTop: "12px", borderRadius: "22px", border: "1px solid #e2ddd2", background: "#fbfaf6", padding: "16px 18px" }}>
+                  <div style={{ fontSize: "12px", letterSpacing: "1px", color: "#6b665e" }}>만난 지</div>
+                  {" "}
+                  <div style={{ marginTop: "6px", fontFamily: "var(--dinary-font-serif)", fontSize: "42px", lineHeight: "1", color: "#1c1a17" }}>
+                    536
+                    <span style={{ fontSize: "20px" }}>일</span>
+                  </div>
+                  {" "}
+                  <div style={{ marginTop: "8px", fontFamily: "var(--dinary-font-mono)", fontSize: "11.5px", color: "#6b665e" }}>2025.05.14 (수)부터</div>
+                  {" "}
+                  <span style={{ marginTop: "10px", display: "inline-flex", padding: "6px 12px", borderRadius: "14px", background: "#f7ece5", fontSize: "12px", color: "#b4552d" }}>다음 600일 · 64일 ›</span>
+                </div>
+              </div>
+              {" "}
+              <div style={{ position: "absolute", left: "0", right: "0", bottom: "0", zIndex: "30", paddingBottom: "34px", background: "#fbfaf6" }}><TabBar active="couple" couple /></div>
+            </Phone>
+            <div style={{ position: "absolute", top: "52%", right: "0", transform: "translateY(-50%)", width: "min(250px,54%)", borderRadius: "22px", border: "1px solid #d8d3c8", background: "#fbfaf6", padding: "20px", boxShadow: "0 24px 40px -22px rgba(28,26,23,.5)", boxSizing: "border-box" }}>
+              <div style={{ display: "flex", justifyContent: "space-between", fontFamily: "var(--dinary-font-mono)", fontSize: "10px", letterSpacing: ".16em", color: "#8a8377" }}>
+                <span>우리의 기념일</span>
+                <span style={{ color: "#b4552d" }}>500일</span>
+              </div>
+              {" "}
+              <div style={{ marginTop: "14px", display: "flex", gap: "12px", alignItems: "center" }}>
+                <img src="/img/tteokbokki-bowl.jpg" alt="" style={{ width: "48px", height: "48px", borderRadius: "10px", objectFit: "cover", flex: "none" }} />
+                <div>
+                  <div style={{ fontFamily: "var(--dinary-font-serif)", fontSize: "16px" }}>빨간냄비</div>
+                  <div style={{ fontFamily: "var(--dinary-font-mono)", fontSize: "10px", color: "#8a8377" }}>2026.09.25 · 분식</div>
+                </div>
+              </div>
+              {" "}
+              <div style={{ marginTop: "16px", paddingTop: "16px", borderTop: "1px solid #e2ddd2", display: "flex", flexDirection: "column", gap: "10px", fontSize: "13px", lineHeight: "1.55" }}>
+                <div style={{ fontFamily: "var(--dinary-font-mono)", fontSize: "10px", letterSpacing: ".16em", color: "#8a8377" }}>우리의 한 줄</div>
+                <div>
+                  <span style={{ color: "#8a8377" }}>보리 ·</span>
+                  비 오는 날엔 역시 떡볶이
+                </div>
+                <div style={{ color: partnerColor, transition: "color .5s" }}>
+                  <span style={{ color: "#8a8377" }}>모과 ·</span>
+                  {partnerLine}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <ul style={{ listStyle: "none", margin: "0", padding: "0", borderTop: "1px solid #e0c3b1" }}>
+              {points.map((p, pI) => (
+                <li key={pI} style={{ display: "flex", gap: "20px", padding: "24px 0", borderBottom: "1px solid #e0c3b1" }}>
+                  <span style={{ fontFamily: "var(--dinary-font-mono)", fontSize: "22px", lineHeight: "1", color: "#b4552d" }}>{p.n}</span>
+                  <div>
+                    <div style={{ fontFamily: "var(--dinary-font-serif)", fontSize: "20px" }}>{p.t}</div>
+                    <p style={{ margin: "8px 0 0", fontSize: "14.5px", lineHeight: "1.8", color: "#6b665e" }}>{p.d}</p>
+                  </div>
+                </li>
               ))}
             </ul>
-            <Reveal delay={0.3} className="order-first mb-10 lg:order-none lg:mt-8 lg:mb-0">
-              <button
-                type="button"
-                onClick={() => (poked ? setPoked(false) : setToast(true))}
-                disabled={toast}
-                className="group inline-flex items-center gap-3 rounded-full bg-ink px-6 py-3.5 font-sans text-[14.5px] text-card transition-colors hover:bg-brick disabled:opacity-70"
-              >
-                {poked ? "도장이 채워졌어요 · 다시 보기" : "콕 찌르기 눌러 보기"}
-                <span className="transition-transform duration-500 group-hover:rotate-12">{poked ? "◎" : "👉"}</span>
-              </button>
-              <p className="mt-3 font-sans text-[12.5px] text-faint">눌러 보면, 상대의 한 줄이 도착하고 반쪽 도장이 채워져요.</p>
-            </Reveal>
+            {" "}
+            <div style={{ marginTop: "32px" }}>
+              <button className="hv-brick" type="button" onClick={poke} style={{ all: "unset", cursor: "pointer", display: "inline-flex", alignItems: "center", gap: "12px", borderRadius: "999px", background: "#1c1a17", color: "#fbfaf6", padding: "14px 24px", fontSize: "14.5px", transition: "background .3s" }}>{pokeLabel}</button>
+              {" "}
+              <p style={{ margin: "12px 0 0", fontSize: "12.5px", color: "#6b665e" }}>눌러 보면, 상대의 한 줄이 도착하고 반쪽 도장이 채워져요.</p>
+            </div>
           </div>
         </div>
       </div>
