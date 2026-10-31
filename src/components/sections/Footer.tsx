@@ -41,13 +41,13 @@ export default function Footer() {
             {" "}
             <ul style={{ listStyle: "none", margin: "20px 0 0", padding: "0", display: "flex", flexDirection: "column", gap: "12px" }}>
               <li>
-                <a className="hv-link" href={site.privacyUrl} style={{ fontSize: "14.5px", color: "#6b665e" }}>개인정보 처리방침 ↗</a>
+                <a className="hv-link" href={site.privacyUrl} style={{ fontSize: "14.5px", color: "#6b665e" }}>개인정보 처리방침</a>
               </li>
               <li>
-                <a className="hv-link" href={site.termsUrl} style={{ fontSize: "14.5px", color: "#6b665e" }}>이용약관 ↗</a>
+                <a className="hv-link" href={site.termsUrl} style={{ fontSize: "14.5px", color: "#6b665e" }}>이용약관</a>
               </li>
               <li>
-                <a className="hv-link" href={site.deleteAccountUrl} style={{ fontSize: "14.5px", color: "#6b665e" }}>계정 삭제 안내 ↗</a>
+                <a className="hv-link" href={site.deleteAccountUrl} style={{ fontSize: "14.5px", color: "#6b665e" }}>계정 삭제 안내</a>
               </li>
               <li>
                 <a className="hv-link" href={`mailto:${site.contactEmail}`} style={{ fontSize: "14.5px", color: "#6b665e" }}>문의 · {site.contactEmail}</a>

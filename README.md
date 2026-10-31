@@ -45,7 +45,7 @@ Vercel 에서 이 저장소를 가져오면 Next.js 로 알아서 잡힙니다. 
 - 화면 예시: 촬영(「지금 여기」) → 가게 찾기(「여기 어디예요?」, 50m) → 인증 완료(「방문이 인증되었습니다」, 도장) → 기록, 종이톤 지도와 물방울 핀 · 시트, 캘린더(카테고리 색 막대), 위시리스트와 근처 알림(앱 알림 문구 그대로), 연인 기록장(D+N, 우리의 한 줄, 우리 도장, 콕 찌르기), 분기 리캡 공유 카드(종이 · 먹색 · 계절색 · 쪽빛).
 - 앱 화면은 실제 스크린숏이 아니라 다시 그린 예시이고, 가게 이름과 기록은 가상입니다. 사이트 바닥글에도 적어 두었습니다.
 - 스토어 링크, 후기, 다운로드 수, 출시일은 쓰지 않았습니다. 2026-10-22 기준 App Store(KR) · Google Play 에 `app.dinary` 가 검색되지 않습니다.
-- 개인정보 처리방침 · 이용약관 · 문의 메일은 앱 저장소의 GitHub Pages(`https://dinary-org.github.io/dinary-app/…`)로 연결합니다.
+- 개인정보 처리방침 · 이용약관 · 계정 삭제 안내는 dinary-app 의 `site/` 페이지를 옮겨 와 이 사이트에서 냅니다: `public/{privacy,terms,delete-account}/index.html` + `public/legal.css`, 주소는 `/privacy` · `/terms` · `/delete-account` (`next.config.ts` 의 rewrite).
 
 ## 자산
 

@@ -1,6 +1,6 @@
 /**
  * 사이트 전체에서 쓰는 값.
- * 개인정보 처리방침 · 이용약관 · 계정 삭제 안내 · 문의 메일은 dinary-app 저장소의 site/ 페이지와 같은 값입니다.
+ * 개인정보 처리방침 · 이용약관 · 계정 삭제 안내는 이 사이트의 public/{privacy,terms,delete-account} 에 있습니다.
  */
 export const site = {
   name: "DINARY",
@@ -12,9 +12,9 @@ export const site = {
   description:
     "DINARY는 사진으로 쓰는 식사 일기예요. 셔터 한 번으로 그날의 한 끼가 가게와 날짜, 지도 위의 한 점으로 남아요. 별점이 아니라 기억을 모으는 앱.",
   contactEmail: "contact.dinary@gmail.com",
-  privacyUrl: "https://dinary-org.github.io/dinary-app/privacy/",
-  termsUrl: "https://dinary-org.github.io/dinary-app/terms/",
-  deleteAccountUrl: "https://dinary-org.github.io/dinary-app/delete-account/",
+  privacyUrl: "/privacy",
+  termsUrl: "/terms",
+  deleteAccountUrl: "/delete-account",
   /** 공개되면 채우세요. 비어 있으면 App Store 단추는 출시 소식 메일로 이어집니다. */
   appStoreUrl: null as string | null,
   /** 공개되면 스토어 주소로 바꾸세요. 비어 있으면 Google Play 단추는 베타 테스터 안내(/beta)로 이어집니다. */
