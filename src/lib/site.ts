@@ -18,7 +18,7 @@ export const site = {
    * content="…" 안의 값만 넣으면 모든 페이지 <head> 에 확인 태그가 들어갑니다. 비어 있으면 넣지 않습니다.
    */
   googleVerification: "",
-  naverVerification: "",
+  naverVerification: "85bafea51d2cf6dca510dbdef2adad5dfa0e639e",
 } as const;
 
 /**
