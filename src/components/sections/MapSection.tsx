@@ -97,6 +97,18 @@ export default function MapSection() {
                   </li>
                 ))}
               </ul>
+              <div style={{ marginTop: "clamp(40px,4vw,56px)", display: "flex", justifyContent: "center" }}>
+                <figure style={{ margin: "0", width: "min(100%,260px)", position: "relative", background: "#fbfaf6", padding: "10px 10px 44px", transform: "rotate(3deg)", boxShadow: "0 18px 40px -18px rgba(28,26,23,.35),0 4px 10px -4px rgba(28,26,23,.12)" }}>
+                  <div style={{ aspectRatio: "4/5", overflow: "hidden" }}>
+                    <img src={active.src} alt={active.alt} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+                  </div>
+                  {" "}
+                  <figcaption style={{ position: "absolute", left: "12px", right: "12px", bottom: "12px", display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
+                    <span style={{ fontFamily: "var(--dinary-font-serif)", fontSize: "15px" }}>{active.name}</span>
+                    <span style={{ fontFamily: "var(--dinary-font-mono)", fontSize: "10px", color: "#8a8377" }}>{active.meta}</span>
+                  </figcaption>
+                </figure>
+              </div>
             </div>
             <div style={{ display: "flex", justifyContent: "center" }}>
               <Phone>
@@ -149,19 +161,6 @@ export default function MapSection() {
                 <div style={{ position: "absolute", left: "0", right: "0", bottom: "0", zIndex: "30", paddingBottom: "34px", background: "#fbfaf6" }}><TabBar active="map" /></div>
               </Phone>
             </div>
-          </div>
-          {" "}
-          <div style={{ display: "flex", justifyContent: "center" }}>
-            <figure style={{ margin: "0", width: "min(100%,260px)", position: "relative", background: "#fbfaf6", padding: "10px 10px 44px", transform: "rotate(3deg)", boxShadow: "0 18px 40px -18px rgba(28,26,23,.35),0 4px 10px -4px rgba(28,26,23,.12)" }}>
-              <div style={{ aspectRatio: "4/5", overflow: "hidden" }}>
-                <img src={active.src} alt={active.alt} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
-              </div>
-              {" "}
-              <figcaption style={{ position: "absolute", left: "12px", right: "12px", bottom: "12px", display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
-                <span style={{ fontFamily: "var(--dinary-font-serif)", fontSize: "15px" }}>{active.name}</span>
-                <span style={{ fontFamily: "var(--dinary-font-mono)", fontSize: "10px", color: "#8a8377" }}>{active.meta}</span>
-              </figcaption>
-            </figure>
           </div>
         </div>
       </div>
