@@ -5,6 +5,9 @@ import Phone from "@/components/Phone";
 import TabBar from "@/components/TabBar";
 import { PICKS, PICK_COLORS, REC_MODES, REVISITS } from "@/lib/content";
 
+/** 구슬 경주에서 이길 가게(0–4)를 고릅니다. */
+const rollWinner = () => Math.floor(Math.random() * 5);
+
 export default function Recommend() {
   const [rec, setRec] = useState<(typeof REC_MODES)[number][0]>("now");
   const [pickI, setPickI] = useState(0);
@@ -15,7 +18,7 @@ export default function Recommend() {
   useEffect(() => () => timers.current.forEach(clearTimeout), []);
   const race = () => {
     if (racing) return;
-    const w = Math.floor(Math.random() * 5);
+    const w = rollWinner();
     setRacing(true);
     setWinner(-1);
     setLanes([0, 0, 0, 0, 0]);
@@ -27,21 +30,26 @@ export default function Recommend() {
       }, 1900),
     );
   };
+  const pickMode = (id: (typeof REC_MODES)[number][0]) => {
+    setRec(id);
+    if (id === "games") race();
+  };
   const p = PICKS[pickI];
   const recModes = REC_MODES.map(([id, label, body], i) => {
     const on = rec === id;
-    return { n: i + 1, label, body, active: on, bg: on ? "#fbfaf6" : "transparent", border: on ? "#d8d3c8" : "transparent", numColor: on ? "#b4552d" : "#a29a8c", titleSize: on ? "33px" : "17px", titleColor: on ? "#1c1a17" : "#a29a8c", pick: () => setRec(id) };
+    return { n: i + 1, label, body, active: on, bg: on ? "#fbfaf6" : "transparent", border: on ? "#d8d3c8" : "transparent", numColor: on ? "#b4552d" : "#a29a8c", titleSize: on ? "33px" : "17px", titleColor: on ? "#1c1a17" : "#a29a8c", pick: () => pickMode(id) };
   });
   const [recNow, recBrowse, recGames] = [rec === "now", rec === "browse", rec === "games"];
-  const recHasAction = rec !== "browse";
-  const recActionLabel = rec === "now" ? "다음 추천 보기 →" : racing ? "굴러가는 중…" : "구슬 굴려 보기 →";
-  const recActionNote = rec === "now" ? "「여기로 갈게요」로 고른 곳은, 그 앞에서 찍으면 후보 맨 위에 떠요." : "먼저 들어온 구슬이 이겨요";
-  const recAction = () => (rec === "now" ? setPickI((s) => (s + 1) % 5) : race());
+  // 「다음 추천 보기」 단추는 「지금 뭐 먹지」에서만. 랜덤 게임은 탭을 고르면 구슬이 한 번 굴러갑니다.
+  const recHasAction = rec === "now";
+  const recActionLabel = "다음 추천 보기 →";
+  const recActionNote = "「여기로 갈게요」로 고른 곳은, 그 앞에서 찍으면 후보 맨 위에 떠요.";
+  const recAction = () => setPickI((s) => (s + 1) % 5);
   const pick = { ...p, idx: pickI + 1, tx: p.px + "%", ty: (p.py < 20 ? p.py + 16 : p.py - 7) + "%", whys: p.why.map((t, i) => ({ n: i + 1, t })) };
   const pickDots = PICKS.map((_, i) => ({ w: i === pickI ? "18px" : "6px", c: i === pickI ? "#b4552d" : "#d8d3c8" }));
   const revisits = REVISITS.map(([name, meta, pct]) => ({ name, meta, pct }));
   const gameEyebrow = winner >= 0 ? "오늘은 이걸로" : "";
-  const gameResult = winner >= 0 ? PICKS[winner].name : racing ? "…" : "먼저 들어온 구슬이 이겨요";
+  const gameResult = winner >= 0 ? PICKS[winner].name : racing ? "…" : "";
   const marbles = PICKS.map((_, i) => {
     const v = lanes[i];
     return { c: PICK_COLORS[i], x: (v === 0 ? 38 + i * 6 : [14, 30, 46, 62, 78][i] - (v === 100 ? i * 6 - 12 : 0)) + "%", y: (v === 0 ? 2 : 2 + v * 0.93) + "%", dur: v === 0 ? 0.3 : v === 100 ? 1.7 : 1.9 };
