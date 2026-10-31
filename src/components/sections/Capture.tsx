@@ -39,7 +39,8 @@ export default function Capture() {
           한 끼가 일기가 됩니다.
         </h2>
         {" "}
-        <p style={{ margin: "28px 0 0", maxWidth: "31em", fontSize: "clamp(15.5px,1.3vw,16.5px)", lineHeight: "1.9", color: "#6b665e" }}>리뷰를 쓰려고 애쓸 필요 없어요. 사진을 찍는 일이 곧 기록이 되도록, DINARY는 찍는 순간부터 남는 순간까지를 짧게 이었어요.</p>
+        <p className="m-only m-lead">찍는 순간이 곧 기록이 돼요.</p>
+        <p className="d-only" style={{ margin: "28px 0 0", maxWidth: "31em", fontSize: "clamp(15.5px,1.3vw,16.5px)", lineHeight: "1.9", color: "#6b665e" }}>리뷰를 쓰려고 애쓸 필요 없어요. 사진을 찍는 일이 곧 기록이 되도록, DINARY는 찍는 순간부터 남는 순간까지를 짧게 이었어요.</p>
         {" "}
         <div className="m-stack" style={{ marginTop: "clamp(48px,6vw,80px)", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,440px),1fr))", gap: "clamp(40px,5vw,72px)", alignItems: "center" }}>
           <div className="m-contents">
@@ -60,7 +61,7 @@ export default function Capture() {
               {" "}
               <p style={{ margin: "18px 0 0", maxWidth: "28em", fontSize: "clamp(14.5px,1.2vw,16px)", lineHeight: "1.85", color: "#6b665e" }}>{step.body}</p>
               {" "}
-              <p style={{ margin: "18px 0 0", display: "flex", alignItems: "center", gap: "8px", fontSize: "13px", color: "#b4552d" }}>
+              <p className="d-only" style={{ margin: "18px 0 0", display: "flex", alignItems: "center", gap: "8px", fontSize: "13px", color: "#b4552d" }}>
                 <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#b4552d", flex: "none" }} />
                 {step.note}
               </p>

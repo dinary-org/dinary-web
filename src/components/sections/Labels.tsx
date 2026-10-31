@@ -44,7 +44,8 @@ export default function Labels() {
               쌓이면 라벨이 됩니다.
             </h2>
           </div>
-          <p style={{ margin: "0", maxWidth: "31em", fontSize: "clamp(15.5px,1.3vw,16.5px)", lineHeight: "1.9", color: "#6b665e" }}>
+          <p className="m-only m-lead">인증한 기록마다 도장 하나, 쌓이면 라벨을 받아요.</p>
+          <p className="d-only" style={{ margin: "0", maxWidth: "31em", fontSize: "clamp(15.5px,1.3vw,16.5px)", lineHeight: "1.9", color: "#6b665e" }}>
             그 자리에서 찍어 인증한 기록 하나가 도장 하나예요. 열 칸을 채우면 도장판 한 장, 한 장마다 뽑기권이 한 장. 어떻게 먹어 왔는지에 따라 라벨이 하나씩 열리고, 마음에 드는 라벨 하나를 닉네임 옆에 달 수 있어요.
           </p>
         </div>
@@ -276,7 +277,7 @@ export default function Labels() {
           </div>
         </div>
         {" "}
-        <p style={{ margin: "24px 0 0", fontSize: "13px", lineHeight: "1.8", color: "#6b665e" }}>추천 탭의 투어를 다 돌면 완주 칭호도 받아요. 칭호는 투어가 끝나도 남아요.</p>
+        <p className="d-only" style={{ margin: "24px 0 0", fontSize: "13px", lineHeight: "1.8", color: "#6b665e" }}>추천 탭의 투어를 다 돌면 완주 칭호도 받아요. 칭호는 투어가 끝나도 남아요.</p>
       </div>
     </section>
   );

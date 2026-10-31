@@ -35,7 +35,8 @@ export default function Closing() {
             <span style={{ color: "#e08a63" }}>?</span>
           </h2>
           {" "}
-          <p style={{ margin: "32px auto 0", maxWidth: "34em", fontSize: "clamp(15.5px,1.3vw,17px)", lineHeight: "1.9", color: "#cdc6b8" }}>지금 iOS와 Android에서 베타 테스트를 하고 있어요. 먼저 써 보고, 불편한 점을 들려주세요. 첫 기록은 오늘 점심이면 충분해요.</p>
+          <p className="m-only m-lead">지금 iOS와 Android에서 베타 테스트 중이에요.</p>
+          <p className="d-only" style={{ margin: "32px auto 0", maxWidth: "34em", fontSize: "clamp(15.5px,1.3vw,17px)", lineHeight: "1.9", color: "#cdc6b8" }}>지금 iOS와 Android에서 베타 테스트를 하고 있어요. 먼저 써 보고, 불편한 점을 들려주세요. 첫 기록은 오늘 점심이면 충분해요.</p>
           {" "}
           <div className="cta-row" style={{ marginTop: "40px", display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "12px" }}>
             <a className="hv-blush" href={iosBetaUrl} style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "flex-start", minWidth: "180px", height: "62px", padding: "0 26px", borderRadius: "16px", background: "#fbfaf6", color: "#1c1a17", boxSizing: "border-box", transition: "background .3s" }}>

@@ -53,7 +53,8 @@ export default function Diary() {
             모아 두면 한 권의 일기.
           </h2>
           {" "}
-          <p style={{ margin: "28px auto 0", maxWidth: "31em", fontSize: "clamp(15.5px,1.3vw,16.5px)", lineHeight: "1.9", color: "#6b665e" }}>캘린더를 열면 그 달에 먹은 것들이 날짜마다 가게 이름으로 적혀 있어요. 특별한 날만이 아니라, 아무것도 아니었던 화요일 점심까지. 쌓일수록 내가 어떻게 살았는지가 보여요.</p>
+          <p className="m-only m-lead">날짜마다 먹은 가게가 캘린더에 적혀요.</p>
+          <p className="d-only" style={{ margin: "28px auto 0", maxWidth: "31em", fontSize: "clamp(15.5px,1.3vw,16.5px)", lineHeight: "1.9", color: "#6b665e" }}>캘린더를 열면 그 달에 먹은 것들이 날짜마다 가게 이름으로 적혀 있어요. 특별한 날만이 아니라, 아무것도 아니었던 화요일 점심까지. 쌓일수록 내가 어떻게 살았는지가 보여요.</p>
         </div>
         {" "}
         <div style={{ position: "relative", maxWidth: "1100px", margin: "clamp(56px,6vw,80px) auto 0", height: "var(--diary-h)", display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -113,7 +114,8 @@ export default function Diary() {
               계절의 식탁이 도착해요.
             </h3>
             {" "}
-            <p style={{ margin: "24px 0 0", maxWidth: "28em", fontSize: "15.5px", lineHeight: "1.9", color: "#6b665e" }}>
+            <p className="m-only m-lead">석 달마다 그동안의 식탁을 카드 한 장으로 묶어 드려요.</p>
+            <p className="d-only" style={{ margin: "24px 0 0", maxWidth: "28em", fontSize: "15.5px", lineHeight: "1.9", color: "#6b665e" }}>
               분기가 끝나면 그동안의 기록을 한 편의 이야기로 묶어 드려요. 석 달 동안 먹은 끼니, 가장 많이 머문 동네, 두 번 이상 간 집. 마음에 드는 색의 카드로 골라 친구에게 보여 줄 수도 있어요.
             </p>
           </div>

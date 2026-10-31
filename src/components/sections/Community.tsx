@@ -34,7 +34,8 @@ export default function Community() {
             조금씩 나눠요.
           </h2>
           {" "}
-          <p style={{ margin: "28px 0 0", maxWidth: "31em", fontSize: "clamp(15.5px,1.3vw,16.5px)", lineHeight: "1.9", color: "#6b665e" }}>커뮤니티는 내 기록장과 따로 열려요. 친구의 한 끼를 구경하고, 랭킹으로 겨루고, 다녀온 코스를 나눠요. 셈에 들어가는 건 모두 인증된 방문뿐이에요.</p>
+          <p className="m-only m-lead">친구의 한 끼를 구경하고, 랭킹으로 겨뤄요.</p>
+          <p className="d-only" style={{ margin: "28px 0 0", maxWidth: "31em", fontSize: "clamp(15.5px,1.3vw,16.5px)", lineHeight: "1.9", color: "#6b665e" }}>커뮤니티는 내 기록장과 따로 열려요. 친구의 한 끼를 구경하고, 랭킹으로 겨루고, 다녀온 코스를 나눠요. 셈에 들어가는 건 모두 인증된 방문뿐이에요.</p>
         </div>
         {" "}
         <div className="m-stack" style={{ marginTop: "clamp(48px,6vw,72px)", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,400px),1fr))", gap: "24px", alignItems: "start" }}>
@@ -330,7 +331,7 @@ export default function Community() {
         {" "}
         <div style={{ marginTop: "40px", paddingTop: "24px", borderTop: "1px solid #d8d3c8", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,300px),1fr))", gap: "16px 40px" }}>
           <div style={{ fontFamily: "var(--dinary-font-serif)", fontSize: "20px" }}>기록은 온전히 내 것</div>
-          <p style={{ margin: "0", fontSize: "14.5px", lineHeight: "1.85", color: "#6b665e" }}>무엇을 친구에게, 무엇을 전체에 보일지는 내가 골라요. 기록과 사진은 언제든 고치고, 내려받고, 지울 수 있어요. 불편한 사람은 차단할 수 있어요.</p>
+          <p className="d-only" style={{ margin: "0", fontSize: "14.5px", lineHeight: "1.85", color: "#6b665e" }}>무엇을 친구에게, 무엇을 전체에 보일지는 내가 골라요. 기록과 사진은 언제든 고치고, 내려받고, 지울 수 있어요. 불편한 사람은 차단할 수 있어요.</p>
         </div>
       </div>
     </section>

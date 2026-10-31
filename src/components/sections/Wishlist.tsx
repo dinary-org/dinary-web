@@ -160,7 +160,8 @@ export default function Wishlist() {
             일단 담아 두세요.
           </h2>
           {" "}
-          <p style={{ margin: "28px 0 0", maxWidth: "31em", fontSize: "clamp(15.5px,1.3vw,16.5px)", lineHeight: "1.9", color: "#6b665e" }}>
+          <p className="m-only m-lead">가고 싶은 곳을 담아 두면, 근처에 왔을 때 알려 드려요.</p>
+          <p className="d-only" style={{ margin: "28px 0 0", maxWidth: "31em", fontSize: "clamp(15.5px,1.3vw,16.5px)", lineHeight: "1.9", color: "#6b665e" }}>
             <span style={{ color: "#1c1a17" }}>근처에 오면 알려 드릴게요.</span>
             {" "}지나가다 본 간판, 친구가 보낸 링크, 언젠가 가 보자던 그 집. 잊어버리기 전에 위시리스트에 담아 두면, DINARY가 대신 기억하고 있다가 다시 데려다줘요.
           </p>

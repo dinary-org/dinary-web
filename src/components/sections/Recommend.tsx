@@ -74,7 +74,8 @@ export default function Recommend() {
             고민은 다섯 곳으로.
           </h2>
           {" "}
-          <p style={{ margin: "28px 0 0", maxWidth: "31em", fontSize: "clamp(15.5px,1.3vw,16.5px)", lineHeight: "1.9", color: "#6b665e" }}>
+          <p className="m-only m-lead">지금 있는 곳과 시간에 맞춰 근처 다섯 곳을 골라 드려요.</p>
+          <p className="d-only" style={{ margin: "28px 0 0", maxWidth: "31em", fontSize: "clamp(15.5px,1.3vw,16.5px)", lineHeight: "1.9", color: "#6b665e" }}>
             지금 있는 곳과 시각, 점심인지 저녁인지를 보고 근처에서 다섯 곳을 골라 드려요. 셈에는 DINARY에서 인증된 방문만 써요. 다른 사람의 기록은 사진도 이름도 없이, 숫자로만 더해져요.
           </p>
           {" "}
@@ -94,7 +95,7 @@ export default function Recommend() {
             <>
               <div className="m-o3" style={{ marginTop: "24px", display: "flex", flexWrap: "wrap", alignItems: "center", gap: "14px" }}>
                 <button className="hv-brick" type="button" onClick={recAction} style={{ all: "unset", cursor: "pointer", display: "inline-flex", alignItems: "center", gap: "10px", borderRadius: "999px", background: "#1c1a17", color: "#fbfaf6", padding: "14px 24px", fontSize: "14.5px", transition: "background .3s" }}>{recActionLabel}</button>
-                <span style={{ fontSize: "12.5px", color: "#6b665e" }}>{recActionNote}</span>
+                <span className="d-only" style={{ fontSize: "12.5px", color: "#6b665e" }}>{recActionNote}</span>
               </div>
             </>
           )}

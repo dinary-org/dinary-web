@@ -23,7 +23,8 @@ export default function Hero() {
             되도록.
           </h1>
           {" "}
-          <p style={{ margin: "32px 0 0", maxWidth: "30em", fontSize: "clamp(16px,1.3vw,17px)", lineHeight: "1.85", color: "#6b665e", textWrap: "pretty" }}>
+          <p className="m-only m-lead">사진으로 쓰는 식사 일기. 셔터 한 번이면 그날의 한 끼가 지도 위의 한 점으로 남아요.</p>
+          <p className="d-only" style={{ margin: "32px 0 0", maxWidth: "30em", fontSize: "clamp(16px,1.3vw,17px)", lineHeight: "1.85", color: "#6b665e", textWrap: "pretty" }}>
             DINARY는 사진으로 쓰는 식사 일기예요. 음식이 나오면 셔터 한 번 — 그날의 한 끼가 가게와 날짜, 지도 위의 한 점으로 남아요. 별점을 매기는 대신,{" "}
             <span style={{ color: "#1c1a17" }}>기억을 모읍니다.</span>
           </p>

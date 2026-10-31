@@ -55,9 +55,10 @@ export default function MapSection() {
               나만의 지도가 됩니다.
             </h2>
             {" "}
-            <p style={{ margin: "28px 0 0", maxWidth: "31em", fontSize: "clamp(15.5px,1.3vw,16.5px)", lineHeight: "1.9", color: "#6b665e" }}>종이처럼 차분한 지도 위에 내가 기록한 가게들이 색깔 핀으로 앉아요. 동네를 걷다 지도를 열면, 그날 거기서 무엇을 먹었는지가 먼저 떠오를 거예요.</p>
+            <p className="m-only m-lead">다녀온 가게가 나만의 지도 위에 쌓여요.</p>
+            <p className="d-only" style={{ margin: "28px 0 0", maxWidth: "31em", fontSize: "clamp(15.5px,1.3vw,16.5px)", lineHeight: "1.9", color: "#6b665e" }}>종이처럼 차분한 지도 위에 내가 기록한 가게들이 색깔 핀으로 앉아요. 동네를 걷다 지도를 열면, 그날 거기서 무엇을 먹었는지가 먼저 떠오를 거예요.</p>
           </div>
-          <ul style={{ listStyle: "none", margin: "0", padding: "0", borderTop: "1px solid #d8d3c8" }}>
+          <ul className="d-only" style={{ listStyle: "none", margin: "0", padding: "0", borderTop: "1px solid #d8d3c8" }}>
             <li style={{ padding: "16px 0", borderBottom: "1px solid #d8d3c8" }}>
               <div style={{ fontSize: "15px", fontWeight: "500" }}>맛집과 카페를 나눠서</div>
               <div style={{ marginTop: "4px", fontSize: "14px", lineHeight: "1.75", color: "#6b665e" }}>최근순, 체감가격순으로 다시 정렬해 볼 수 있어요.</div>

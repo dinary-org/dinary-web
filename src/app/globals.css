@@ -190,6 +190,12 @@ a:hover {
   #story > div:last-child { padding-top: 64px !important; padding-bottom: 40px !important; }
   section h2 { letter-spacing: -.025em !important; }
 
+  /* 긴 설명은 휴대폰에서 한 줄 요약(.m-lead)으로, 보조 설명은 덜어 냄 */
+  .m-lead { margin: 18px 0 0 !important; font-size: 15.5px; line-height: 1.7; color: #6b665e; }
+  #start .m-lead { color: #cdc6b8; margin-top: 20px !important; }
+  .wish-steps li p, .tg-points li p, .comm-caption p { display: none !important; }
+  .m-swipe > li { flex-basis: 58% !important; }
+
   /* ── 머리글: 짧은 단추 + 메뉴 */
   .nav-bar { gap: 10px !important; }
   .nav-bar a.hv-brick { padding: 9px 16px !important; }
