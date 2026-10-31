@@ -22,15 +22,10 @@ Vercel 에서 이 저장소를 가져오면 Next.js 로 알아서 잡힙니다. 
 | 이름 | 설명 |
 |---|---|
 | `NEXT_PUBLIC_SITE_URL` | 정식 도메인(예: `https://dinary.app`). canonical · OG 주소에 씁니다. 없으면 Vercel 프로덕션 주소(`VERCEL_PROJECT_PRODUCTION_URL`)를 씁니다. |
-| `LANDING_PUBLIC` | `true` 일 때만 프로덕션에서 랜딩을 보여 줍니다. 아래 「출시 전 공개 범위」를 보세요. |
 
-## 출시 전 공개 범위 · `/beta`
+## 베타 안내 · `/beta`
 
-랜딩은 아직 다듬는 중이라 **Vercel 프로덕션**에서는 숨겨 둡니다(`src/proxy.ts`, `src/lib/visibility.ts`).
-
-- 프로덕션(`VERCEL_ENV=production`)에서 `LANDING_PUBLIC` 이 `true` 가 아니면 `/beta` 와 `/robots.txt` 말고는 모두 「준비 중이에요」 404(`X-Robots-Tag: noindex`)를 돌려줍니다. `/` · 공유 카드 · 사이트맵 · 매니페스트 · 아이콘도 포함입니다. 이때 `robots.txt` 는 `Disallow: /`, 사이트맵은 비어 있습니다.
-- 프리뷰 배포와 로컬(`npm run dev`)에서는 늘 랜딩 전체가 보입니다.
-- 출시할 때: Vercel → Settings → Environment Variables 에 `LANDING_PUBLIC=true` (Production)를 넣고 **다시 배포**하세요. `robots.txt` · 사이트맵은 빌드 때 만들어지므로 변수만 바꾸고 재배포하지 않으면 반영되지 않습니다.
+랜딩은 프로덕션에서도 그대로 공개됩니다(예전의 「준비 중이에요」 화면과 `LANDING_PUBLIC` 변수는 없앴습니다).
 
 `/beta` 는 인스타그램 스토리 → 구글 설문에서 들어오는 Android 베타 테스터 안내입니다. `public/beta.html` 한 파일로, Next 레이아웃 · 글꼴 · 스크립트 없이 그대로 나갑니다(`next.config.ts` 의 rewrite). 인스타그램 앱 내 브라우저는 구글에 로그인돼 있지 않아 그룹 가입이 막히므로, `<head>` 첫 스크립트가 `intent://` 로 Chrome 에서 다시 엽니다. 그다음 ① [테스터 그룹](https://groups.google.com/g/dinary-testers) 가입 ② [Play 테스트 참여](https://play.google.com/apps/testing/app.dinary) ③ [Play 스토어에서 설치](https://play.google.com/store/apps/details?id=app.dinary) 순서로 안내합니다. 검색에는 나오지 않습니다(`noindex`).
 
