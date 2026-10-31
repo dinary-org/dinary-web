@@ -4,72 +4,93 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<title>다이너리 베타 참여</title>
+<meta name="theme-color" content="#f6f3ec">
+<title>Android 베타 참여 — DINARY</title>
+<meta name="description" content="DINARY Android 베타 테스트 참여 방법 — 그룹 가입, 테스터 등록, Play 스토어 설치 세 단계.">
 <script>
-  // 1) Instagram 등 앱 내 브라우저(Android WebView)면 Chrome으로 다시 열기
+  // Instagram 등 앱 안 브라우저(Android WebView)는 구글에 로그인돼 있지 않아 그룹 가입이 막힙니다 → Chrome 으로 다시 엽니다.
   (function () {
     var ua = navigator.userAgent || "";
-    var isAndroid = /Android/i.test(ua);
-    var isInApp = /Instagram|FBAN|FBAV|; wv\)/i.test(ua);
-    if (isAndroid && isInApp) {
-      var url = location.href.replace(/^https?:\/\//, "");
-      location.href = "intent://" + url +
-        "#Intent;scheme=https;package=com.android.chrome;end";
+    if (/Android/i.test(ua) && /Instagram|FBAN|FBAV|; wv\)/i.test(ua)) {
+      location.href = "intent://" + location.href.replace(/^https?:\/\//, "") + "#Intent;scheme=https;package=com.android.chrome;end";
     }
   })();
 </script>
-<style>
-  :root { --bg:#fff; --fg:#1a1a1a; --sub:#666; --btn:#3d5afe; --card:#f4f5f8; }
-  @media (prefers-color-scheme: dark) {
-    :root { --bg:#121212; --fg:#eee; --sub:#aaa; --btn:#6c80ff; --card:#1e1e1e; }
-  }
-  body { margin:0; background:var(--bg); color:var(--fg);
-         font-family:-apple-system,"Noto Sans KR",sans-serif; }
-  main { max-width:420px; margin:0 auto; padding:32px 16px; }
-  h1 { font-size:22px; margin:0 0 8px; }
-  p { color:var(--sub); font-size:14px; line-height:1.5; }
-  .step { background:var(--card); border-radius:14px; padding:16px; margin:16px 0; }
-  .step b { display:block; margin-bottom:10px; }
-  a.btn { display:block; text-align:center; background:var(--btn); color:#fff;
-          text-decoration:none; padding:14px; border-radius:10px; font-weight:600; }
-  #fallback { display:none; margin-top:24px; font-size:13px; }
-  button { margin-top:8px; padding:10px; width:100%; border-radius:10px;
-           border:1px solid var(--sub); background:none; color:var(--fg); }
-</style>
+<link rel="icon" href="/icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@700&family=JetBrains+Mono&family=Noto+Sans+KR:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="/beta.css">
 </head>
 <body>
+<header class="top">
+  <a class="brand" href="/" aria-label="DINARY 처음으로"><img src="/brand/icon.png" alt=""><span>DINARY</span></a>
+  <a class="switch" href="/beta/ios">iPhone이신가요? →</a>
+</header>
+
 <main>
-  <h1>다이너리 베타 참여 방법</h1>
-  <p>아래 세 단계를 <b>순서대로</b> 진행해 주세요.</p>
+  <div class="kicker">BETA · ANDROID</div>
+  <h1>Android 베타 테스트에<br>참여해 주세요.</h1>
+  <p class="lead">아래 <b>세 단계를 순서대로</b> 진행하면 Play 스토어에서 DINARY를 설치할 수 있어요. 단계마다 버튼을 누른 뒤, <b>이 페이지로 돌아와</b> 다음 단계를 이어 가세요.</p>
+  <div class="meta"><span class="chip">약 2분</span><span class="chip">구글 계정 필요</span><span class="chip">Chrome에서 열기</span></div>
 
-  <div class="step">
-    <b>1단계 · 테스터 그룹 가입</b>
-    <a class="btn" href="https://groups.google.com/g/dinary-testers">그룹 가입하기</a>
-    <p>'그룹 가입' 버튼을 누른 뒤 이 페이지로 돌아와 주세요.</p>
+  <div class="notice" id="inapp" role="note">
+    <strong>Chrome에서 열어 주세요</strong>
+    <p>인스타그램 같은 앱 안의 브라우저에서는 구글 로그인이 되지 않아 그룹 가입이 막혀요. 자동으로 넘어가지 않았다면 오른쪽 위 <b>⋮</b> 메뉴에서 <b>‘Chrome에서 열기’</b>를 누르거나, 링크를 복사해 Chrome에 붙여 넣어 주세요.</p>
+    <button class="ghost" type="button" data-copy>링크 복사</button>
+  </div>
+  <div class="notice" id="other" role="note">
+    <strong>Android 휴대폰에서 열어 주세요</strong>
+    <p>이 안내는 Android용이에요. iPhone이라면 <a href="/beta/ios">iOS 베타 안내</a>로 가 주세요.</p>
   </div>
 
-  <div class="step">
-    <b>2단계 · 테스터 등록</b>
-    <a class="btn" href="https://play.google.com/apps/testing/app.dinary">테스터 참여하기</a>
-    <p>'테스터 되기'를 누른 뒤 이 페이지로 돌아와 주세요.</p>
-  </div>
+  <ol class="steps">
+    <li class="step" data-step="a1">
+      <div class="step-head"><span class="num">1</span><h2>테스터 그룹 가입</h2><span class="donetag">DONE</span></div>
+      <p class="desc">구글 그룹 <b>dinary-testers</b>에서 <b>‘그룹 가입’</b>을 눌러 주세요. 베타 테스터 명단에 들어가는 단계예요.</p>
+      <a class="btn primary" href="https://groups.google.com/g/dinary-testers" data-mark>그룹 가입하기</a>
+      <p class="after">가입을 마치면 이 페이지로 돌아와 주세요.</p>
+    </li>
+    <li class="step" data-step="a2">
+      <div class="step-head"><span class="num">2</span><h2>테스터 등록</h2><span class="donetag">DONE</span></div>
+      <p class="desc">같은 구글 계정으로 열리는 페이지에서 <b>‘테스터 되기’</b>를 눌러 주세요.</p>
+      <a class="btn primary" href="https://play.google.com/apps/testing/app.dinary" data-mark>테스터 참여하기</a>
+      <p class="after">‘테스터가 되었습니다’가 보이면 이 페이지로 돌아와 주세요.</p>
+    </li>
+    <li class="step" data-step="a3">
+      <div class="step-head"><span class="num">3</span><h2>Play 스토어에서 설치</h2><span class="donetag">DONE</span></div>
+      <p class="desc">Play 스토어의 DINARY 페이지에서 <b>‘설치’</b>를 눌러 주세요. 앱이 보이지 않으면 등록이 반영될 때까지 <b>몇 분 뒤</b> 다시 열어 주세요.</p>
+      <a class="btn primary" href="https://play.google.com/store/apps/details?id=app.dinary" data-mark>Play 스토어에서 설치하기</a>
+    </li>
+  </ol>
 
-  <div class="step">
-    <b>3단계 · 앱 설치</b>
-    <a class="btn" href="https://play.google.com/store/apps/details?id=app.dinary">Play 스토어에서 설치하기</a>
-    <p>앱이 보이지 않으면 몇 분 뒤 다시 시도해 주세요.</p>
-  </div>
+  <section class="finish">
+    <div class="kicker">ALL SET</div>
+    <h2>설치가 끝났다면,<br>오늘 먹은 한 끼부터 찍어 보세요.</h2>
+    <p>구글 또는 애플 계정으로 로그인하면 바로 시작할 수 있어요.</p>
+  </section>
 
-  <div id="fallback">
-    <p>Chrome으로 자동 이동되지 않았다면, 오른쪽 위 ⋮ 메뉴에서 'Chrome에서 열기'를 누르거나 아래 버튼으로 링크를 복사해 Chrome에 붙여넣어 주세요.</p>
-    <button onclick="navigator.clipboard.writeText(location.href).then(function(){alert('링크가 복사되었어요');})">링크 복사</button>
-  </div>
+  <section class="feedback" aria-labelledby="fb">
+    <h2 id="fb">불편한 점이나 버그는 편한 방법으로 알려 주세요</h2>
+    <p>작은 것도 좋아요. 보내 주신 이야기로 DINARY를 고쳐 나가요.</p>
+    <ul class="ways">
+      <li><span class="k">앱 안</span><span>프로필 → ‘문의’</span></li>
+      <li><span class="k">인스타 DM</span><span><a href="https://instagram.com/rlaxogus_31">@rlaxogus_31</a> · <a href="https://instagram.com/yoon_yeahjun">@yoon_yeahjun</a></span></li>
+      <li><span class="k">이메일</span><a href="mailto:contact.dinary@gmail.com">contact.dinary@gmail.com</a></li>
+    </ul>
+    <p class="thanks">감사합니다<span>!</span></p>
+  </section>
 </main>
+
+<footer><a href="/">← DINARY 처음으로</a><a href="/privacy">개인정보 처리방침</a></footer>
+
 <script>
-  // 아직 앱 내 브라우저에 남아 있으면 안내 표시
-  if (/Instagram|FBAN|FBAV|; wv\)/i.test(navigator.userAgent)) {
-    document.getElementById("fallback").style.display = "block";
-  }
+  (function () {
+    var ua = navigator.userAgent || "";
+    if (/Instagram|FBAN|FBAV|; wv\)/i.test(ua)) document.getElementById("inapp").classList.add("show");
+    else if (/iPhone|iPad|iPod/i.test(ua)) document.getElementById("other").classList.add("show");
+  })();
 </script>
+<script src="/beta.js"></script>
 </body>
 </html>

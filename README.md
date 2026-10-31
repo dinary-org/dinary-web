@@ -23,15 +23,17 @@ Vercel 에서 이 저장소를 가져오면 Next.js 로 알아서 잡힙니다. 
 |---|---|
 | `NEXT_PUBLIC_SITE_URL` | 정식 도메인(예: `https://dinary.app`). canonical · OG 주소에 씁니다. 없으면 Vercel 프로덕션 주소(`VERCEL_PROJECT_PRODUCTION_URL`)를 씁니다. |
 
-## 베타 안내 · `/beta`
+## 베타 참여 안내 · `/beta/ios` · `/beta/android`
 
-랜딩은 프로덕션에서도 그대로 공개됩니다(예전의 「준비 중이에요」 화면과 `LANDING_PUBLIC` 변수는 없앴습니다).
+랜딩은 프로덕션에서도 그대로 공개됩니다(예전의 「준비 중이에요」 화면과 `LANDING_PUBLIC` 변수는 없앴습니다). 사이트의 「베타 테스트 참여하기」 단추는 플랫폼별 안내로 이어집니다. 두 페이지 모두 Next 레이아웃 없이 나가는 정적 HTML 이고(`next.config.ts` 의 rewrite), 모양은 `public/beta.css`, 단계 완료 표시 · 링크 복사는 `public/beta.js` 입니다.
 
-`/beta` 는 인스타그램 스토리 → 구글 설문에서 들어오는 Android 베타 테스터 안내입니다. `public/beta.html` 한 파일로, Next 레이아웃 · 글꼴 · 스크립트 없이 그대로 나갑니다(`next.config.ts` 의 rewrite). 인스타그램 앱 내 브라우저는 구글에 로그인돼 있지 않아 그룹 가입이 막히므로, `<head>` 첫 스크립트가 `intent://` 로 Chrome 에서 다시 엽니다. 그다음 ① [테스터 그룹](https://groups.google.com/g/dinary-testers) 가입 ② [Play 테스트 참여](https://play.google.com/apps/testing/app.dinary) ③ [Play 스토어에서 설치](https://play.google.com/store/apps/details?id=app.dinary) 순서로 안내합니다. 검색에는 나오지 않습니다(`noindex`).
+- **iOS** `/beta/ios` (`public/beta-ios.html`): ① [TestFlight 설치](https://apps.apple.com/app/testflight/id899247664) ② [베타 참여](https://testflight.apple.com/join/UwXMQ3Xq). 인스타그램 같은 앱 안 브라우저면 Safari 로 열라고, iPhone 이 아니면 iPhone 에서 열라고 안내합니다.
+- **Android** `/beta/android` = `/beta` (`public/beta.html`, 인스타그램 스토리 링크): 인스타그램 앱 내 브라우저는 구글에 로그인돼 있지 않아 그룹 가입이 막히므로, `<head>` 첫 스크립트가 `intent://` 로 Chrome 에서 다시 엽니다. 그다음 ① [테스터 그룹](https://groups.google.com/g/dinary-testers) 가입 ② [Play 테스트 참여](https://play.google.com/apps/testing/app.dinary) ③ [Play 스토어에서 설치](https://play.google.com/store/apps/details?id=app.dinary).
+- 두 페이지 모두 의견 보내는 곳(앱 안 프로필 → 문의, 인스타 DM @rlaxogus_31 · @yoon_yeahjun, contact.dinary@gmail.com)을 적어 두었습니다. 검색에는 나오지 않습니다(`noindex`).
 
 ## 바꿀 곳
 
-- `src/lib/site.ts` — 문의 메일(contact.dinary@gmail.com), 개인정보 처리방침 · 이용약관 · 계정 삭제 안내 주소, **스토어 주소**. `appStoreUrl` · `playStoreUrl` 이 비어 있으면 App Store 단추는 출시 소식 메일로, Google Play 단추는 베타 안내(`/beta`)로 이어집니다.
+- `src/lib/site.ts` — 문의 메일(contact.dinary@gmail.com), 개인정보 처리방침 · 이용약관 · 계정 삭제 안내 주소, **베타 참여 주소**(`betaLinks`). 사이트의 iPhone · Android 단추는 모두 여기를 가리킵니다. 정식 출시 후 스토어 주소로 바꾸면 됩니다.
 - `src/lib/content.ts` — 목업에 쓰는 가상의 가게 · 기록 · 추천 · 랭킹 · 사람들.
 - `src/components/sections/*` — 장마다 한 파일: Nav · Hero · Story · Capture(기록하기) · MapSection(지도) · Diary(캘린더 · 계절의 식탁) · Wishlist · Recommend(지금 뭐 먹지 · 둘러보기 · 랜덤 게임) · Together(연인 기록) · Labels(도장과 라벨) · Community(친구 · 갤러리 · 랭킹 · 게시판) · Closing · Footer · MobileBar(좁은 화면 다운로드 띠).
 - `src/components/Phone.tsx` · `TabBar.tsx` · `RecordScreen.tsx` — 폰 목업(410×864 를 `--ph` 배율로 줄임), 앱 하단 탭 바, 기록 상세 화면.

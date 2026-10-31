@@ -15,16 +15,13 @@ export const site = {
   privacyUrl: "/privacy",
   termsUrl: "/terms",
   deleteAccountUrl: "/delete-account",
-  /** 공개되면 채우세요. 비어 있으면 App Store 단추는 출시 소식 메일로 이어집니다. */
-  appStoreUrl: null as string | null,
-  /** 공개되면 스토어 주소로 바꾸세요. 비어 있으면 Google Play 단추는 베타 테스터 안내(/beta)로 이어집니다. */
-  playStoreUrl: null as string | null,
 } as const;
 
-export const newsMailto = `mailto:${site.contactEmail}?subject=${encodeURIComponent("DINARY 출시 소식이 궁금해요")}`;
-
-/** 다운로드 단추가 실제로 가리키는 곳. */
-export const storeLinks = {
-  appStore: site.appStoreUrl ?? newsMailto,
-  playStore: site.playStoreUrl ?? "/beta",
+/**
+ * 베타 테스트 참여 안내 페이지(public/beta-ios.html · public/beta.html).
+ * 정식 출시 후 스토어로 바꿀 때는 이 두 주소만 바꾸면 사이트의 모든 단추가 따라갑니다.
+ */
+export const betaLinks = {
+  ios: "/beta/ios",
+  android: "/beta/android",
 };

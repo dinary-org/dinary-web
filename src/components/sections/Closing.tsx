@@ -1,5 +1,5 @@
 import { FAN, photo } from "@/lib/content";
-import { storeLinks } from "@/lib/site";
+import { betaLinks } from "@/lib/site";
 
 const fan = FAN.map(([k, r, x, cap]) => ({
   src: photo(k),
@@ -9,7 +9,7 @@ const fan = FAN.map(([k, r, x, cap]) => ({
 }));
 
 export default function Closing() {
-  const { appStore: appStoreUrl, playStore: playStoreUrl } = storeLinks;
+  const { ios: iosBetaUrl, android: androidBetaUrl } = betaLinks;
   return (
     <section id="start" aria-labelledby="start-title" style={{ position: "relative", overflow: "hidden", background: "#1c1a17", color: "#fbfaf6" }}>
       <div style={{ maxWidth: "1320px", margin: "0 auto", padding: "clamp(96px,10vw,144px) clamp(20px,4vw,40px) 0" }}>
@@ -35,16 +35,16 @@ export default function Closing() {
             <span style={{ color: "#e08a63" }}>?</span>
           </h2>
           {" "}
-          <p style={{ margin: "32px auto 0", maxWidth: "34em", fontSize: "clamp(15.5px,1.3vw,17px)", lineHeight: "1.9", color: "#cdc6b8" }}>DINARY는 iOS와 Android에서 만날 수 있어요. 첫 기록은 오늘 점심이면 충분해요.</p>
+          <p style={{ margin: "32px auto 0", maxWidth: "34em", fontSize: "clamp(15.5px,1.3vw,17px)", lineHeight: "1.9", color: "#cdc6b8" }}>지금 iOS와 Android에서 베타 테스트를 하고 있어요. 먼저 써 보고, 불편한 점을 들려주세요. 첫 기록은 오늘 점심이면 충분해요.</p>
           {" "}
           <div style={{ marginTop: "40px", display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "12px" }}>
-            <a className="hv-blush" href={appStoreUrl} style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "flex-start", minWidth: "180px", height: "62px", padding: "0 26px", borderRadius: "16px", background: "#fbfaf6", color: "#1c1a17", boxSizing: "border-box", transition: "background .3s" }}>
-              <span style={{ fontFamily: "var(--dinary-font-mono)", fontSize: "9.5px", letterSpacing: ".16em", color: "#6b665e" }}>DOWNLOAD ON THE</span>
-              <span style={{ fontSize: "18px", fontWeight: "500", marginTop: "2px" }}>App Store</span>
+            <a className="hv-blush" href={iosBetaUrl} style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "flex-start", minWidth: "180px", height: "62px", padding: "0 26px", borderRadius: "16px", background: "#fbfaf6", color: "#1c1a17", boxSizing: "border-box", transition: "background .3s" }}>
+              <span style={{ fontFamily: "var(--dinary-font-mono)", fontSize: "9.5px", letterSpacing: ".16em", color: "#6b665e" }}>JOIN THE BETA · iOS</span>
+              <span style={{ fontSize: "18px", fontWeight: "500", marginTop: "2px" }}>iPhone으로 참여</span>
             </a>
-            <a className="hv-blush" href={playStoreUrl} style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "flex-start", minWidth: "180px", height: "62px", padding: "0 26px", borderRadius: "16px", background: "#fbfaf6", color: "#1c1a17", boxSizing: "border-box", transition: "background .3s" }}>
-              <span style={{ fontFamily: "var(--dinary-font-mono)", fontSize: "9.5px", letterSpacing: ".16em", color: "#6b665e" }}>GET IT ON</span>
-              <span style={{ fontSize: "18px", fontWeight: "500", marginTop: "2px" }}>Google Play</span>
+            <a className="hv-blush" href={androidBetaUrl} style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "flex-start", minWidth: "180px", height: "62px", padding: "0 26px", borderRadius: "16px", background: "#fbfaf6", color: "#1c1a17", boxSizing: "border-box", transition: "background .3s" }}>
+              <span style={{ fontFamily: "var(--dinary-font-mono)", fontSize: "9.5px", letterSpacing: ".16em", color: "#6b665e" }}>JOIN THE BETA · ANDROID</span>
+              <span style={{ fontSize: "18px", fontWeight: "500", marginTop: "2px" }}>Android로 참여</span>
             </a>
           </div>
           {" "}

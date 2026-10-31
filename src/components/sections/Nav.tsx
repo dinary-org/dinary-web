@@ -19,7 +19,7 @@ export default function Nav() {
                 <li key={sI}><a className="hv-ink" href={s.href} style={{ fontSize: "14px", color: "#6b665e" }}>{s.label}</a></li>
               ))}
             </ul>
-        <a className="hv-brick" href="#start" style={{ display: "inline-flex", alignItems: "center", gap: "8px", borderRadius: "999px", background: "#1c1a17", color: "#fbfaf6", padding: "10px 20px", fontSize: "13.5px", fontWeight: "500", transition: "background .3s" }}>앱 다운로드</a>
+        <a className="hv-brick" href="#start" style={{ display: "inline-flex", alignItems: "center", gap: "8px", borderRadius: "999px", background: "#1c1a17", color: "#fbfaf6", padding: "10px 20px", fontSize: "13.5px", fontWeight: "500", transition: "background .3s" }}>베타 테스트 참여하기</a>
       </nav>
     </header>
   );

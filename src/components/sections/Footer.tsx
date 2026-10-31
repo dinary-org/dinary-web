@@ -1,8 +1,8 @@
 import { FOOT_SECTIONS as footSections } from "@/lib/content";
-import { site, storeLinks } from "@/lib/site";
+import { site, betaLinks } from "@/lib/site";
 
 export default function Footer() {
-  const { appStore: appStoreUrl, playStore: playStoreUrl } = storeLinks;
+  const { ios: iosBetaUrl, android: androidBetaUrl } = betaLinks;
   return (
     <footer style={{ background: "#f6f3ec" }}>
       <div style={{ maxWidth: "1320px", margin: "0 auto", padding: "72px clamp(20px,4vw,40px) 40px" }}>
@@ -25,14 +25,14 @@ export default function Footer() {
             </ul>
           </nav>
           <div>
-            <div style={{ fontFamily: "var(--dinary-font-mono)", fontSize: "10.5px", letterSpacing: ".24em", color: "#8a8377" }}>다운로드</div>
+            <div style={{ fontFamily: "var(--dinary-font-mono)", fontSize: "10.5px", letterSpacing: ".24em", color: "#8a8377" }}>베타 테스트</div>
             {" "}
             <ul style={{ listStyle: "none", margin: "20px 0 0", padding: "0", display: "flex", flexDirection: "column", gap: "12px" }}>
               <li>
-                <a className="hv-link" href={appStoreUrl} style={{ fontSize: "14.5px", color: "#6b665e" }}>App Store ↗</a>
+                <a className="hv-link" href={iosBetaUrl} style={{ fontSize: "14.5px", color: "#6b665e" }}>iPhone 베타 참여</a>
               </li>
               <li>
-                <a className="hv-link" href={playStoreUrl} style={{ fontSize: "14.5px", color: "#6b665e" }}>Google Play ↗</a>
+                <a className="hv-link" href={androidBetaUrl} style={{ fontSize: "14.5px", color: "#6b665e" }}>Android 베타 참여</a>
               </li>
             </ul>
           </div>

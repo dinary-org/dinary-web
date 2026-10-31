@@ -1,9 +1,9 @@
 import Phone from "@/components/Phone";
 import RecordScreen from "@/components/RecordScreen";
-import { storeLinks } from "@/lib/site";
+import { betaLinks } from "@/lib/site";
 
 export default function Hero() {
-  const { appStore: appStoreUrl, playStore: playStoreUrl } = storeLinks;
+  const { ios: iosBetaUrl, android: androidBetaUrl } = betaLinks;
   return (
     <section id="top" style={{ position: "relative", padding: "clamp(110px,12vw,150px) 0 clamp(64px,8vw,110px)" }}>
       <div style={{ maxWidth: "1320px", margin: "0 auto", padding: "0 clamp(20px,4vw,40px)", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,480px),1fr))", gap: "clamp(48px,6vw,80px)", alignItems: "center" }}>
@@ -29,13 +29,13 @@ export default function Hero() {
           </p>
           {" "}
           <div style={{ marginTop: "40px", display: "flex", flexWrap: "wrap", gap: "10px" }}>
-            <a className="hv-brick" href={appStoreUrl} style={{ display: "flex", flexDirection: "column", justifyContent: "center", minWidth: "168px", height: "58px", padding: "0 24px", borderRadius: "16px", background: "#1c1a17", color: "#fbfaf6", transition: "background .3s" }}>
-              <span style={{ fontFamily: "var(--dinary-font-mono)", fontSize: "9.5px", letterSpacing: ".16em", color: "#cdc6b8" }}>DOWNLOAD ON THE</span>
-              <span style={{ fontSize: "17px", fontWeight: "500", marginTop: "2px" }}>App Store</span>
+            <a className="hv-brick" href={iosBetaUrl} style={{ display: "flex", flexDirection: "column", justifyContent: "center", minWidth: "168px", height: "58px", padding: "0 24px", borderRadius: "16px", background: "#1c1a17", color: "#fbfaf6", transition: "background .3s" }}>
+              <span style={{ fontFamily: "var(--dinary-font-mono)", fontSize: "9.5px", letterSpacing: ".16em", color: "#cdc6b8" }}>JOIN THE BETA · iOS</span>
+              <span style={{ fontSize: "17px", fontWeight: "500", marginTop: "2px" }}>iPhone으로 참여</span>
             </a>
-            <a className="hv-brick" href={playStoreUrl} style={{ display: "flex", flexDirection: "column", justifyContent: "center", minWidth: "168px", height: "58px", padding: "0 24px", borderRadius: "16px", background: "#1c1a17", color: "#fbfaf6", transition: "background .3s" }}>
-              <span style={{ fontFamily: "var(--dinary-font-mono)", fontSize: "9.5px", letterSpacing: ".16em", color: "#cdc6b8" }}>GET IT ON</span>
-              <span style={{ fontSize: "17px", fontWeight: "500", marginTop: "2px" }}>Google Play</span>
+            <a className="hv-brick" href={androidBetaUrl} style={{ display: "flex", flexDirection: "column", justifyContent: "center", minWidth: "168px", height: "58px", padding: "0 24px", borderRadius: "16px", background: "#1c1a17", color: "#fbfaf6", transition: "background .3s" }}>
+              <span style={{ fontFamily: "var(--dinary-font-mono)", fontSize: "9.5px", letterSpacing: ".16em", color: "#cdc6b8" }}>JOIN THE BETA · ANDROID</span>
+              <span style={{ fontSize: "17px", fontWeight: "500", marginTop: "2px" }}>Android로 참여</span>
             </a>
             <a className="hv-outline" href="#capture" style={{ display: "inline-flex", alignItems: "center", gap: "10px", height: "58px", padding: "0 24px", borderRadius: "16px", border: "1px solid #d8d3c8", fontSize: "15px", color: "#1c1a17" }}>
               어떻게 남겨지나요{" "}
