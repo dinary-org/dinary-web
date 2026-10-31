@@ -28,7 +28,7 @@ export default function Hero() {
             <span style={{ color: "#1c1a17" }}>기억을 모읍니다.</span>
           </p>
           {" "}
-          <div style={{ marginTop: "40px", display: "flex", flexWrap: "wrap", gap: "10px" }}>
+          <div className="cta-row" style={{ marginTop: "40px", display: "flex", flexWrap: "wrap", gap: "10px" }}>
             <a className="hv-brick" href={iosBetaUrl} style={{ display: "flex", flexDirection: "column", justifyContent: "center", minWidth: "168px", height: "58px", padding: "0 24px", borderRadius: "16px", background: "#1c1a17", color: "#fbfaf6", transition: "background .3s" }}>
               <span style={{ fontFamily: "var(--dinary-font-mono)", fontSize: "9.5px", letterSpacing: ".16em", color: "#cdc6b8" }}>JOIN THE BETA · iOS</span>
               <span style={{ fontSize: "17px", fontWeight: "500", marginTop: "2px" }}>iPhone으로 참여</span>
@@ -49,7 +49,7 @@ export default function Hero() {
           </div>
         </div>
         <div style={{ position: "relative", height: "var(--hero-h)", animation: "fadeUp 1.2s .2s cubic-bezier(.22,1,.36,1) both" }}>
-          <figure style={{ position: "absolute", top: "0", right: "0", width: "68%", margin: "0", background: "#fbfaf6", padding: "10px 10px 38px", transform: "rotate(4deg)", boxShadow: "0 1px 0 rgba(28,26,23,.04),0 18px 40px -18px rgba(28,26,23,.35),0 4px 10px -4px rgba(28,26,23,.12)" }}>
+          <figure className="hero-photo" style={{ position: "absolute", top: "0", right: "0", width: "68%", margin: "0", background: "#fbfaf6", padding: "10px 10px 38px", transform: "rotate(4deg)", boxShadow: "0 1px 0 rgba(28,26,23,.04),0 18px 40px -18px rgba(28,26,23,.35),0 4px 10px -4px rgba(28,26,23,.12)" }}>
             <div style={{ aspectRatio: "4/5", overflow: "hidden" }}>
               <img src="/img/hero-table.jpg" alt="나무 식탁 위의 돌솥비빔밥과 반찬들" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
             </div>
@@ -60,7 +60,7 @@ export default function Hero() {
             </figcaption>
           </figure>
           {" "}
-          <div style={{ position: "absolute", left: "0", bottom: "0", transform: "rotate(-5deg)" }}>
+          <div className="hero-phone" style={{ position: "absolute", left: "0", bottom: "0", transform: "rotate(-5deg)" }}>
             <Phone small>
               <RecordScreen />
             </Phone>

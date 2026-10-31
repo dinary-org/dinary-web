@@ -117,7 +117,7 @@ export default function Diary() {
               분기가 끝나면 그동안의 기록을 한 편의 이야기로 묶어 드려요. 석 달 동안 먹은 끼니, 가장 많이 머문 동네, 두 번 이상 간 집. 마음에 드는 색의 카드로 골라 친구에게 보여 줄 수도 있어요.
             </p>
           </div>
-          <div style={{ position: "relative", height: "440px" }}>
+          <div className="share-stack" style={{ position: "relative", height: "440px" }}>
             {share.map((t, tI) => (
               <div key={tI} style={{ position: "absolute", top: "0", left: "50%", width: "210px", boxSizing: "border-box", borderRadius: "22px", padding: "22px", background: t.bg, color: t.ink, transform: t.tf, boxShadow: "0 30px 50px -28px rgba(28,26,23,.5)" }}>
                 <div style={{ fontFamily: "var(--dinary-font-mono)", fontSize: "9.5px", letterSpacing: ".18em", color: t.sub }}>{t.range}</div>

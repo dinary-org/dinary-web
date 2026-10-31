@@ -7,7 +7,7 @@ export default function Wishlist() {
     <section id="wishlist" aria-labelledby="wish-title" style={{ padding: "clamp(96px,10vw,140px) 0" }}>
       <div style={{ maxWidth: "1320px", margin: "0 auto", padding: "0 clamp(20px,4vw,40px)", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,460px),1fr))", gap: "clamp(56px,6vw,80px)", alignItems: "center" }}>
         <div style={{ position: "relative", display: "flex", justifyContent: "center" }}>
-          <figure style={{ position: "absolute", top: "4%", right: "0", width: "40%", margin: "0", background: "#fbfaf6", padding: "10px 10px 38px", transform: "rotate(5deg)", boxShadow: "0 18px 40px -18px rgba(28,26,23,.35)" }}>
+          <figure className="wish-photo" style={{ position: "absolute", top: "4%", right: "0", width: "40%", margin: "0", background: "#fbfaf6", padding: "10px 10px 38px", transform: "rotate(5deg)", boxShadow: "0 18px 40px -18px rgba(28,26,23,.35)" }}>
             <div style={{ aspectRatio: "4/5", overflow: "hidden" }}>
               <img src="/img/sushi.jpg" alt="" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
             </div>
@@ -147,7 +147,7 @@ export default function Wishlist() {
             </div>
           </div>
         </div>
-        <div>
+        <div className="wish-text">
           <div style={{ display: "flex", alignItems: "center", gap: "16px", fontFamily: "var(--dinary-font-mono)", fontSize: "11px", letterSpacing: ".28em", color: "#8a8377" }}>
             <span>04</span>
             <span style={{ width: "40px", height: "1px", background: "#b4552d" }} />

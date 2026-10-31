@@ -6,7 +6,7 @@ export default function Footer() {
   return (
     <footer style={{ background: "#f6f3ec" }}>
       <div style={{ maxWidth: "1320px", margin: "0 auto", padding: "72px clamp(20px,4vw,40px) 40px" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,220px),1fr))", gap: "48px" }}>
+        <div className="foot-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,220px),1fr))", gap: "48px" }}>
           <div style={{ gridColumn: "span 1" }}>
             <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
               <img src="/brand/icon.png" alt="" width="30" height="30" style={{ borderRadius: "8px", boxShadow: "0 0 0 1px #d8d3c8" }} />

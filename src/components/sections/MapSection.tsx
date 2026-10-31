@@ -98,7 +98,7 @@ export default function MapSection() {
                 ))}
               </ul>
               <div style={{ marginTop: "clamp(40px,4vw,56px)", display: "flex", justifyContent: "center" }}>
-                <figure style={{ margin: "0", width: "min(100%,260px)", position: "relative", background: "#fbfaf6", padding: "10px 10px 44px", transform: "rotate(3deg)", boxShadow: "0 18px 40px -18px rgba(28,26,23,.35),0 4px 10px -4px rgba(28,26,23,.12)" }}>
+                <figure className="map-photo" style={{ margin: "0", width: "min(100%,260px)", position: "relative", background: "#fbfaf6", padding: "10px 10px 44px", transform: "rotate(3deg)", boxShadow: "0 18px 40px -18px rgba(28,26,23,.35),0 4px 10px -4px rgba(28,26,23,.12)" }}>
                   <div style={{ aspectRatio: "4/5", overflow: "hidden" }}>
                     <img src={active.src} alt={active.alt} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
                   </div>

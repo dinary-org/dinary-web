@@ -46,7 +46,7 @@ export default function Together() {
         </div>
         {" "}
         <div style={{ marginTop: "clamp(56px,6vw,96px)", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,460px),1fr))", gap: "48px", alignItems: "center" }}>
-          <div style={{ position: "relative", display: "flex", justifyContent: "flex-start" }}>
+          <div className="together-stage" style={{ position: "relative", display: "flex", justifyContent: "flex-start" }}>
             <Phone>
               <div style={{ position: "absolute", inset: "0", boxSizing: "border-box", padding: "61px 20px 0", background: "#f6f3ec" }}>
                 <div style={{ fontFamily: "var(--dinary-font-mono)", fontSize: "10px", letterSpacing: "3.2px", color: "#8a8377" }}>COUPLE</div>
@@ -128,7 +128,7 @@ export default function Together() {
               {" "}
               <div style={{ position: "absolute", left: "0", right: "0", bottom: "0", zIndex: "30", paddingBottom: "34px", background: "#fbfaf6" }}><TabBar active="couple" couple /></div>
             </Phone>
-            <div style={{ position: "absolute", top: "52%", right: "0", transform: "translateY(-50%)", width: "min(250px,54%)", borderRadius: "22px", border: "1px solid #d8d3c8", background: "#fbfaf6", padding: "20px", boxShadow: "0 24px 40px -22px rgba(28,26,23,.5)", boxSizing: "border-box" }}>
+            <div className="together-card" style={{ position: "absolute", top: "52%", right: "0", transform: "translateY(-50%)", width: "min(250px,54%)", borderRadius: "22px", border: "1px solid #d8d3c8", background: "#fbfaf6", padding: "20px", boxShadow: "0 24px 40px -22px rgba(28,26,23,.5)", boxSizing: "border-box" }}>
               <div style={{ display: "flex", justifyContent: "space-between", fontFamily: "var(--dinary-font-mono)", fontSize: "10px", letterSpacing: ".16em", color: "#8a8377" }}>
                 <span>우리의 기념일</span>
                 <span style={{ color: "#b4552d" }}>500일</span>
