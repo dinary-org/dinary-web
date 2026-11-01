@@ -65,4 +65,4 @@ Vercel 에서 이 저장소를 가져오면 Next.js 로 알아서 잡힙니다. 
 
 - 건너뛰기 링크, 랜드마크와 제목 구조, 탭 단추에 `role="tab"` · `aria-selected`, 키보드 포커스 표시.
 - `prefers-reduced-motion` 이면 흐르는 사진 띠 · 등장 애니메이션 · 「기록하기」 자동 넘김을 끕니다.
-- 분석 도구, 쿠키, 입력 양식은 없습니다.
+- 방문 통계는 [Vercel Web Analytics](https://vercel.com/docs/analytics) 하나뿐입니다(쿠키 없음, `src/app/layout.tsx` 의 `<Analytics />` · 정적 페이지는 `/_vercel/insights/script.js`). Vercel 프로젝트에서 Analytics 를 켜 둬야 모입니다. 입력 양식은 없습니다.

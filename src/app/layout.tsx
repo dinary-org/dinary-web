@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import { Gowun_Batang, JetBrains_Mono, Noto_Sans_KR } from "next/font/google";
 import { site } from "@/lib/site";
 import "./globals.css";
@@ -55,6 +56,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
         {children}
+        {/* Vercel Web Analytics — 쿠키 없이 방문 수 · 페이지 · 유입 경로 · 기기만 셉니다. */}
+        <Analytics />
       </body>
     </html>
   );
