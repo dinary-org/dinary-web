@@ -50,7 +50,7 @@ export default function Nav() {
             </button>
           </div>
         </nav>
-    </header>
+      </header>
 
       {/* 휴대폰 전용 — 장 목록과 베타 참여. 머리글의 흐림 효과 안에 두면 화면 전체를 덮지 못해 바깥에 둡니다. */}
       <div id="m-menu" className="m-menu" data-open={open} hidden={!open}>
