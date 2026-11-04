@@ -11,7 +11,7 @@ export default function Hero({ v }: { v: DesktopVals }) {
         <span style={{ width: "32px", height: "1px", background: "#b4552d" }}></span>A FOOD DIARY · 식사 기록장
       </div>
       <h1 style={{ margin: "28px 0 0", fontFamily: "var(--site-serif)", fontWeight: "400", fontSize: "clamp(40px,7.4vw,92px)", lineHeight: "1.14", letterSpacing: "-.035em", color: "#1c1a17" }}>먹은 순간이,<br />우리의 <span style={{ position: "relative", display: "inline-block", background: "linear-gradient(transparent 72%, #f0d3c3 72%, #f0d3c3 92%, transparent 92%)" }}>이야기</span>가,<br />되도록.</h1>
-      <p style={{ margin: "32px 0 0", maxWidth: "30em", fontSize: "clamp(16px,1.3vw,17px)", lineHeight: "1.85", color: "#6b665e", textWrap: "pretty" }}>DINARY는 사진으로 쓰는 식사 일기예요. 지도 앱의 별점과 리뷰는 누구에게나 같은 정보지만, DINARY에는 그 가게에서 보낸 <span style={{ color: "#1c1a17" }}>나만의 한 끼와 기억</span>이 남아요.</p>
+      <p style={{ margin: "32px 0 0", maxWidth: "30em", fontSize: "clamp(16px,1.3vw,17px)", lineHeight: "1.85", color: "#6b665e", textWrap: "pretty" }}>다이너리(DINARY)는 사진으로 쓰는 식사 일기예요. 지도 앱의 별점과 리뷰는 누구에게나 같은 정보지만, DINARY에는 그 가게에서 보낸 <span style={{ color: "#1c1a17" }}>나만의 한 끼와 기억</span>이 남아요.</p>
       <div style={{ marginTop: "40px", display: "flex", flexWrap: "wrap", gap: "10px" }}>
         <a href={v.iosBetaUrl} style={{ display: "flex", flexDirection: "column", justifyContent: "center", minWidth: "168px", height: "58px", padding: "0 24px", borderRadius: "16px", background: "#1c1a17", color: "#fbfaf6", transition: "background .3s" }} className="hv-brick">
           <span style={{ fontFamily: "var(--dinary-font-mono)", fontSize: "9.5px", letterSpacing: ".16em", color: "#cdc6b8" }}>JOIN THE BETA · iOS</span>

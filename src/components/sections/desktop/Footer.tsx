@@ -37,7 +37,7 @@ export default function Footer({ v }: { v: DesktopVals }) {
       </div>
     </div>
     <div style={{ marginTop: "64px", paddingTop: "24px", borderTop: "1px solid #d8d3c8", display: "flex", flexWrap: "wrap", justifyContent: "space-between", gap: "12px", fontSize: "12px", lineHeight: "1.7", color: "#8a8377" }}>
-      <p style={{ margin: "0" }}>© 2026 DINARY. All rights reserved.</p>
+      <p style={{ margin: "0" }}>© 2026 DINARY 다이너리. All rights reserved.</p>
       <p style={{ margin: "0", maxWidth: "44em" }}>사이트의 앱 화면은 실제 앱을 바탕으로 다시 그린 예시이며, 가게 이름과 기록은 가상입니다. 음식 사진은 Unsplash 라이선스 사진입니다.</p>
     </div>
   </div>

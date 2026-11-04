@@ -37,7 +37,7 @@ export default function Footer({ v }: { v: MobileVals }) {
     </div>
     <a href={`mailto:${site.contactEmail}`} style={{ marginTop: "28px", display: "flex", alignItems: "center", justifyContent: "space-between", height: "52px", padding: "0 18px", borderRadius: "16px", border: "1px solid #d8d3c8", background: "#fbfaf6", fontSize: "14px", color: "#1c1a17" }}><span>문의</span><span style={{ fontFamily: "var(--dinary-font-mono)", fontSize: "12px", color: "#6b665e" }}>{site.contactEmail}</span></a>
     <div style={{ marginTop: "36px", paddingTop: "20px", borderTop: "1px solid #d8d3c8", display: "flex", flexDirection: "column", gap: "8px", fontSize: "11.5px", lineHeight: "1.7", color: "#8a8377" }}>
-      <p style={{ margin: "0" }}>© 2026 DINARY. All rights reserved.</p>
+      <p style={{ margin: "0" }}>© 2026 DINARY 다이너리. All rights reserved.</p>
       <p style={{ margin: "0" }}>사이트의 앱 화면은 실제 앱을 바탕으로 다시 그린 예시이며, 가게 이름과 기록은 가상입니다. 음식 사진은 Unsplash 라이선스 사진입니다.</p>
     </div>
   </div>

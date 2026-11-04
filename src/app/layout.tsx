@@ -45,8 +45,8 @@ export const viewport: Viewport = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
-    { "@type": "Organization", name: site.name, url: site.url, logo: `${site.url}/brand/icon.png`, email: site.contactEmail },
-    { "@type": "WebSite", name: site.name, url: site.url, inLanguage: "ko-KR", description: site.description },
+    { "@type": "Organization", name: site.name, alternateName: site.alternateNames, url: site.url, logo: `${site.url}/brand/icon.png`, email: site.contactEmail },
+    { "@type": "WebSite", name: site.name, alternateName: site.alternateNames, url: site.url, inLanguage: "ko-KR", description: site.description },
   ],
 };
 
