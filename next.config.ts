@@ -23,6 +23,9 @@ const nextConfig: NextConfig = {
       { source: "/privacy", destination: "/privacy/index.html" },
       { source: "/terms", destination: "/terms/index.html" },
       { source: "/delete-account", destination: "/delete-account/index.html" },
+      // 친구 초대(/invite?id=…) · 모임 초대(/meetup?code=…) 링크. 앱을 dinary:// 로 열어 주는 중간 페이지입니다.
+      { source: "/invite", destination: "/invite/index.html" },
+      { source: "/meetup", destination: "/meetup/index.html" },
       ...(devProxyPath
         ? [{ source: `${devProxyPath}/:path*`, destination: "/:path*" }]
         : []),

@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DINARY 친구 초대</title>
+<meta property="og:title" content="DINARY 에서 친구해요">
+<meta property="og:description" content="눌러서 DINARY 앱에서 친구 요청을 보내 주세요.">
+<link rel="stylesheet" href="/legal.css">
+<style>
+  .open { display: inline-block; margin-top: 28px; padding: 12px 22px; border-radius: 999px; background: var(--ink); color: var(--paper); font-size: 14px; text-decoration: none; }
+  .note { margin-top: 18px; color: var(--faint); font-size: 12px; }
+</style>
+</head>
+<body>
+<main><div class="wrap">
+  <div class="kicker">DINARY</div>
+  <h1>DINARY 에서 친구해요</h1>
+  <div class="body">
+    <p>아래 버튼을 누르면 DINARY 앱이 열리고, 초대한 사람이 친구 목록 맨 위에 떠요.</p>
+    <a id="open" class="open" href="#">앱에서 열기</a>
+    <p class="note" id="note">앱이 열리지 않으면 DINARY 를 먼저 설치한 뒤 이 링크를 다시 눌러 주세요.</p>
+  </div>
+</div></main>
+<script>
+(function () {
+  // 앱 안의 친구 초대 화면: dinary://community/people?invite=<id>
+  // 카카오톡 등은 https 링크만 눌리게 보여 주므로, 이 페이지가 중간에서 앱으로 넘겨 줍니다.
+  var id = new URLSearchParams(location.search).get("id") || "";
+  if (!/^[0-9a-zA-Z-]{1,64}$/.test(id)) {
+    document.getElementById("open").style.display = "none";
+    document.getElementById("note").textContent = "초대 링크가 올바르지 않아요. 친구에게 다시 보내 달라고 해 주세요.";
+    return;
+  }
+  var path = "community/people?invite=" + encodeURIComponent(id);
+  var isAndroid = /android/i.test(navigator.userAgent);
+  var href = isAndroid
+    ? "intent://" + path + "#Intent;scheme=dinary;package=app.dinary;end"
+    : "dinary://" + path;
+  var a = document.getElementById("open");
+  a.href = href;
+  // 바로 한 번 열어 보고, 막히면 버튼으로 다시 누르게 둡니다.
+  setTimeout(function () { location.href = href; }, 50);
+})();
+</script>
+</body>
+</html>

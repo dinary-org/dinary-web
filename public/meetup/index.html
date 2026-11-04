@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DINARY 모임 초대</title>
+<meta property="og:title" content="DINARY 모임에 들어와요">
+<meta property="og:description" content="눌러서 DINARY 앱에서 모임에 들어가 주세요.">
+<link rel="stylesheet" href="/legal.css">
+<style>
+  .open { display: inline-block; margin-top: 28px; padding: 12px 22px; border-radius: 999px; background: var(--ink); color: var(--paper); font-size: 14px; text-decoration: none; }
+  .note { margin-top: 18px; color: var(--faint); font-size: 12px; }
+</style>
+</head>
+<body>
+<main><div class="wrap">
+  <div class="kicker">DINARY</div>
+  <h1>DINARY 모임에 들어와요</h1>
+  <div class="body">
+    <p>아래 버튼을 누르면 DINARY 앱이 열리고, 초대받은 모임에 들어갈 수 있어요.</p>
+    <a id="open" class="open" href="#">앱에서 열기</a>
+    <p class="note" id="note">앱이 열리지 않으면 DINARY 를 먼저 설치한 뒤 이 링크를 다시 눌러 주세요.</p>
+  </div>
+</div></main>
+<script>
+(function () {
+  // 앱 안의 모임 들어가기 화면: dinary://meetup/join?code=<code>
+  // 카카오톡 등은 https 링크만 눌리게 보여 주므로, 이 페이지가 중간에서 앱으로 넘겨 줍니다.
+  var id = new URLSearchParams(location.search).get("code") || "";
+  if (!/^[0-9a-zA-Z-]{1,64}$/.test(id)) {
+    document.getElementById("open").style.display = "none";
+    document.getElementById("note").textContent = "초대 링크가 올바르지 않아요. 초대한 사람에게 다시 보내 달라고 해 주세요.";
+    return;
+  }
+  var path = "meetup/join?code=" + encodeURIComponent(id);
+  var isAndroid = /android/i.test(navigator.userAgent);
+  var href = isAndroid
+    ? "intent://" + path + "#Intent;scheme=dinary;package=app.dinary;end"
+    : "dinary://" + path;
+  var a = document.getElementById("open");
+  a.href = href;
+  // 바로 한 번 열어 보고, 막히면 버튼으로 다시 누르게 둡니다.
+  setTimeout(function () { location.href = href; }, 50);
+})();
+</script>
+</body>
+</html>
