@@ -6,10 +6,10 @@ import type { DesktopVals } from "@/components/Landing";
 export default function Diary({ v }: { v: DesktopVals }) {
   return (
 <>
-<section id="diary" aria-labelledby="diary-title" style={{ background: "#fbfaf6", padding: "clamp(96px,10vw,140px) 0", overflow: "hidden" }}>
+<section id="diary" aria-labelledby="diary-title" style={{ background: "#f5f6f8", padding: "clamp(96px,10vw,140px) 0", overflow: "hidden" }}>
   <div style={{ maxWidth: "1320px", margin: "0 auto", padding: "0 clamp(20px,4vw,40px)" }}>
     <div style={{ maxWidth: "860px", margin: "0 auto", textAlign: "center" }}>
-      <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "16px", fontFamily: "var(--dinary-font-mono)", fontSize: "14px", letterSpacing: ".22em", color: "#6b665e" }}><span>03</span><span style={{ width: "40px", height: "1px", background: "#b4552d" }}></span><span>A DIARY OF EVERYDAY MEALS</span></div>
+      <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "16px", fontFamily: "var(--dinary-font-mono)", fontSize: "14px", letterSpacing: ".22em", color: "#1c1a17" }}><span>03</span></div>
       <h2 id="diary-title" style={{ margin: "24px 0 0", fontFamily: "var(--site-serif)", fontWeight: "400", fontSize: "clamp(32px,4.8vw,62px)", lineHeight: "1.22", letterSpacing: "-.03em" }}>평범한 날의 한 끼도,<br />모아 두면 한 권의 일기.</h2>
       <p style={{ margin: "28px auto 0", maxWidth: "31em", fontSize: "clamp(15.5px,1.3vw,16.5px)", lineHeight: "1.9", color: "#6b665e" }}>캘린더를 열면 그 달에 먹은 것들이 날짜마다 가게 이름으로 적혀 있어요. 나의 맛집 일기를 되돌아볼 수 있어요.</p>
     </div>
@@ -22,7 +22,7 @@ export default function Diary({ v }: { v: DesktopVals }) {
       </Fragment>))}
       <div style={{ position: "relative", zIndex: "2", width: v.ph.w, height: v.ph.h }}>
         <div style={{ position: "absolute", top: "0", left: "0", width: "410px", height: "864px", transform: v.ph.t, transformOrigin: "top left", background: "#1c1a17", borderRadius: "58px", padding: "10px", boxSizing: "border-box", boxShadow: "0 50px 90px -40px rgba(28,26,23,.6)" }}>
-          <div style={{ width: "390px", height: "844px", borderRadius: "48px", overflow: "hidden", background: "#f6f3ec", position: "relative" }}>
+          <div style={{ width: "390px", height: "844px", borderRadius: "48px", overflow: "hidden", background: "#f6f3ec", position: "relative", containerType: "inline-size" }}>
             <div style={{ position: "absolute", inset: "0", background: "#f6f3ec", boxSizing: "border-box", paddingTop: "47px" }}>
               <div style={{ padding: "14px 22px 0" }}>
                 <div style={{ fontFamily: "var(--dinary-font-mono)", fontSize: "10px", letterSpacing: "3.2px", color: "#8a8377" }}>CALENDAR</div>
@@ -42,16 +42,16 @@ export default function Diary({ v }: { v: DesktopVals }) {
                   </Fragment>))}
                 </div>
               </Fragment>))}
-              <div style={{ position: "absolute", left: "0", right: "0", bottom: "0", zIndex: "30", paddingBottom: "34px", background: "#fbfaf6" }}><TabBar active={"calendar"} /></div>
+              <div style={{ position: "absolute", left: "0", right: "0", bottom: "0", zIndex: "30", paddingBottom: "34px", background: "#fbfaf6" }}><TabBar active="calendar" /></div>
             </div>
-          </div>
+          <div style={{ position: "absolute", left: "0", right: "0", top: "0", height: "12.05cqw", background: "#f6f3ec", display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 7.4cqw 0 9.5cqw", boxSizing: "border-box", zIndex: "40" }}><span style={{ fontFamily: "-apple-system,'SF Pro Text',var(--dinary-font-sans-bd)", fontWeight: "600", fontSize: "4.3cqw", letterSpacing: "-.02em", color: "#1c1a17", lineHeight: "1" }}>9:41</span><svg viewBox="0 0 70 13" style={{ width: "17.9cqw", height: "auto", display: "block" }} fill="#1c1a17"><rect x="0" y="8" width="3" height="4" rx="1"></rect><rect x="4.8" y="5.8" width="3" height="6.2" rx="1"></rect><rect x="9.6" y="3.4" width="3" height="8.6" rx="1"></rect><rect x="14.4" y="1" width="3" height="11" rx="1"></rect><path d="M30.5 3.2a9.6 9.6 0 0 1 12.6 0l1.2-1.3a11.4 11.4 0 0 0-15 0Zm2.2 2.4a6.4 6.4 0 0 1 8.2 0l1.2-1.3a8.2 8.2 0 0 0-10.6 0Zm2.2 2.4a3.2 3.2 0 0 1 3.8 0l1.2-1.3a5 5 0 0 0-6.2 0Zm1.9 3.6 1.7-1.9a1.8 1.8 0 0 0-3.4 0Z"></path><rect x="47.5" y="0.5" width="19" height="11" rx="3.2" fill="none" stroke="#1c1a17" strokeOpacity=".4"></rect><rect x="49" y="2" width="16" height="8" rx="2"></rect><path d="M68 4v4a2 2 0 0 0 0-4Z" fillOpacity=".45"></path></svg></div><div style={{ position: "absolute", left: "50%", top: "2.6cqw", width: "31cqw", height: "8.6cqw", transform: "translateX(-50%)", borderRadius: "5cqw", background: "#000", zIndex: "41" }}></div><div style={{ position: "absolute", left: "50%", bottom: "2.3cqw", width: "35cqw", height: "1.3cqw", transform: "translateX(-50%)", borderRadius: "1cqw", background: "#1c1a17", zIndex: "41" }}></div></div>
         </div>
       </div>
     </div>
 
     <div style={{ marginTop: "clamp(96px,10vw,140px)", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,420px),1fr))", gap: "56px", alignItems: "center" }}>
       <div>
-        <div style={{ fontFamily: "var(--dinary-font-mono)", fontSize: "14px", letterSpacing: ".22em", color: "#6b665e" }}>QUARTERLY RECAP</div>
+        <div style={{ fontFamily: "var(--dinary-font-mono)", fontSize: "14px", letterSpacing: ".22em", color: "#1c1a17" }}>QUARTERLY RECAP</div>
         <h3 style={{ margin: "20px 0 0", fontFamily: "var(--site-serif)", fontWeight: "400", fontSize: "clamp(28px,3.4vw,42px)", lineHeight: "1.3", letterSpacing: "-.02em" }}>석 달이 지나면,<br />계절의 식탁이 도착해요.</h3>
         <p style={{ margin: "24px 0 0", maxWidth: "28em", fontSize: "15.5px", lineHeight: "1.9", color: "#6b665e" }}>분기가 끝나면 그동안의 기록을 한 편의 이야기로 묶어 드려요. 석 달 동안 먹은 끼니, 가장 많이 머문 동네, 두 번 이상 간 집. 마음에 드는 색의 카드로 골라 친구에게 보여 줄 수도 있어요.</p>
       </div>

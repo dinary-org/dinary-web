@@ -24,7 +24,7 @@
 html,
 body {
   margin: 0;
-  background: #f6f3ec;
+  background: #ffffff;
   color: #1c1a17;
   font-family: var(--dinary-font-sans);
   word-break: keep-all;
@@ -93,6 +93,7 @@ a:hover {
 /* 마우스를 올렸을 때 — 디자인의 style-hover 값 */
 .hv-ink:hover { color: #1c1a17 !important; }
 .hv-brick:hover { background: #b4552d !important; color: #fbfaf6 !important; }
+.hv-bg-brick:hover { background: #b4552d !important; }
 .hv-brick-deep:hover { background: #8f4425 !important; }
 .hv-outline:hover { border-color: #1c1a17 !important; color: #1c1a17 !important; }
 .hv-ring:hover { border-color: #1c1a17 !important; }
@@ -120,16 +121,14 @@ a:hover {
   :root { --ph: 0.8; --ph-sm: 0.7; --hero-h: 680px; }
 }
 
-/* 휴대폰 마크업(Claude Design 「Dinary Website - Mobile」)의 폰 배율: (min(너비, 440) - 120) / 410 을 0.56~0.68 로 자른 값 */
-:root { --mph: 0.56; --mph-sm: 0.44; }
-@media (min-width: 330px) { :root { --mph: 0.56; --mph-sm: 0.44; } }
-@media (min-width: 340px) { :root { --mph: 0.56; --mph-sm: 0.44; } }
-@media (min-width: 350px) { :root { --mph: 0.561; --mph-sm: 0.44; } }
-@media (min-width: 360px) { :root { --mph: 0.585; --mph-sm: 0.46; } }
-@media (min-width: 370px) { :root { --mph: 0.61; --mph-sm: 0.48; } }
-@media (min-width: 380px) { :root { --mph: 0.634; --mph-sm: 0.49; } }
-@media (min-width: 390px) { :root { --mph: 0.659; --mph-sm: 0.51; } }
-@media (min-width: 400px) { :root { --mph: 0.68; --mph-sm: 0.53; } }
+/* 휴대폰 마크업(Claude Design 「Dinary Website - Mobile」)의 폰 배율: (min(너비, 440) - 120) / 410 을 0.56~0.68 로 자른 값. 작은 폰은 그 72%. */
+:root { --mph: 0.56; --mph-sm: 0.4; }
+@media (min-width: 350px) { :root { --mph: 0.561; --mph-sm: 0.4; } }
+@media (min-width: 360px) { :root { --mph: 0.585; --mph-sm: 0.42; } }
+@media (min-width: 370px) { :root { --mph: 0.61; --mph-sm: 0.44; } }
+@media (min-width: 380px) { :root { --mph: 0.634; --mph-sm: 0.46; } }
+@media (min-width: 390px) { :root { --mph: 0.659; --mph-sm: 0.47; } }
+@media (min-width: 400px) { :root { --mph: 0.68; --mph-sm: 0.49; } }
 
 /* 넓은 화면(1024px~)에서만 보이는 위쪽 메뉴 */
 .nav-links { display: none !important; }

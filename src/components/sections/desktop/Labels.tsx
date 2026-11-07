@@ -5,11 +5,11 @@ import type { DesktopVals } from "@/components/Landing";
 export default function Labels({ v }: { v: DesktopVals }) {
   return (
 <>
-<section id="labels" aria-labelledby="labels-title" style={{ background: "#fbfaf6", padding: "clamp(96px,10vw,140px) 0" }}>
+<section id="labels" aria-labelledby="labels-title" style={{ background: "#f5f6f8", padding: "clamp(96px,10vw,140px) 0" }}>
   <div style={{ maxWidth: "1320px", margin: "0 auto", padding: "0 clamp(20px,4vw,40px)" }}>
     <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,460px),1fr))", gap: "40px", alignItems: "end" }}>
       <div>
-        <div style={{ display: "flex", alignItems: "center", gap: "16px", fontFamily: "var(--dinary-font-mono)", fontSize: "14px", letterSpacing: ".22em", color: "#6b665e" }}><span>07</span><span style={{ width: "40px", height: "1px", background: "#b4552d" }}></span><span>STAMPS & LABELS</span></div>
+        <div style={{ display: "flex", alignItems: "center", gap: "16px", fontFamily: "var(--dinary-font-mono)", fontSize: "14px", letterSpacing: ".22em", color: "#1c1a17" }}><span>08</span></div>
         <h2 id="labels-title" style={{ margin: "24px 0 0", fontFamily: "var(--site-serif)", fontWeight: "400", fontSize: "clamp(32px,4.8vw,62px)", lineHeight: "1.22", letterSpacing: "-.03em" }}>인증할 때마다 도장 하나,<br />쌓이면 라벨이 됩니다.</h2>
       </div>
       <p style={{ margin: "0", maxWidth: "31em", fontSize: "clamp(15.5px,1.3vw,16.5px)", lineHeight: "1.9", color: "#6b665e" }}>그 자리에서 찍어 인증한 기록 하나가 도장 하나예요. 열 칸을 채우면 도장판 한 장, 한 장마다 뽑기권이 한 장. 어떻게 먹어 왔는지에 따라 라벨이 하나씩 열리고, 마음에 드는 라벨 하나를 닉네임 옆에 달 수 있어요.</p>

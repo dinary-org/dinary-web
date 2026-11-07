@@ -32,7 +32,7 @@ export default function Footer({ v }: { v: DesktopVals }) {
           <li><a href={site.privacyUrl} style={{ fontSize: "14.5px", color: "#6b665e" }} className="hv-link">개인정보 처리방침</a></li>
           <li><a href={site.termsUrl} style={{ fontSize: "14.5px", color: "#6b665e" }} className="hv-link">이용약관</a></li>
           <li><a href={site.deleteAccountUrl} style={{ fontSize: "14.5px", color: "#6b665e" }} className="hv-link">계정 삭제 안내</a></li>
-          <li><a href={`mailto:${site.contactEmail}`} style={{ fontSize: "14.5px", color: "#6b665e" }} className="hv-link">문의 · {site.contactEmail}</a></li>
+          <li><a href={`mailto:${site.contactEmail}`} style={{ fontSize: "14.5px", color: "#6b665e" }} className="hv-link">문의 · contact.dinary@gmail.com</a></li>
         </ul>
       </div>
     </div>

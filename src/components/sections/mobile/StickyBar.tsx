@@ -1,4 +1,4 @@
-// Claude Design 「DINARY Website」에서 옮긴 마크업입니다. 앞으로는 이 파일을 직접 고칩니다.
+// Claude Design 「Dinary Website - Mobile」에서 옮긴 마크업입니다. 앞으로는 이 파일을 직접 고칩니다.
 import type { MobileVals } from "@/components/Landing";
 
 export default function StickyBar({ v }: { v: MobileVals }) {

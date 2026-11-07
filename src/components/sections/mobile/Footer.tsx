@@ -1,4 +1,4 @@
-// Claude Design 「DINARY Website」에서 옮긴 마크업입니다. 앞으로는 이 파일을 직접 고칩니다.
+// Claude Design 「Dinary Website - Mobile」에서 옮긴 마크업입니다. 앞으로는 이 파일을 직접 고칩니다.
 import { Fragment } from "react";
 import { site } from "@/lib/site";
 import type { MobileVals } from "@/components/Landing";
@@ -9,7 +9,7 @@ export default function Footer({ v }: { v: MobileVals }) {
 <footer style={{ background: "#f6f3ec" }}>
   <div style={{ padding: "56px 20px 112px" }}>
     <div style={{ display: "flex", alignItems: "center", gap: "9px" }}><img src="/brand/icon.png" alt="" width="28" height="28" style={{ borderRadius: "7px", boxShadow: "0 0 0 1px #d8d3c8" }} loading="lazy" decoding="async" /><span style={{ fontFamily: "var(--dinary-font-mono)", fontSize: "12px", letterSpacing: ".3em" }}>DINARY</span></div>
-    <p style={{ margin: "18px 0 0", fontFamily: "var(--dinary-font-serif)", fontSize: "20px", lineHeight: "1.5" }}>먹은 순간이, 우리의 이야기가 되도록.</p>
+    <p style={{ margin: "18px 0 0", fontFamily: "var(--site-serif)", fontSize: "20px", lineHeight: "1.5" }}>먹은 순간이, 우리의 이야기가 되도록.</p>
     <div style={{ marginTop: "40px", display: "grid", gridTemplateColumns: "repeat(2,minmax(0,1fr))", gap: "32px 20px" }}>
       <nav aria-label="사이트 안내">
         <div style={{ fontFamily: "var(--dinary-font-mono)", fontSize: "10px", letterSpacing: ".22em", color: "#8a8377" }}>DINARY</div>

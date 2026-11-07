@@ -41,7 +41,7 @@ Vercel 에서 이 저장소를 가져오면 Next.js 로 알아서 잡힙니다. 
 - `src/lib/site.ts` — 문의 메일(contact.dinary@gmail.com), 개인정보 처리방침 · 이용약관 · 계정 삭제 안내 주소, **베타 참여 주소**(`betaLinks`). 사이트의 iPhone · Android 단추는 모두 여기를 가리킵니다. 정식 출시 후 스토어 주소로 바꾸면 됩니다.
 - `src/lib/content.ts` — 목업에 쓰는 가상의 가게 · 기록 · 추천 · 랭킹 · 사람들.
 - `src/components/Landing.tsx` — 한 페이지의 상태(기록하기 단계 자동 넘김, 지도 맛집/카페, 추천 · 연인 · 커뮤니티 탭, 도장 찍기, 모바일 메뉴)와 값 계산. 너비 720px 미만이면 휴대폰 마크업, 아니면 데스크톱 마크업을 그립니다. 서버 렌더 첫 화면에서는 둘 다 그리고 CSS(`.landing-desktop` · `.landing-mobile`)로 하나만 보인 뒤, 마운트하면 하나만 남깁니다.
-- `src/components/sections/desktop/*` · `sections/mobile/*` — 장마다 한 파일: Nav · Hero · Story · Capture(기록하기) · MapSection(지도) · Diary(캘린더 · 계절의 식탁) · Wishlist · Recommend(지금 뭐 먹지 · 둘러보기 · 랜덤 게임) · Together(우리 도장 · 우리의 기념일) · Labels(도장과 라벨) · Community(친구 · 갤러리 · 랭킹 · 게시판) · Closing · Footer (+ 휴대폰 StickyBar). 데스크톱은 Claude Design `DINARY Website.dc.html`, 휴대폰은 `Dinary Website - Mobile.dc.html` 그대로입니다.
+- `src/components/sections/desktop/*` · `sections/mobile/*` — 장마다 한 파일: Nav · Hero · Story(지도 앱과 비교) · Capture(기록하기) · MapSection(지도) · Diary(캘린더 · 계절의 식탁) · Wishlist · Recommend(지금 뭐 먹지 · 둘러보기 · 랜덤 게임) · Community(모임 · 친구 소식 · 랭킹 · 게시판) · Together(우리 도장 · 우리의 기념일) · Labels(도장과 라벨) · Closing · Footer (+ 휴대폰 StickyBar). 데스크톱은 Claude Design `DINARY Website.dc.html`, 휴대폰은 `Dinary Website - Mobile.dc.html` 그대로입니다.
 - `src/components/TabBar.tsx` · `icons.tsx` — 폰 목업 속 앱 하단 탭 바와 촬영 화면 아이콘.
 - 화면 너비에 따른 값(데스크톱 폰 배율 `--ph`, 휴대폰 폰 배율 `--mph`, 첫 화면 높이 등)은 `globals.css` 의 미디어 쿼리에 있어 첫 화면부터 맞는 크기로 그려집니다.
 
@@ -58,7 +58,7 @@ Vercel 에서 이 저장소를 가져오면 Next.js 로 알아서 잡힙니다. 
 ## 자산
 
 - 로고: 앱 `assets/icon.png` (`public/brand/icon.png`, 파비콘 `src/app/icon.png`).
-- 음식 사진: [Unsplash 라이선스](https://unsplash.com/license) 사진을 디자인에서 줄인 파일 그대로 `public/img` 에 두었습니다. 지도 배경은 `public/map`(seoul.jpg · rec.jpg), 체감가격 돼지는 앱의 금색 돼지 저금통(`public/piggy.png`, 64px 로 줄임).
+- 음식 사진: [Unsplash 라이선스](https://unsplash.com/license) 사진을 디자인에서 줄인 파일 그대로 `public/img` 에 두었습니다. 지도 배경은 `public/map`(seoul.jpg · rec.jpg), 체감가격 돼지는 앱의 금색 돼지 저금통(`public/piggy.png`, 64px 로 줄임). 앱 화면 캡처는 `public/screens`(지도 · 위시), `public/compare`(지도 앱과 비교), `public/img/hero-*.jpg` 에 있고, 디자인 원본(1080px)을 828px JPEG 로 줄였습니다.
 - 공유 카드(`src/app/opengraph-image.tsx`)는 빌드 때 그립니다. 글꼴은 그 문구의 글자만 담은 고운돋움 부분 파일(`src/assets/fonts/gowun-og.ttf`, SIL OFL)이라 문구를 바꾸면 다시 받아야 합니다:
   `https://fonts.googleapis.com/css2?family=Gowun+Dodum&text=<문구>` 를 오래된 User-Agent(예: `Mozilla/4.0`)로 열면 TTF 주소가 나옵니다.
 

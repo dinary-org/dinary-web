@@ -1,4 +1,4 @@
-// Claude Design 「DINARY Website」에서 옮긴 마크업입니다. 앞으로는 이 파일을 직접 고칩니다.
+// Claude Design 「Dinary Website - Mobile」에서 옮긴 마크업입니다. 앞으로는 이 파일을 직접 고칩니다.
 import { Fragment } from "react";
 import type { MobileVals } from "@/components/Landing";
 
@@ -20,10 +20,10 @@ export default function Nav({ v }: { v: MobileVals }) {
     </div>
   </nav>
   {v.menuOpen && (<>
-    <div style={{ height: "calc(100vh - 57px)", overflowY: "auto", boxSizing: "border-box", padding: "8px 20px 40px", background: "#f6f3ec", display: "flex", flexDirection: "column", animation: "fadeUp .35s cubic-bezier(.22,1,.36,1) both" }}>
+    <div style={{ height: "calc(100vh - 57px)", overflowY: "auto", boxSizing: "border-box", padding: "8px 20px 40px", background: "#ffffff", display: "flex", flexDirection: "column", animation: "fadeUp .35s cubic-bezier(.22,1,.36,1) both" }}>
       <ul style={{ listStyle: "none", margin: "0", padding: "0" }}>
         {v.menuLinks.map((s, sIdx) => (<Fragment key={sIdx}>
-          <li style={{ borderBottom: "1px solid #e2ddd2" }}><a href={s.href} onClick={v.closeMenu} style={{ display: "flex", alignItems: "baseline", gap: "16px", padding: "16px 0" }}><span style={{ fontFamily: "var(--dinary-font-mono)", fontSize: "11px", color: "#b4552d" }}>{s.n}</span><span style={{ fontFamily: "var(--dinary-font-serif)", fontSize: "22px", color: "#1c1a17" }}>{s.label}</span></a></li>
+          <li style={{ borderBottom: "1px solid #e2ddd2" }}><a href={s.href} onClick={v.closeMenu} style={{ display: "flex", alignItems: "baseline", gap: "16px", padding: "16px 0" }}><span style={{ fontFamily: "var(--dinary-font-mono)", fontSize: "11px", color: "#b4552d" }}>{s.n}</span><span style={{ fontFamily: "var(--site-serif)", fontSize: "22px", color: "#1c1a17" }}>{s.label}</span></a></li>
         </Fragment>))}
       </ul>
       <div style={{ marginTop: "32px" }}><div style={{ display: "grid", gridTemplateColumns: "repeat(2,minmax(0,1fr))", gap: "8px" }}>

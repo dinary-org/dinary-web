@@ -8,8 +8,8 @@
 import { Component, type CSSProperties, type TouchEvent } from "react";
 import { betaLinks } from "@/lib/site";
 import {
-  ANNIV, BOARDS, BOWL_NEEDS, CAL, CAT, COMMUNITY, DOW, EXTRA, FAN, FOOT, JOURNAL, P, PEOPLE, PICKS, PIN_C, PIN_XY, PLACES, POINTS,
-  REC_MODES, REVISITS, SECTIONS, SHARE, STEPS, STRIP, type Kind,
+  ANNIV, BOARDS, BOWL_NEEDS, CAL, DOW, FAN, FOOT, JOURNAL, MAP_F, MEETUP_ITEMS, MEETUPS, OTHER_COMM, P, PEOPLE, PICKS, PIN_C, POINTS,
+  REC_MODES, REVISITS, SECTIONS, SHARE, STEPS, WISH_F, type CommId,
 } from "@/lib/content";
 import DCapture from "@/components/sections/desktop/Capture";
 import DClosing from "@/components/sections/desktop/Closing";
@@ -69,23 +69,34 @@ type State = {
   mounted: boolean;
   step: number;
   touched: boolean;
-  kind: Kind;
-  activeId: string;
   coupleTab: "home" | "anniv";
   rec: string;
   pickI: number;
   stamps: number;
   toast: string;
-  comm: string;
+  comm: CommId;
+  /** 지도 · 위시 장에서 돌아가며 보여 주는 기능(0~2). 한 번 누르면 자동 넘김이 멈춥니다. */
+  mapF: number;
+  mapTouched: boolean;
+  wishF: number;
+  wishTouched: boolean;
   menu: boolean;
 };
 
+/** 휴대폰 마크업의 단계 칩(지도 · 위시 · 추천 · 모임) */
+const chip = (on: boolean, n: number, title: string, pick: () => void) => ({
+  n, title, active: on, pick, fill: on ? "100%" : "0%", fg: on ? "#1c1a17" : "#9a9387", num: on ? "#b4552d" : "#b3ac9f",
+});
+
+/** 「left:2%;top:4%」 같은 CSS 문자열을 style 객체로 */
+const cssObj = (css: string) => Object.fromEntries(css.split(";").map((d) => d.split(":"))) as CSSProperties;
+
 export default class Landing extends Component<{ autoplay?: boolean }, State> {
   state: State = {
-    w: 1280, y: 0, mounted: false, step: 0, touched: false, kind: "restaurant", activeId: "a", coupleTab: "home",
-    rec: "now", pickI: 0, stamps: 16, toast: "", comm: "friends", menu: false,
+    w: 1280, y: 0, mounted: false, step: 0, touched: false, coupleTab: "home", rec: "now", pickI: 0, stamps: 16, toast: "",
+    comm: "mt-home", mapF: 0, mapTouched: false, wishF: 0, wishTouched: false, menu: false,
   };
-  private timer?: ReturnType<typeof setInterval>;
+  private timers: ReturnType<typeof setInterval>[] = [];
   private sx: number | null = null;
   private sy = 0;
 
@@ -100,15 +111,18 @@ export default class Landing extends Component<{ autoplay?: boolean }, State> {
     window.addEventListener("resize", this.onResize);
     window.addEventListener("scroll", this.onScroll, { passive: true });
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    this.timer = setInterval(() => {
-      if (this.props.autoplay !== false && !reduce && !this.state.touched) this.setState((s) => ({ step: (s.step + 1) % 4 }));
-    }, 4200);
+    const auto = () => this.props.autoplay !== false && !reduce;
+    this.timers = [
+      setInterval(() => { if (auto() && !this.state.touched) this.setState((s) => ({ step: (s.step + 1) % 4 })); }, 4200),
+      setInterval(() => { if (auto() && !this.state.mapTouched) this.setState((s) => ({ mapF: (s.mapF + 1) % 3 })); }, 4800),
+      setInterval(() => { if (auto() && !this.state.wishTouched) this.setState((s) => ({ wishF: (s.wishF + 1) % 3 })); }, 5200),
+    ];
   }
 
   componentWillUnmount() {
     window.removeEventListener("resize", this.onResize);
     window.removeEventListener("scroll", this.onScroll);
-    clearInterval(this.timer);
+    this.timers.forEach(clearInterval);
   }
 
   componentDidUpdate(_: unknown, prev: State) {
@@ -136,10 +150,7 @@ export default class Landing extends Component<{ autoplay?: boolean }, State> {
         };
       }),
       recNow: rec === "now", recBrowse: rec === "browse", recGames: rec === "games",
-      recHasAction: rec === "now",
-      recActionLabel: "다음 추천 보기 →",
-      recAction: () => this.setState((s) => ({ pickI: (s.pickI + 1) % PICKS.length })),
-      pick: { ...p, idx: pickI + 1, tx: p.px + "%", ty: p.py - 7 + "%", whys: p.why.map((t, i) => ({ n: i + 1, t })) },
+      pick: { ...p, src: P + p.photo + ".jpg", idx: pickI + 1, tx: p.px + "%", ty: p.py - 7 + "%", whys: p.why.map((t, i) => ({ n: i + 1, t })) },
       pickDots: PICKS.map((_, i) => ({ w: i === pickI ? "18px" : "6px", c: i === pickI ? "#b4552d" : "#d8d3c8" })),
       revisits: REVISITS.map(([name, meta, pct]) => ({ name, meta, pct })),
       gameEyebrow: "오늘은 이걸로",
@@ -156,7 +167,7 @@ export default class Landing extends Component<{ autoplay?: boolean }, State> {
     const filled = n % 10;
     return {
       board: {
-        filled, bowls: n, toast: this.state.toast,
+        no: Math.floor(n / 10) + 1, filled, bowls: n, tickets: Math.floor(n / 10), toast: this.state.toast,
         track: BOWL_NEEDS.map((need, i) => {
           const on = n >= need;
           const cur = on && (i === BOWL_NEEDS.length - 1 || n < BOWL_NEEDS[i + 1]);
@@ -174,25 +185,61 @@ export default class Landing extends Component<{ autoplay?: boolean }, State> {
   }
 
   communityVals() {
+    const c = this.state.comm;
+    const inside = c === "mt-records" || c === "mt-wish" || c === "mt-plan";
     return {
-      community: COMMUNITY.map((c) => {
-        const on = this.state.comm === c.id;
-        return { ...c, active: on, bg: on ? "#fbfaf6" : "#f6f3ec", enColor: on ? "#b4552d" : "#a29a8c", pick: () => this.setState({ comm: c.id }) };
+      meetupItems: MEETUP_ITEMS.map(([id, title, body], i) => {
+        const on = c === id;
+        return {
+          n: i + 1, title, body, active: on, bg: on ? "#fbfaf6" : "transparent", border: on ? "#d8d3c8" : "transparent",
+          numColor: on ? "#b4552d" : "#8a8377", pick: () => this.setState({ comm: id }),
+        };
       }),
-      commFriends: this.state.comm === "friends", commGallery: this.state.comm === "gallery",
-      commRanking: this.state.comm === "ranking", commBoard: this.state.comm === "board",
+      otherComm: OTHER_COMM.map(([id, label]) => {
+        const on = c === id;
+        return {
+          label, active: on, bg: on ? "#1c1a17" : "#fbfaf6", fg: on ? "#fbfaf6" : "#1c1a17", border: on ? "#1c1a17" : "#d8d3c8",
+          pick: () => this.setState({ comm: id }),
+        };
+      }),
+      commFriends: c === "friends", commRanking: c === "ranking", commBoard: c === "board",
+      mtAny: c.startsWith("mt-"), mtHome: c === "mt-home", mtInside: inside, mtRecords: c === "mt-records", mtWish: c === "mt-wish", mtPlan: c === "mt-plan",
+      mtAll: c === "mt-home"
+        ? { bg: "#1c1a17", border: "#1c1a17", fg: "#fbfaf6", name: "#1c1a17" }
+        : { bg: "#fbfaf6", border: "#d8d3c8", fg: "#1c1a17", name: "#6b665e" },
+      mtCells: MEETUPS.map((m) => {
+        const on = inside && m.id === "eul";
+        return { ...m, ring: on ? m.c : "transparent", hasD: !!m.dday, dot: !!m.dot && !on, nameC: on ? "#1c1a17" : "#6b665e" };
+      }),
+      mtTabs: ([["mt-records", "기록"], ["map", "지도"], ["mt-wish", "갈래 말래"], ["mt-plan", "약속"]] as const).map(([id, label]) => {
+        const on = c === id;
+        return { label, bg: on ? "#fbfaf6" : "transparent", fg: on ? "#1c1a17" : "#6b665e", shadow: on ? "0 1px 4px rgba(28,26,23,.08)" : "none" };
+      }),
       rankCards: BOARDS.map(([, name, rule], i) => ({ name, rule, top: PEOPLE[0][0], mine: ["3위", "2위", "—", "4위", "1위"][i] })),
     };
   }
 
+  /** 지도(mf · mapIs) · 위시(wf · wishIs) 장의 기능 세 개 */
+  featureVals(key: "map" | "wish") {
+    const cur = key === "map" ? this.state.mapF : this.state.wishF;
+    const pick = (i: number) => () => (key === "map" ? this.setState({ mapF: i, mapTouched: true }) : this.setState({ wishF: i, wishTouched: true }));
+    const f = (i: number) => {
+      const on = cur === i;
+      return { active: on, bg: on ? "#fbfaf6" : "transparent", border: on ? "#d8d3c8" : "transparent", num: on ? "#b4552d" : "#8a8377", pick: pick(i) };
+    };
+    return { f: [f(0), f(1), f(2)] as const, is: [cur === 0, cur === 1, cur === 2] as const, pick };
+  }
+
   desktopVals() {
-    const { w, y, step, kind, activeId, coupleTab } = this.state;
+    const { y, step, coupleTab } = this.state;
     const go = this.go;
+    const map = this.featureVals("map");
+    const wish = this.featureVals("wish");
     return {
       iosBetaUrl: betaLinks.ios,
       androidBetaUrl: betaLinks.android,
-      navBg: y > 24 ? "rgba(246,243,236,.88)" : "transparent",
-      navBorder: y > 24 ? "rgba(216,211,200,.7)" : "transparent",
+      navBg: y > 24 ? "rgba(255,255,255,.9)" : "transparent",
+      navBorder: y > 24 ? "rgba(228,230,234,.9)" : "transparent",
       sections: SECTIONS.map(([id, label]) => ({ href: "#" + id, label })),
       footSections: FOOT.map(([id, label]) => ({ href: "#" + id, label })),
       ...this.recVals(),
@@ -201,74 +248,21 @@ export default class Landing extends Component<{ autoplay?: boolean }, State> {
       ...this.communityVals(),
       ph: phone("--ph"),
       phSm: phone("--ph-sm"),
+      mf0: map.f[0], mf1: map.f[1], mf2: map.f[2], mapIs0: map.is[0], mapIs1: map.is[1], mapIs2: map.is[2],
+      wf0: wish.f[0], wf1: wish.f[1], wf2: wish.f[2], wishIs0: wish.is[0], wishIs1: wish.is[1], wishIs2: wish.is[2],
       heroStageH: "var(--hero-h)",
-      stripLoop: [...STRIP, ...STRIP].map(([k, date, note, r]) => ({ src: P + k + ".jpg", date, note, r })),
       steps: STEPS.map((x, i) => ({
         n: i + 1, verb: x.verb, active: i === step, color: i <= step ? "#b4552d" : "#a29a8c", bar: i <= step ? "#b4552d" : "#d8d3c8", pick: () => go(i),
       })),
       step: { ...STEPS[step], no: "0" + (step + 1), hasNote: !!STEPS[step].note },
-      isStep0: step === 0, isStep1: step === 1, isStep2: step === 2, isStep3: step === 3,
+      isStep0: step === 0, notStep0: step !== 0, isStep1: step === 1, isStep2: step === 2, isStep3: step === 3,
       prevStep: () => go(step - 1),
       nextStep: () => go(step + 1),
-      swipeStart: (e: TouchEvent) => {
-        this.sx = e.touches[0].clientX;
-        this.sy = e.touches[0].clientY;
-      },
-      swipeEnd: (e: TouchEvent) => {
-        if (this.sx == null) return;
-        const t = e.changedTouches[0];
-        const dx = t.clientX - this.sx;
-        const dy = t.clientY - this.sy;
-        this.sx = null;
-        if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.5) go(step + (dx < 0 ? 1 : -1));
-      },
-      kinds: ([["restaurant", "맛집"], ["cafe", "카페"]] as const).map(([k, label]) => ({
-        label, active: kind === k, bg: kind === k ? "#1c1a17" : "transparent", fg: kind === k ? "#fbfaf6" : "#1c1a17",
-        pick: () => this.setState({ kind: k, activeId: PLACES.find((p) => p.kind === k)!.id }),
-      })),
-      mapPins: PLACES.filter((p) => p.kind === kind).map((p) => {
-        const [x, y0, rating] = PIN_XY[p.id];
-        const py = 14 + (y0 - 30) * 0.9;
-        const on = p.id === activeId;
-        const c = PIN_C[p.category];
-        const rv = p.visits > 1;
-        return {
-          name: p.name, rating: rating.toFixed(1), x: x + "%", y: py + "%", on, tagLine: on ? "#b4552d" : "#d8d3c8", z: on ? 10 : 1,
-          size: on ? 28 : 24, sizeH: on ? 29 : 25, fill: rv ? c : "#fbfaf6", stroke: rv ? "#fbfaf6" : c, core: rv ? "#fbfaf6" : c,
-        };
-      }),
-      wishMark: kind === "restaurant" ? { x: "78%", y: "20%", name: "맑은 냉면" } : { x: "48%", y: "18%", name: "다향 찻집" },
-      sheet: kind === "restaurant" ? { tab: "맛집 기록", places: 5, summary: "맛집 5곳 · 기록 12" } : { tab: "카페 기록", places: 3, summary: "카페 3곳 · 기록 12" },
-      sheetKinds: ([["restaurant", "맛집"], ["cafe", "카페"]] as const).map(([k, label]) => ({ label, c: kind === k ? "#1c1a17" : "#cdc6b8" })),
-      sheetRecs: (() => {
-        const list = PLACES.filter((p) => p.kind === kind);
-        const a = list.find((p) => p.id === activeId);
-        return [a, ...list.filter((p) => p !== a)]
-          .filter((p) => p !== undefined)
-          .map((p) => {
-            const rt = PIN_XY[p.id][2];
-            const ex = EXTRA[p.id];
-            const full = Math.floor(rt);
-            return {
-              src: P + p.photo + ".jpg", name: p.name, revisit: p.visits > 1, area: ex[0], cat: p.category, menu: ex[1],
-              stars: "★".repeat(full), starsOff: "★".repeat(5 - full), rating: rt.toFixed(1),
-              pigs: [1, 2, 3, 4, 5].map((k) => (k <= ex[2] ? 1 : 0.3)), line: p.id === activeId ? "#b4552d" : "#e2ddd2",
-            };
-          });
-      })(),
       calDow: DOW,
       calWeeks: calWeeks(),
       calCount: Object.keys(CAL).length,
-      shownPlaces: PLACES.filter((p) => p.kind === kind).map((p) => ({
-        name: p.name, date: p.date, color: CAT[p.category],
-        bg: p.id === activeId ? "#fbfaf6" : "transparent", shadow: p.id === activeId ? "0 6px 20px -10px rgba(28,26,23,.25)" : "none",
-        pick: () => this.setState({ activeId: p.id }),
-      })),
       diaryH: "var(--diary-h)",
-      journal: JOURNAL.map(([k, cap, pos, r, pw]) => ({
-        src: P + k + ".jpg", cap, r,
-        pos: Object.fromEntries(pos.split(";").map((d) => d.split(":"))) as CSSProperties,
-        w: `calc(${pw}% + var(--journal-dw))` })),
+      journal: JOURNAL.map(([k, cap, pos, r, pw]) => ({ src: P + k + ".jpg", cap, r, pos: cssObj(pos), w: `calc(${pw}% + var(--journal-dw))` })),
       share: SHARE.map((t, i) => ({
         ...t,
         tf: `translateX(calc(-50% + ${i - 1.5} * var(--share-dx))) translateY(${Math.abs(i - 1.5) * 18}px) rotate(${(i - 1.5) * 7}deg)`,
@@ -301,28 +295,52 @@ export default class Landing extends Component<{ autoplay?: boolean }, State> {
 
   mobileVals() {
     const v = this.desktopVals();
-    const { y, menu } = this.state;
-    const active = v.recModes.find((m) => m.active) || v.recModes[0];
+    const { y, menu, step, comm, rec } = this.state;
+    const map = this.featureVals("map");
+    const wish = this.featureVals("wish");
     const ua = typeof navigator === "undefined" ? "" : navigator.userAgent;
+    const go = this.go;
     return {
       ...v,
       storeUrl: /iPhone|iPad/.test(ua) ? betaLinks.ios : betaLinks.android,
       ph: phone("--mph"),
       phSm: phone("--mph-sm"),
+      heroStageH: "calc(864px * var(--mph-sm) + 60px)",
       menuOpen: menu,
       menuClosed: !menu,
       toggleMenu: () => this.setState((st) => ({ menu: !st.menu })),
       closeMenu: () => this.setState({ menu: false }),
-      navBg: menu ? "#f6f3ec" : v.navBg,
-      navBorder: menu ? "#e2ddd2" : v.navBorder,
+      navBg: menu ? "#ffffff" : v.navBg,
+      navBorder: menu ? "#e4e6ea" : v.navBorder,
       showBar: y > 700 && !menu,
       menuLinks: FOOT.map(([id, label], i) => ({ href: "#" + id, label, n: "0" + (i + 1) })),
-      recTabs: v.recModes.map((m) => ({ ...m, bg: m.active ? "#1c1a17" : "transparent", fg: m.active ? "#fbfaf6" : "#6b665e" })),
-      recBody: active.body,
-      commTabs: v.community.map((c) => ({
-        ...c, bg: c.active ? "#1c1a17" : "#fbfaf6", fg: c.active ? "#fbfaf6" : "#1c1a17", line: c.active ? "#1c1a17" : "#d8d3c8",
+      swipeStart: (e: TouchEvent) => {
+        this.sx = e.touches[0].clientX;
+        this.sy = e.touches[0].clientY;
+      },
+      swipeEnd: (e: TouchEvent) => {
+        if (this.sx == null) return;
+        const t = e.changedTouches[0];
+        const dx = t.clientX - this.sx;
+        const dy = t.clientY - this.sy;
+        this.sx = null;
+        if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.5) go(step + (dx < 0 ? 1 : -1));
+      },
+      otherComm: OTHER_COMM.map(([id, label], i) => {
+        const on = comm === id;
+        return { label, active: on, pick: () => this.setState({ comm: id }), fg: on ? "#1c1a17" : "#9a9387", border: on ? "#b4552d" : "transparent", sep: i ? "1px solid #e4dfd5" : "0" };
+      }),
+      mapChips: MAP_F.map(([t], i) => chip(this.state.mapF === i, i + 1, t, map.pick(i))),
+      mapBody: MAP_F[this.state.mapF][1],
+      wishChips: WISH_F.map(([t], i) => chip(this.state.wishF === i, i + 1, t, wish.pick(i))),
+      wishBody: WISH_F[this.state.wishF][1],
+      recChips: REC_MODES.map(([id, label], i) => chip(rec === id, i + 1, label, () => this.setState({ rec: id }))),
+      recBody: (REC_MODES.find((x) => x[0] === rec) || REC_MODES[0])[2],
+      meetChips: MEETUP_ITEMS.map(([id, title], i) => chip(comm === id, i + 1, title, () => this.setState({ comm: id }))),
+      commBody: [...MEETUP_ITEMS, ...OTHER_COMM].find((x) => x[0] === comm)?.[2] ?? "",
+      share: SHARE.map((t, i) => ({
+        ...t, tf: `translateX(calc(-50% + ${(i - 1.5) * 44}px)) translateY(${Math.abs(i - 1.5) * 18}px) rotate(${(i - 1.5) * 7}deg)`,
       })),
-      commActive: v.community.find((c) => c.active) || v.community[0],
       fan: FAN.map(([k, r, x, cap]) => ({
         src: P + k + ".jpg", cap, z: 10 - Math.abs(x), tf: `translateX(${x * 56}px) translateY(${Math.abs(x) * 12}px) rotate(${r}deg)`,
       })),
@@ -332,7 +350,7 @@ export default class Landing extends Component<{ autoplay?: boolean }, State> {
   renderDesktop() {
     const v = this.desktopVals();
     return (
-      <div className="landing-desktop" style={{ position: "relative", background: "var(--dinary-paper)", overflowX: "hidden", minHeight: "100vh" }}>
+      <div className="landing-desktop" style={{ position: "relative", background: "#ffffff", overflowX: "hidden", minHeight: "100vh" }}>
         <DNav v={v} />
         <main>
           <DHero v={v} />
@@ -342,9 +360,9 @@ export default class Landing extends Component<{ autoplay?: boolean }, State> {
           <DDiary v={v} />
           <DWishlist v={v} />
           <DRecommend v={v} />
+          <DCommunity v={v} />
           <DTogether v={v} />
           <DLabels v={v} />
-          <DCommunity v={v} />
           <DClosing v={v} />
         </main>
         <DFooter v={v} />
@@ -357,7 +375,7 @@ export default class Landing extends Component<{ autoplay?: boolean }, State> {
     return (
       <div
         className="landing-mobile"
-        style={{ position: "relative", maxWidth: "440px", margin: "0 auto", background: "var(--dinary-paper)", overflowX: "hidden", minHeight: "100vh", boxShadow: "0 0 0 1px #ddd8cd" }}
+        style={{ position: "relative", maxWidth: "440px", margin: "0 auto", background: "#ffffff", overflowX: "hidden", minHeight: "100vh", boxShadow: "0 0 0 1px #ddd8cd" }}
       >
         <MNav v={v} />
         <main>
@@ -368,9 +386,9 @@ export default class Landing extends Component<{ autoplay?: boolean }, State> {
           <MDiary v={v} />
           <MWishlist v={v} />
           <MRecommend v={v} />
+          <MCommunity v={v} />
           <MTogether v={v} />
           <MLabels v={v} />
-          <MCommunity v={v} />
           <MClosing v={v} />
         </main>
         <MFooter v={v} />

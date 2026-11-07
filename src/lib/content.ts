@@ -4,41 +4,10 @@
  */
 export const P = "/img/";
 
-export type Kind = "restaurant" | "cafe";
-
-/** 분류 색. 앱 src/lib/types.ts 의 CATEGORY_COLORS 와 같은 값. */
-export const CAT: Record<string, string> = {
-  한식: "#b4552d", 중식: "#9a4a52", 일식: "#5f7a8a", 양식: "#7a6a9a", 분식: "#c07a2e",
-  술집: "#3f4f6a", 커피: "#7a5c42", 디저트: "#b06a86", 베이커리: "#a8853f",
-};
-
-/** 지도 핀 · 캘린더 막대 색(술집만 CAT 과 다름). 앱 src/lib/types.ts 의 CATEGORY_COLORS 기준. */
+/** 캘린더 막대 색. 앱 src/lib/types.ts 의 CATEGORY_COLORS 기준(술집만 일식과 같은 색). */
 export const PIN_C: Record<string, string> = {
   한식: "#b4552d", 중식: "#9a4a52", 일식: "#5f7a8a", 양식: "#7a6a9a", 분식: "#c07a2e",
   술집: "#5f7a8a", 커피: "#7a5c42", 디저트: "#b06a86", 베이커리: "#a8853f",
-};
-
-export const PLACES: { id: string; name: string; category: string; photo: string; date: string; visits: number; kind: Kind }[] = [
-  { id: "a", name: "한그릇", category: "한식", photo: "bibimbap", date: "10.22", visits: 3, kind: "restaurant" },
-  { id: "b", name: "빨간냄비", category: "분식", photo: "tteokbokki-bowl", date: "10.11", visits: 5, kind: "restaurant" },
-  { id: "c", name: "온기만두", category: "중식", photo: "dumplings", date: "10.03", visits: 1, kind: "restaurant" },
-  { id: "e", name: "하루라멘", category: "일식", photo: "ramen", date: "10.08", visits: 2, kind: "restaurant" },
-  { id: "h", name: "모닥꼬치", category: "술집", photo: "skewers", date: "10.17", visits: 4, kind: "restaurant" },
-  { id: "d", name: "느린커피", category: "커피", photo: "latte", date: "10.02", visits: 7, kind: "cafe" },
-  { id: "g", name: "포근당", category: "디저트", photo: "dessert", date: "09.28", visits: 2, kind: "cafe" },
-  { id: "i", name: "아침빵집", category: "베이커리", photo: "french-toast", date: "09.14", visits: 3, kind: "cafe" },
-];
-
-/** 가게별 [주소, 메뉴, 체감 가격(돼지 수)] */
-export const EXTRA: Record<string, [string, string, number]> = {
-  a: ["서울 중구 을지로", "돌솥비빔밥", 2], b: ["서울 마포구 망원동", "떡볶이 · 튀김", 1], c: ["서울 종로구 익선동", "군만두", 2],
-  e: ["서울 용산구 한강로", "돈코츠라멘", 2], h: ["서울 마포구 연남동", "닭꼬치", 3], d: ["서울 성동구 성수동", "플랫화이트", 2],
-  g: ["서울 종로구 익선동", "딸기 케이크", 3], i: ["서울 성동구 성수동", "프렌치토스트", 2],
-};
-
-/** 지도 화면 위 핀 위치(%)와 별점 */
-export const PIN_XY: Record<string, [number, number, number]> = {
-  a: [44, 47, 4.5], b: [76, 58, 4.0], c: [26, 31, 4.0], e: [28, 66, 4.0], h: [70, 30, 4.5], d: [26, 52, 4.5], g: [62, 34, 4.0], i: [72, 62, 4.5],
 };
 
 export const DOW = ["일", "월", "화", "수", "목", "금", "토"];
@@ -48,13 +17,6 @@ export const CAL: Record<number, [string, string]> = {
   2: ["느린커피", "커피"], 3: ["온기만두", "중식"], 8: ["하루라멘", "일식"], 10: ["오솔길", "양식"],
   11: ["빨간냄비", "분식"], 17: ["모닥꼬치", "일식"], 22: ["한그릇", "한식"],
 };
-
-/** 흐르는 사진 띠: [사진, 날짜, 한 줄, 기울기] */
-export const STRIP: [string, string, string, number][] = [
-  ["tteokbokki-bowl", "10.11", "비 오는 날엔 떡볶이", -3], ["latte", "10.02", "일곱 번째 플랫화이트", 2], ["dumplings", "10.03", "얇은 피, 꽉 찬 만두", -1.5],
-  ["ramen", "10.08", "늦게 끝난 날의 라멘", 2.5], ["dessert", "09.28", "생일 다음 날 케이크", -2], ["skewers", "10.17", "오랜만에 다 같이", 1.5],
-  ["french-toast", "09.14", "느지막한 토요일 아침", -2.5], ["kimchi", "10.22", "반찬이 정갈한 점심", 2], ["sushi", "09.27", "처음 가 본 오마카세", -1],
-];
 
 export const STEPS = [
   { verb: "찍고", title: "음식이 나오면, 카메라부터.", body: "사진 한 장으로 기록을 시작하세요.", note: "그 자리에서 찍은 사진에 방문 인증이 붙어요." },
@@ -105,6 +67,20 @@ export const FOOT: [string, string][] = [
   ["together", "연인 기록"], ["labels", "도장과 라벨"], ["community", "커뮤니티"],
 ];
 
+/** 지도 장의 세 가지 기능: [제목, 설명] */
+export const MAP_F: [string, string][] = [
+  ["맛집과 카페를 나눠서", "일별, 지역별순으로 다시 정렬해 볼 수 있어요."],
+  ["건물 속 가게까지", "지도를 길게 누르면 그 건물 안 식당·카페를 층별로 보여 줘요."],
+  ["가고 싶은 곳은 책갈피로", "아직 못 간 위시리스트도 같은 지도 위에 함께 있어요."],
+];
+
+/** 위시 장의 세 가지 기능: [제목, 설명] */
+export const WISH_F: [string, string][] = [
+  ["릴스 · 쇼츠에서 바로 담기", "영상을 보다가 공유 버튼을 누르고 DINARY를 고르세요. 게시물에 나온 가게를 찾아 카드로 보여 드려요. 눌러서 담으면 끝이에요."],
+  ["날짜를 정하면 캘린더에", "가기로 한 날이 캘린더에 「예정」으로 떠요."],
+  ["근처를 지나가면 알림", "담아둔 곳 50m 안에 들어오면 알려 드려요."],
+];
+
 export const REC_MODES: [string, string, string][] = [
   ["now", "지금 뭐 먹지", "지금 위치와 시각으로 다섯 곳. 왜 골랐는지 한 줄씩 붙여요. 마음에 안 들면 「다시 추천」."],
   ["browse", "둘러보기", "사람들이 이어서 간 코스와 도장을 모으는 투어, 다시 찾는 사람이 많은 곳을 둘러봐요."],
@@ -137,9 +113,25 @@ export const BOARDS: [string, string, string][] = [
 
 export const PEOPLE: [string, string][] = [["보리차", "종로 보안관"], ["모과", "MZ맛잘알"], ["나", "삼고초려"], ["솔방울", "중구 러버"], ["도토리", "하루 세 끼"]];
 
-export const COMMUNITY = [
-  { id: "friends", en: "FRIENDS", title: "친구 소식", body: "내 기록 하나를 골라 사진과 한 줄을 올리면 친구들에게 보여요. 공감과 댓글로 답하고, 마음에 드는 곳은 위시리스트에 바로 담아요." },
-  { id: "gallery", en: "GALLERY", title: "사진으로 둘러보기", body: "인증된 한 끼의 사진을 모아 보여 줘요. 가게나 메뉴 이름으로 찾아볼 수 있어요." },
-  { id: "ranking", en: "RANKING", title: "다섯 가지 랭킹", body: "친구끼리, 또는 전체에서. 이번 주 · 이번 달 · 이번 분기로 나눠 겨뤄요." },
-  { id: "board", en: "BOARD", title: "게시판", body: "맛집 · 카페 · 자유 주제로 글을 올리고 이야기를 나눠요. 다녀온 가게를 붙이면 바로 찾아갈 수 있어요." },
+/** 커뮤니티 장. 모임 네 가지(mt-*) 다음에 친구 소식 · 랭킹 · 게시판. */
+export type CommId = "mt-home" | "mt-records" | "mt-wish" | "mt-plan" | "friends" | "ranking" | "board";
+
+export const MEETUP_ITEMS: [CommId, string, string][] = [
+  ["mt-home", "모임", "친구 셋 이상이면 모임을 만들어요. 받은 초대와 다가오는 약속, 새 소식이 맨 앞 「전체」에 모여요."],
+  ["mt-records", "함께 쓰는 기록", "사람들과 다녀온 곳의 기록이 한곳에 쌓여요. 어떤 기록을 올릴지는 내가 골라요."],
+  ["mt-wish", "갈래 말래", "가고 싶은 곳을 모임에 담고, 「가고 싶어요」가 많은 순으로 봐요. 내 위시나 기록에서 가져올 수도 있어요."],
+  ["mt-plan", "약속 잡기", "갈래 말래에서 약속을 잡아요. 날짜와 시간을 정하면 부원 누구나 참가할 수 있어요."],
+];
+
+export const OTHER_COMM: [CommId, string, string][] = [
+  ["friends", "친구 소식", "내 기록 하나를 골라 사진과 한 줄을 올리면 친구들에게 보여요. 공감과 댓글로 답하고, 마음에 드는 곳은 위시리스트에 바로 담아요."],
+  ["ranking", "랭킹", "친구끼리, 또는 전체에서. 이번 주 · 이번 달 · 이번 분기로 나눠 겨뤄요."],
+  ["board", "게시판", "맛집 · 카페 · 자유 주제로 글을 올리고 이야기를 나눠요. 다녀온 가게를 붙이면 바로 찾아갈 수 있어요."],
+];
+
+export const MEETUPS: { id: string; name: string; c: string; ch: string; dday?: string; dot?: boolean }[] = [
+  { id: "eul", name: "을지로 점심팟", c: "#b4552d", ch: "을" },
+  { id: "jeju", name: "제주 3박 4일", c: "#4f6b7a", ch: "제", dday: "D-12" },
+  { id: "uni", name: "대학 동기", c: "#6f8455", ch: "동", dot: true },
+  { id: "book", name: "책 모임", c: "#7a6a9a", ch: "책" },
 ];

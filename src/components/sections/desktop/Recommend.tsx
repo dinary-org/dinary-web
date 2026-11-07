@@ -9,7 +9,7 @@ export default function Recommend({ v }: { v: DesktopVals }) {
 <section id="recommend" aria-labelledby="rec-title" style={{ padding: "clamp(96px,10vw,140px) 0", borderTop: "1px solid #d8d3c8" }}>
   <div style={{ maxWidth: "1320px", margin: "0 auto", padding: "0 clamp(20px,4vw,40px)", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,460px),1fr))", gap: "clamp(56px,6vw,80px)", alignItems: "center" }}>
     <div>
-      <div style={{ display: "flex", alignItems: "center", gap: "16px", fontFamily: "var(--dinary-font-mono)", fontSize: "14px", letterSpacing: ".22em", color: "#6b665e" }}><span>05</span><span style={{ width: "40px", height: "1px", background: "#b4552d" }}></span><span>WHAT TO EAT, NOW</span></div>
+      <div style={{ display: "flex", alignItems: "center", gap: "16px", fontFamily: "var(--dinary-font-mono)", fontSize: "14px", letterSpacing: ".22em", color: "#1c1a17" }}><span>05</span></div>
       <h2 id="rec-title" style={{ margin: "24px 0 0", fontFamily: "var(--site-serif)", fontWeight: "400", fontSize: "clamp(32px,4.8vw,62px)", lineHeight: "1.22", letterSpacing: "-.03em" }}>오늘 뭐 먹지?<br />나만을 위한 맞춤 추천.</h2>
       <p style={{ margin: "28px 0 0", maxWidth: "31em", fontSize: "clamp(15.5px,1.3vw,16.5px)", lineHeight: "1.9", color: "#6b665e" }}>지금 있는 곳과 시간, 그동안 남긴 기록에 담긴 입맛과 취향까지 살펴서, 지금 나에게 딱 맞는 곳을 골라 드려요.</p>
       <div role="tablist" aria-label="추천 방식" style={{ marginTop: "40px", display: "flex", flexDirection: "column", gap: "6px" }}>
@@ -23,18 +23,13 @@ export default function Recommend({ v }: { v: DesktopVals }) {
           </button>
         </Fragment>))}
       </div>
-      {v.recHasAction && (<>
-        <div style={{ marginTop: "24px", display: "flex", flexWrap: "wrap", alignItems: "center", gap: "14px" }}>
-          <button type="button" onClick={v.recAction} style={{ all: "unset", cursor: "pointer", display: "inline-flex", alignItems: "center", gap: "10px", borderRadius: "999px", background: "#1c1a17", color: "#fbfaf6", padding: "14px 24px", fontSize: "14.5px", transition: "background .3s" }} className="hv-brick">{v.recActionLabel}</button>
-        </div>
-      </>)}
     </div>
 
     <div style={{ position: "relative", display: "flex", justifyContent: "center" }}>
       <div style={{ position: "absolute", top: "50%", left: "50%", width: "min(520px,90%)", aspectRatio: "1", transform: "translate(-50%,-50%)", borderRadius: "50%", background: "#f7ece5", filter: "blur(30px)" }}></div>
       <div style={{ position: "relative", width: v.ph.w, height: v.ph.h }}>
         <div style={{ position: "absolute", top: "0", left: "0", width: "410px", height: "864px", transform: v.ph.t, transformOrigin: "top left", background: "#1c1a17", borderRadius: "58px", padding: "10px", boxSizing: "border-box", boxShadow: "0 50px 90px -40px rgba(28,26,23,.6)" }}>
-          <div style={{ width: "390px", height: "844px", borderRadius: "48px", overflow: "hidden", background: "#f6f3ec", position: "relative", boxSizing: "border-box", padding: "58px 22px 0" }}>
+          <div style={{ width: "390px", height: "844px", borderRadius: "48px", overflow: "hidden", background: "#f6f3ec", position: "relative", containerType: "inline-size", boxSizing: "border-box", padding: "58px 22px 0" }}><div style={{ position: "absolute", left: "0", right: "0", top: "0", height: "12.05cqw", background: "#f6f3ec", display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 7.4cqw 0 9.5cqw", boxSizing: "border-box", zIndex: "40" }}><span style={{ fontFamily: "-apple-system,'SF Pro Text',var(--dinary-font-sans-bd)", fontWeight: "600", fontSize: "4.3cqw", letterSpacing: "-.02em", color: "#1c1a17", lineHeight: "1" }}>9:41</span><svg viewBox="0 0 70 13" style={{ width: "17.9cqw", height: "auto", display: "block" }} fill="#1c1a17"><rect x="0" y="8" width="3" height="4" rx="1"></rect><rect x="4.8" y="5.8" width="3" height="6.2" rx="1"></rect><rect x="9.6" y="3.4" width="3" height="8.6" rx="1"></rect><rect x="14.4" y="1" width="3" height="11" rx="1"></rect><path d="M30.5 3.2a9.6 9.6 0 0 1 12.6 0l1.2-1.3a11.4 11.4 0 0 0-15 0Zm2.2 2.4a6.4 6.4 0 0 1 8.2 0l1.2-1.3a8.2 8.2 0 0 0-10.6 0Zm2.2 2.4a3.2 3.2 0 0 1 3.8 0l1.2-1.3a5 5 0 0 0-6.2 0Zm1.9 3.6 1.7-1.9a1.8 1.8 0 0 0-3.4 0Z"></path><rect x="47.5" y="0.5" width="19" height="11" rx="3.2" fill="none" stroke="#1c1a17" strokeOpacity=".4"></rect><rect x="49" y="2" width="16" height="8" rx="2"></rect><path d="M68 4v4a2 2 0 0 0 0-4Z" fillOpacity=".45"></path></svg></div><div style={{ position: "absolute", left: "50%", top: "2.6cqw", width: "31cqw", height: "8.6cqw", transform: "translateX(-50%)", borderRadius: "5cqw", background: "#000", zIndex: "41" }}></div><div style={{ position: "absolute", left: "50%", bottom: "2.3cqw", width: "35cqw", height: "1.3cqw", transform: "translateX(-50%)", borderRadius: "1cqw", background: "#1c1a17", zIndex: "41" }}></div>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
               <span style={{ fontFamily: "var(--dinary-font-mono)", fontSize: "10px", letterSpacing: "2.2px", color: "#8a8377" }}>RECOMMEND</span>
               <span style={{ display: "flex", alignItems: "center", gap: "5px", height: "30px", padding: "0 12px", borderRadius: "15px", background: "#f7ece5", fontSize: "12px", color: "#b4552d" }}><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#b4552d" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d="M12 21s7-6.3 7-11.3A7 7 0 005 9.7C5 14.7 12 21 12 21z M12 7.3a2.4 2.4 0 1 0 .01 0"></path></svg>을지로 · 화 12:10<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#b4552d" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d="M7 10l5 5 5-5"></path></svg></span>
@@ -126,7 +121,7 @@ export default function Recommend({ v }: { v: DesktopVals }) {
                 </div>
               </div>
             </>)}
-            <div style={{ position: "absolute", left: "0", right: "0", bottom: "0", zIndex: "30", paddingBottom: "34px", background: "#fbfaf6" }}><TabBar active={"recommend"} /></div>
+            <div style={{ position: "absolute", left: "0", right: "0", bottom: "0", zIndex: "30", paddingBottom: "34px", background: "#fbfaf6" }}><TabBar active="recommend" /></div>
           </div>
         </div>
       </div>
