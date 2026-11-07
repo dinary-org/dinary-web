@@ -34,7 +34,6 @@ import MLabels from "@/components/sections/mobile/Labels";
 import MMapSection from "@/components/sections/mobile/MapSection";
 import MNav from "@/components/sections/mobile/Nav";
 import MRecommend from "@/components/sections/mobile/Recommend";
-import MStickyBar from "@/components/sections/mobile/StickyBar";
 import MStory from "@/components/sections/mobile/Story";
 import MTogether from "@/components/sections/mobile/Together";
 import MWishlist from "@/components/sections/mobile/Wishlist";
@@ -392,7 +391,6 @@ export default class Landing extends Component<{ autoplay?: boolean }, State> {
           <MClosing v={v} />
         </main>
         <MFooter v={v} />
-        <MStickyBar v={v} />
       </div>
     );
   }
