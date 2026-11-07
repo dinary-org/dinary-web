@@ -67,18 +67,15 @@ type State = {
   y: number;
   mounted: boolean;
   step: number;
-  touched: boolean;
   coupleTab: "home" | "anniv";
   rec: string;
   pickI: number;
   stamps: number;
   toast: string;
   comm: CommId;
-  /** 지도 · 위시 장에서 돌아가며 보여 주는 기능(0~2). 한 번 누르면 자동 넘김이 멈춥니다. */
+  /** 지도 · 위시 장의 선택된 기능(0~2). 첫 기능에서 시작하고 사용자 선택으로만 바뀝니다. */
   mapF: number;
-  mapTouched: boolean;
   wishF: number;
-  wishTouched: boolean;
   menu: boolean;
 };
 
@@ -90,12 +87,11 @@ const chip = (on: boolean, n: number, title: string, pick: () => void) => ({
 /** 「left:2%;top:4%」 같은 CSS 문자열을 style 객체로 */
 const cssObj = (css: string) => Object.fromEntries(css.split(";").map((d) => d.split(":"))) as CSSProperties;
 
-export default class Landing extends Component<{ autoplay?: boolean }, State> {
+export default class Landing extends Component<Record<string, never>, State> {
   state: State = {
-    w: 1280, y: 0, mounted: false, step: 0, touched: false, coupleTab: "home", rec: "now", pickI: 0, stamps: 16, toast: "",
-    comm: "mt-home", mapF: 0, mapTouched: false, wishF: 0, wishTouched: false, menu: false,
+    w: 1280, y: 0, mounted: false, step: 0, coupleTab: "home", rec: "now", pickI: 0, stamps: 16, toast: "",
+    comm: "mt-home", mapF: 0, wishF: 0, menu: false,
   };
-  private timers: ReturnType<typeof setInterval>[] = [];
   private sx: number | null = null;
   private sy = 0;
 
@@ -109,19 +105,11 @@ export default class Landing extends Component<{ autoplay?: boolean }, State> {
     this.setState({ w: window.innerWidth, y: window.scrollY, mounted: true });
     window.addEventListener("resize", this.onResize);
     window.addEventListener("scroll", this.onScroll, { passive: true });
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const auto = () => this.props.autoplay !== false && !reduce;
-    this.timers = [
-      setInterval(() => { if (auto() && !this.state.touched) this.setState((s) => ({ step: (s.step + 1) % 4 })); }, 4200),
-      setInterval(() => { if (auto() && !this.state.mapTouched) this.setState((s) => ({ mapF: (s.mapF + 1) % 3 })); }, 4800),
-      setInterval(() => { if (auto() && !this.state.wishTouched) this.setState((s) => ({ wishF: (s.wishF + 1) % 3 })); }, 5200),
-    ];
   }
 
   componentWillUnmount() {
     window.removeEventListener("resize", this.onResize);
     window.removeEventListener("scroll", this.onScroll);
-    this.timers.forEach(clearInterval);
   }
 
   componentDidUpdate(_: unknown, prev: State) {
@@ -134,7 +122,7 @@ export default class Landing extends Component<{ autoplay?: boolean }, State> {
     this.setState({ stamps: n, toast });
   };
 
-  go = (n: number) => this.setState({ step: (n + 4) % 4, touched: true });
+  go = (n: number) => this.setState({ step: (n + 4) % 4 });
 
   recVals() {
     const { rec, pickI } = this.state;
@@ -221,7 +209,7 @@ export default class Landing extends Component<{ autoplay?: boolean }, State> {
   /** 지도(mf · mapIs) · 위시(wf · wishIs) 장의 기능 세 개 */
   featureVals(key: "map" | "wish") {
     const cur = key === "map" ? this.state.mapF : this.state.wishF;
-    const pick = (i: number) => () => (key === "map" ? this.setState({ mapF: i, mapTouched: true }) : this.setState({ wishF: i, wishTouched: true }));
+    const pick = (i: number) => () => (key === "map" ? this.setState({ mapF: i }) : this.setState({ wishF: i }));
     const f = (i: number) => {
       const on = cur === i;
       return { active: on, bg: on ? "#fbfaf6" : "transparent", border: on ? "#d8d3c8" : "transparent", num: on ? "#b4552d" : "#8a8377", pick: pick(i) };
