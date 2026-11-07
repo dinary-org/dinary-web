@@ -5,14 +5,14 @@ import type { MobileVals } from "@/components/Landing";
 export default function Capture({ v }: { v: MobileVals }) {
   return (
 <>
-<section id="capture" aria-labelledby="capture-title" onTouchStart={v.swipeStart} onTouchEnd={v.swipeEnd} style={{ padding: "40px 0 56px" }}>
+<section id="capture" aria-labelledby="capture-title" onTouchStart={v.swipeStart} onTouchEnd={v.swipeEnd} style={{ padding: "40px 0 24px" }}>
   <div style={{ maxWidth: "1320px", margin: "0 auto", padding: "0 20px" }}>
     <div style={{ display: "flex", alignItems: "center", gap: "16px", fontFamily: "var(--dinary-font-mono)", fontSize: "14px", letterSpacing: ".22em", color: "#1c1a17" }}><span>01</span></div>
     <h2 id="capture-title" style={{ margin: "24px 0 0", fontFamily: "var(--site-serif)", fontWeight: "400", fontSize: "32px", lineHeight: "1.22", letterSpacing: "-.03em" }}>셔터 한 번이면,<br />한 끼가 일기가 됩니다.</h2>
 
-    <div style={{ marginTop: "36px", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,440px),1fr))", gap: "28px", alignItems: "center" }}>
+    <div style={{ marginTop: "36px", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,440px),1fr))", gap: "16px", alignItems: "center" }}>
       <div style={{ order: "2" }}>
-        <div aria-live="polite" style={{ minHeight: "150px" }}>
+        <div aria-live="polite">
           <div style={{ display: "flex", alignItems: "baseline", gap: "12px" }}><span style={{ flex: "none", fontFamily: "var(--dinary-font-mono)", fontSize: "26px", lineHeight: "1", color: "#b4552d", letterSpacing: "-.04em" }}>{v.step.no}</span><h3 style={{ margin: "0", fontFamily: "var(--site-serif)", fontWeight: "400", fontSize: "21px", lineHeight: "1.4" }}>{v.step.title}</h3></div>
           <p style={{ margin: "12px 0 0", maxWidth: "28em", fontSize: "14.5px", lineHeight: "1.85", color: "#6b665e" }}>{v.step.body}</p>
           {v.step.hasNote && (<><p style={{ margin: "18px 0 0", display: "flex", alignItems: "center", gap: "8px", fontSize: "13px", color: "#b4552d" }}><span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#b4552d", flex: "none" }}></span>{v.step.note}<svg aria-label="방문 인증 마크" width="17" height="17" viewBox="0 0 100 100" style={{ flex: "none" }}><polygon points="50,0 60.6,10.4 75,6.7 79,21 93.3,25 89.6,39.4 100,50 89.6,60.6 93.3,75 79,79 75,93.3 60.6,89.6 50,100 39.4,89.6 25,93.3 21,79 6.7,75 10.4,60.6 0,50 10.4,39.4 6.7,25 21,21 25,6.7 39.4,10.4" fill="#b4552d"></polygon><path d="M30 52l14 14 27-30" stroke="#fbfaf6" strokeWidth="9" strokeLinecap="round" strokeLinejoin="round" fill="none"></path></svg></p></>)}
@@ -122,7 +122,6 @@ export default function Capture({ v }: { v: MobileVals }) {
                     </div>
                     <div style={{ marginTop: "18px", textAlign: "center", fontFamily: "var(--site-serif)", fontSize: "22px", color: "#1c1a17" }}>방문이 인증되었습니다</div>
                     <div style={{ marginTop: "7px", textAlign: "center", fontSize: "12px", color: "#6b665e" }}>하늘초밥 · 2026.10.25 14:57</div>
-                    <div style={{ marginTop: "12px", display: "flex", justifyContent: "center" }}><span style={{ display: "flex", gap: "6px", alignItems: "center", borderRadius: "14px", border: "1px solid #e0c3b1", background: "#f9f0e9", padding: "7px 12px" }}><svg width="12" height="12" viewBox="0 0 24 24" fill="#b4552d" stroke="#b4552d" strokeWidth="1.6" strokeLinejoin="round"><path d="M7 4.5h10v15l-5-3.6-5 3.6Z"></path></svg><span style={{ fontSize: "11px", color: "#b4552d" }}>담아둔 지 12일 만에 다녀왔습니다</span></span></div>
                   </div>
                   <div style={{ flex: "1" }}></div>
                   <div style={{ borderRadius: "20px", background: "#1c1a17", padding: "17px 0", textAlign: "center", fontSize: "15px", fontFamily: "var(--dinary-font-sans-md)", fontWeight: "500", color: "#fbfaf6" }}>이어서 기록 쓰기</div>

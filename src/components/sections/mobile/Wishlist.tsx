@@ -34,9 +34,6 @@ export default function Wishlist({ v }: { v: MobileVals }) {
         </Fragment>))}
       </div>
       <p aria-live="polite" style={{ margin: "18px 0 0", minHeight: "52px", fontSize: "14.5px", lineHeight: "1.75", color: "#6b665e", textWrap: "pretty" }}>{v.wishBody}</p>
-    <div style={{ marginTop: "20px", display: "flex", flexWrap: "wrap", alignItems: "center", gap: "14px", justifyContent: "center" }}>
-        <span style={{ borderRadius: "999px", border: "1px solid #e0c3b1", background: "#f7ece5", padding: "10px 20px", fontSize: "14px", color: "#b4552d" }}>담아둔 지 12일 만에 다녀왔습니다</span>
-      </div>
     </div>
   </div>
 </section>
