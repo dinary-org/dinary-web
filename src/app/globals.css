@@ -92,8 +92,7 @@ a:hover {
 
 /* 마우스를 올렸을 때 — 디자인의 style-hover 값 */
 .hv-ink:hover { color: #1c1a17 !important; }
-.hv-brick:hover { background: #b4552d !important; color: #fbfaf6 !important; }
-.hv-bg-brick:hover { background: #b4552d !important; }
+.hv-brick:hover { color: #fbfaf6 !important; }
 .hv-brick-deep:hover { background: #8f4425 !important; }
 .hv-outline:hover { border-color: #1c1a17 !important; color: #1c1a17 !important; }
 .hv-ring:hover { border-color: #1c1a17 !important; }

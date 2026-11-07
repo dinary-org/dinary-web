@@ -91,7 +91,7 @@ h1 {
   min-height: 54px; padding: 0 20px; border-radius: 18px; background: var(--ink); color: var(--card);
   font-size: 15.5px; font-weight: 500; text-decoration: none; transition: background .3s;
 }
-.btn:hover { background: var(--brick); color: var(--card); }
+.btn:hover { color: var(--card); }
 .btn.primary { background: var(--brick); }
 .btn.primary:hover { background: var(--brick-deep); }
 .ghost {
@@ -109,8 +109,8 @@ h1 {
 .step.done { background: #f1ede4; border-color: var(--line); box-shadow: none; }
 .step.done .num { font-size: 0; background: var(--ink); }
 .step.done .num::after { content: "✓"; font-size: 16px; }
-.step.done .btn { background: transparent; color: var(--ink); border: 1px solid var(--line); }
-.step.done .btn:hover { border-color: var(--ink); }
+.step.done .btn.primary { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+.step.done .btn.primary:hover { border-color: var(--ink); }
 .donetag {
   display: none; margin-left: auto; font-family: var(--mono); font-size: 11px; letter-spacing: .14em; color: var(--brick);
 }
