@@ -8,9 +8,9 @@ export const site = {
   alternateNames: ["다이너리", "Dinary"],
   // 정식 주소. www.dinary.app 은 Vercel 에서 이 주소로 넘겨 줍니다. 다른 주소로 바꿀 때만 NEXT_PUBLIC_SITE_URL 을 쓰세요.
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://dinary.app",
-  title: "다이너리 DINARY — 먹은 순간이, 우리의 이야기가 되도록",
+  title: "다이너리 DINARY - 찍는 순간 남는 나만의 맛집 기록",
   // 검색 결과 · 공유 미리보기 설명. 네이버 서치어드바이저 권장대로 80자 이내로 둡니다.
-  description: "사진으로 쓰는 식사 일기 다이너리(DINARY). 셔터 한 번이면 그날의 한 끼가 가게와 날짜, 지도 위의 한 점으로 남아요.",
+  description: "사진으로 쓰는 식사 일기 다이너리(DINARY). 지도 앱의 별점과 리뷰 대신, 그 가게에서 보낸 나만의 한 끼와 기억이 남아요.",
   contactEmail: "contact.dinary@gmail.com",
   privacyUrl: "/privacy",
   termsUrl: "/terms",

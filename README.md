@@ -59,8 +59,7 @@ Vercel 에서 이 저장소를 가져오면 Next.js 로 알아서 잡힙니다. 
 
 - 로고: 앱 `assets/icon.png` (`public/brand/icon.png`, 파비콘 `src/app/icon.png`).
 - 음식 사진: [Unsplash 라이선스](https://unsplash.com/license) 사진을 디자인에서 줄인 파일 그대로 `public/img` 에 두었습니다. 지도 배경은 `public/map`(seoul.jpg · rec.jpg), 체감가격 돼지는 앱의 금색 돼지 저금통(`public/piggy.png`, 64px 로 줄임). 앱 화면 캡처는 `public/screens`(지도 · 위시), `public/compare`(지도 앱과 비교), `public/img/hero-*.jpg` 에 있고, 디자인 원본(1080px)을 828px JPEG 로 줄였습니다.
-- 공유 카드(`src/app/opengraph-image.tsx`)는 빌드 때 그립니다. 글꼴은 그 문구의 글자만 담은 고운돋움 부분 파일(`src/assets/fonts/gowun-og.ttf`, SIL OFL)이라 문구를 바꾸면 다시 받아야 합니다:
-  `https://fonts.googleapis.com/css2?family=Gowun+Dodum&text=<문구>` 를 오래된 User-Agent(예: `Mozilla/4.0`)로 열면 TTF 주소가 나옵니다.
+- 공유 카드(`src/app/opengraph-image.png`)는 제공된 PNG 원본(2400 × 1260)을 그대로 사용합니다. 대체 텍스트는 `src/app/opengraph-image.alt.txt` 에 있습니다.
 
 ## 접근성 · 동작
 
