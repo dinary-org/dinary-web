@@ -33,11 +33,6 @@
     <p>인스타그램 같은 앱 안의 브라우저에서는 TestFlight 링크가 열리지 않을 수 있어요. 오른쪽 위 <b>···</b> 메뉴에서 <b>‘외부 브라우저로 열기’</b>를 누르거나, 링크를 복사해 Safari에 붙여 넣어 주세요.</p>
     <button class="ghost" type="button" data-copy>링크 복사</button>
   </div>
-  <div class="notice" id="other" role="note">
-    <strong>iPhone에서 열어 주세요</strong>
-    <p>TestFlight 초대는 iPhone에서만 받을 수 있어요. 이 페이지 주소(<b>/beta/ios</b>)를 iPhone으로 보내 열어 주세요. Android라면 <a href="/beta/android">Android 베타 안내</a>로 가 주세요.</p>
-    <button class="ghost" type="button" data-copy>링크 복사</button>
-  </div>
 
   <ol class="steps">
     <li class="step" data-step="i1">
@@ -79,7 +74,6 @@
     var ua = navigator.userAgent || "";
     var ios = /iPhone|iPod|iPad/i.test(ua);
     if (ios && /Instagram|FBAN|FBAV|KAKAOTALK|Line\//i.test(ua)) document.getElementById("inapp").classList.add("show");
-    else if (!ios) document.getElementById("other").classList.add("show");
   })();
 </script>
 <script src="/beta.js"></script>

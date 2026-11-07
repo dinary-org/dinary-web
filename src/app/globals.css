@@ -129,6 +129,14 @@ a:hover {
 @media (min-width: 390px) { :root { --mph: 0.659; --mph-sm: 0.47; } }
 @media (min-width: 400px) { :root { --mph: 0.68; --mph-sm: 0.49; } }
 
+/* Keep room for two 44px controls beside the capture phone. */
+.capture-phone-stage { --mph: 0.44; }
+@media (min-width: 350px) { .capture-phone-stage { --mph: 0.5; } }
+@media (min-width: 370px) { .capture-phone-stage { --mph: 0.55; } }
+@media (min-width: 390px) { .capture-phone-stage { --mph: 0.6; } }
+@media (min-width: 410px) { .capture-phone-stage { --mph: 0.65; } }
+@media (min-width: 430px) { .capture-phone-stage { --mph: 0.68; } }
+
 /* 넓은 화면(1024px~)에서만 보이는 위쪽 메뉴 */
 .nav-links { display: none !important; }
 @media (min-width: 1024px) {

@@ -12,11 +12,6 @@ export default function Capture({ v }: { v: MobileVals }) {
 
     <div style={{ marginTop: "36px", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,440px),1fr))", gap: "28px", alignItems: "center" }}>
       <div style={{ order: "2" }}>
-        
-        <div style={{ marginBottom: "22px", display: "flex", justifyContent: "center", gap: "8px" }}>
-            <button type="button" onClick={v.prevStep} aria-label="이전 단계" style={{ all: "unset", cursor: "pointer", width: "44px", height: "44px", borderRadius: "50%", border: "1px solid #d8d3c8", display: "flex", alignItems: "center", justifyContent: "center", color: "#1c1a17" }} className="hv-ring">←</button>
-            <button type="button" onClick={v.nextStep} aria-label="다음 단계" style={{ all: "unset", cursor: "pointer", width: "44px", height: "44px", borderRadius: "50%", background: "#1c1a17", display: "flex", alignItems: "center", justifyContent: "center", color: "#fbfaf6" }} className="hv-bg-brick">→</button>
-          </div>
         <div aria-live="polite" style={{ minHeight: "150px" }}>
           <div style={{ display: "flex", alignItems: "baseline", gap: "12px" }}><span style={{ flex: "none", fontFamily: "var(--dinary-font-mono)", fontSize: "26px", lineHeight: "1", color: "#b4552d", letterSpacing: "-.04em" }}>{v.step.no}</span><h3 style={{ margin: "0", fontFamily: "var(--site-serif)", fontWeight: "400", fontSize: "21px", lineHeight: "1.4" }}>{v.step.title}</h3></div>
           <p style={{ margin: "12px 0 0", maxWidth: "28em", fontSize: "14.5px", lineHeight: "1.85", color: "#6b665e" }}>{v.step.body}</p>
@@ -24,8 +19,10 @@ export default function Capture({ v }: { v: MobileVals }) {
           
         </div>
       </div>
-      <div style={{ position: "relative", display: "flex", justifyContent: "center" }}>
+      <div className="capture-phone-stage" style={{ position: "relative", display: "flex", justifyContent: "center" }}>
         <div style={{ position: "absolute", top: "50%", left: "50%", width: "min(520px,90%)", aspectRatio: "1", transform: "translate(-50%,-50%)", borderRadius: "50%", background: "#f7ece5", filter: "blur(30px)" }}></div>
+        <button type="button" onClick={v.prevStep} aria-label="이전 단계" style={{ all: "unset", position: "absolute", left: "0", top: "50%", transform: "translateY(-50%)", zIndex: "1", boxSizing: "border-box", cursor: "pointer", width: "44px", height: "44px", borderRadius: "50%", border: "1px solid #d8d3c8", display: "flex", alignItems: "center", justifyContent: "center", color: "#1c1a17" }} className="hv-ring">←</button>
+        <button type="button" onClick={v.nextStep} aria-label="다음 단계" style={{ all: "unset", position: "absolute", right: "0", top: "50%", transform: "translateY(-50%)", zIndex: "1", boxSizing: "border-box", cursor: "pointer", width: "44px", height: "44px", borderRadius: "50%", background: "#1c1a17", display: "flex", alignItems: "center", justifyContent: "center", color: "#fbfaf6" }}>→</button>
         <div style={{ position: "relative", width: v.ph.w, height: v.ph.h }}>
           <div style={{ position: "absolute", top: "0", left: "0", width: "410px", height: "864px", transform: v.ph.t, transformOrigin: "top left", background: "#1c1a17", borderRadius: "58px", padding: "10px", boxSizing: "border-box", boxShadow: "0 50px 90px -40px rgba(28,26,23,.6)" }}>
             <div style={{ width: "390px", height: "844px", borderRadius: "48px", overflow: "hidden", background: "#f6f3ec", position: "relative", containerType: "inline-size" }}>
