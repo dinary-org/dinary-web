@@ -1,4 +1,4 @@
-/** 앱 하단 탭 바(캘린더 · 지도 · 📷 · 추천 · 커뮤니티). 커뮤니티 안에서는 친구 · 모임 · 랭킹 · 게시판. */
+/** 앱 하단 탭 바(캘린더 · 지도 · 📷 · 추천 · 소셜). 소셜 안에서는 친구 · 모임 · 랭킹 · 게시판. */
 const I = {
   calendar: "M6 5h12a2.5 2.5 0 0 1 2.5 2.5V18a2.5 2.5 0 0 1-2.5 2.5H6A2.5 2.5 0 0 1 3.5 18V7.5A2.5 2.5 0 0 1 6 5Z M3.5 9.6h17M8.2 3.4v3M15.8 3.4v3 M7.6 13.2h3M13.4 13.2h3M7.6 16.8h3",
   map: "M12 21s7-6.3 7-11.3A7 7 0 005 9.7C5 14.7 12 21 12 21z M12 7.3a2.4 2.4 0 1 0 .01 0",
@@ -10,7 +10,7 @@ const I = {
   board: "M7 3.5h10a2.5 2.5 0 0 1 2.5 2.5v12a2.5 2.5 0 0 1-2.5 2.5H7A2.5 2.5 0 0 1 4.5 18V6A2.5 2.5 0 0 1 7 3.5Z M8.5 8.5h7M8.5 12h7M8.5 15.5h4",
 } as const;
 type Icon = keyof typeof I;
-const MAIN: [string, string, Icon][] = [["calendar", "캘린더", "calendar"], ["map", "지도", "map"], ["recommend", "추천", "recommend"], ["community", "커뮤니티", "community"]];
+const MAIN: [string, string, Icon][] = [["calendar", "캘린더", "calendar"], ["map", "지도", "map"], ["recommend", "추천", "recommend"], ["community", "소셜", "community"]];
 const COMM: [string, string, Icon][] = [["friends", "친구", "community"], ["meetups", "모임", "meetups"], ["ranking", "랭킹", "ranking"], ["board", "게시판", "board"]];
 
 export default function TabBar({ active, variant = "main", couple = false }: { active: string; variant?: "main" | "community"; couple?: boolean }) {
@@ -19,7 +19,7 @@ export default function TabBar({ active, variant = "main", couple = false }: { a
     id,
     label,
     d: I[icon],
-    // 메인 탭바의 「커뮤니티」는 탭이 아니라 전환이라 칠하지 않습니다.
+    // 메인 탭바의 「소셜」은 탭이 아니라 전환이라 칠하지 않습니다.
     color: id === active && !(variant === "main" && id === "community") ? "#b4552d" : "#a29a8c",
   }));
   const tab = (t: (typeof items)[number]) => (

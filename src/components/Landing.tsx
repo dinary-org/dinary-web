@@ -8,8 +8,8 @@
 import { Component, type CSSProperties, type TouchEvent } from "react";
 import { betaLinks } from "@/lib/site";
 import {
-  ANNIV, BOARDS, BOWL_NEEDS, CAL, DOW, FAN, FOOT, JOURNAL, MAP_F, MEETUP_ITEMS, MEETUPS, OTHER_COMM, P, PEOPLE, PICKS, PIN_C, POINTS,
-  REC_MODES, REVISITS, SECTIONS, SHARE, STEPS, WISH_F, type CommId,
+  ANNIV, BOWL_NEEDS, CAL, DOW, FAN, FOOT, JOURNAL, MAP_F, P, PICKS, PIN_C, POINTS,
+  REC_MODES, REVISITS, SECTIONS, SHARE, SOCIAL, STEPS, WISH_F, type SocialId,
 } from "@/lib/content";
 import DCapture from "@/components/sections/desktop/Capture";
 import DClosing from "@/components/sections/desktop/Closing";
@@ -72,7 +72,8 @@ type State = {
   pickI: number;
   stamps: number;
   toast: string;
-  comm: CommId;
+  /** 소셜 장에서 고른 화면. 첫 화면(친구 소식)에서 시작하고 사용자 선택으로만 바뀝니다. */
+  comm: SocialId;
   /** 지도 · 위시 장의 선택된 기능(0~2). 첫 기능에서 시작하고 사용자 선택으로만 바뀝니다. */
   mapF: number;
   wishF: number;
@@ -90,7 +91,7 @@ const cssObj = (css: string) => Object.fromEntries(css.split(";").map((d) => d.s
 export default class Landing extends Component<Record<string, never>, State> {
   state: State = {
     w: 1280, y: 0, mounted: false, step: 0, coupleTab: "home", rec: "now", pickI: 0, stamps: 16, toast: "",
-    comm: "mt-home", mapF: 0, wishF: 0, menu: false,
+    comm: "friends", mapF: 0, wishF: 0, menu: false,
   };
   private sx: number | null = null;
   private sy = 0;
@@ -171,38 +172,23 @@ export default class Landing extends Component<Record<string, never>, State> {
     };
   }
 
+  /** 소셜 장: 친구 소식 · 모임 화면 다섯 개 중 고른 것과 그 스크린샷 */
   communityVals() {
     const c = this.state.comm;
-    const inside = c === "mt-records" || c === "mt-wish" || c === "mt-plan";
+    const x = SOCIAL.find((y) => y.id === c) || SOCIAL[0];
     return {
-      meetupItems: MEETUP_ITEMS.map(([id, title, body], i) => {
-        const on = c === id;
+      socialItems: SOCIAL.map((y, i) => {
+        const on = c === y.id;
         return {
-          n: i + 1, title, body, active: on, bg: on ? "#fbfaf6" : "transparent", border: on ? "#d8d3c8" : "transparent",
-          numColor: on ? "#b4552d" : "#8a8377", pick: () => this.setState({ comm: id }),
+          n: i + 1, title: y.title, body: y.body, group: y.group,
+          head: i === 0 || SOCIAL[i - 1].group !== y.group,
+          headGap: i === 0 ? "0" : "14px", headPad: i === 0 ? "0" : "18px", headLine: i === 0 ? "none" : "1px solid #e2ddd2",
+          active: on, bg: on ? "#fbfaf6" : "transparent", border: on ? "#d8d3c8" : "transparent", numColor: on ? "#b4552d" : "#8a8377",
+          pick: () => this.setState({ comm: y.id }),
         };
       }),
-      otherComm: OTHER_COMM.map(([id, label]) => {
-        const on = c === id;
-        return {
-          label, active: on, bg: on ? "#1c1a17" : "#fbfaf6", fg: on ? "#fbfaf6" : "#1c1a17", border: on ? "#1c1a17" : "#d8d3c8",
-          pick: () => this.setState({ comm: id }),
-        };
-      }),
-      commFriends: c === "friends", commRanking: c === "ranking", commBoard: c === "board",
-      mtAny: c.startsWith("mt-"), mtHome: c === "mt-home", mtInside: inside, mtRecords: c === "mt-records", mtWish: c === "mt-wish", mtPlan: c === "mt-plan",
-      mtAll: c === "mt-home"
-        ? { bg: "#1c1a17", border: "#1c1a17", fg: "#fbfaf6", name: "#1c1a17" }
-        : { bg: "#fbfaf6", border: "#d8d3c8", fg: "#1c1a17", name: "#6b665e" },
-      mtCells: MEETUPS.map((m) => {
-        const on = inside && m.id === "eul";
-        return { ...m, ring: on ? m.c : "transparent", hasD: !!m.dday, dot: !!m.dot && !on, nameC: on ? "#1c1a17" : "#6b665e" };
-      }),
-      mtTabs: ([["mt-records", "기록"], ["map", "지도"], ["mt-wish", "갈래 말래"], ["mt-plan", "약속"]] as const).map(([id, label]) => {
-        const on = c === id;
-        return { label, bg: on ? "#fbfaf6" : "transparent", fg: on ? "#1c1a17" : "#6b665e", shadow: on ? "0 1px 4px rgba(28,26,23,.08)" : "none" };
-      }),
-      rankCards: BOARDS.map(([, name, rule], i) => ({ name, rule, top: PEOPLE[0][0], mine: ["3위", "2위", "—", "4위", "1위"][i] })),
+      shot: { src: "/screens/" + x.img + ".jpg", alt: x.alt },
+      commBody: x.body,
     };
   }
 
@@ -313,18 +299,13 @@ export default class Landing extends Component<Record<string, never>, State> {
         this.sx = null;
         if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.5) go(step + (dx < 0 ? 1 : -1));
       },
-      otherComm: OTHER_COMM.map(([id, label], i) => {
-        const on = comm === id;
-        return { label, active: on, pick: () => this.setState({ comm: id }), fg: on ? "#1c1a17" : "#9a9387", border: on ? "#b4552d" : "transparent", sep: i ? "1px solid #e4dfd5" : "0" };
-      }),
       mapChips: MAP_F.map(([t], i) => chip(this.state.mapF === i, i + 1, t, map.pick(i))),
       mapBody: MAP_F[this.state.mapF][1],
       wishChips: WISH_F.map(([t], i) => chip(this.state.wishF === i, i + 1, t, wish.pick(i))),
       wishBody: WISH_F[this.state.wishF][1],
       recChips: REC_MODES.map(([id, label], i) => chip(rec === id, i + 1, label, () => this.setState({ rec: id }))),
       recBody: (REC_MODES.find((x) => x[0] === rec) || REC_MODES[0])[2],
-      meetChips: MEETUP_ITEMS.map(([id, title], i) => chip(comm === id, i + 1, title, () => this.setState({ comm: id }))),
-      commBody: [...MEETUP_ITEMS, ...OTHER_COMM].find((x) => x[0] === comm)?.[2] ?? "",
+      meetChips: SOCIAL.map((x, i) => chip(comm === x.id, i + 1, x.short, () => this.setState({ comm: x.id }))),
       share: SHARE.map((t, i) => ({
         ...t, tf: `translateX(calc(-50% + ${(i - 1.5) * 44}px)) translateY(${Math.abs(i - 1.5) * 18}px) rotate(${(i - 1.5) * 7}deg)`,
       })),

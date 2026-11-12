@@ -60,11 +60,11 @@ export const FAN: [string, number, number, string][] = [
 ];
 
 /** 위쪽 메뉴 */
-export const SECTIONS: [string, string][] = [["capture", "기록하기"], ["map", "지도"], ["diary", "캘린더"], ["recommend", "추천"], ["labels", "라벨"], ["community", "커뮤니티"]];
+export const SECTIONS: [string, string][] = [["capture", "기록하기"], ["map", "지도"], ["diary", "캘린더"], ["recommend", "추천"], ["labels", "라벨"], ["community", "소셜"]];
 /** 바닥글 · 모바일 메뉴 */
 export const FOOT: [string, string][] = [
   ["capture", "기록하기"], ["map", "지도"], ["diary", "캘린더"], ["wishlist", "위시리스트"], ["recommend", "추천"],
-  ["together", "연인 기록"], ["labels", "도장과 라벨"], ["community", "커뮤니티"],
+  ["together", "연인 기록"], ["labels", "도장과 라벨"], ["community", "소셜"],
 ];
 
 /** 지도 장의 세 가지 기능: [제목, 설명] */
@@ -102,36 +102,13 @@ export const REVISITS: [string, string, number][] = [
 /** 도장 수가 이만큼이 되면 라벨 */
 export const BOWL_NEEDS = [1, 5, 10, 30, 50, 100, 200, 300];
 
-/** 랭킹: [id, 이름, 기준] */
-export const BOARDS: [string, string, string][] = [
-  ["verified", "인증왕", "인증한 방문 수"],
-  ["explorer", "탐험가", "처음 가 본 가게 수"],
-  ["regular", "단골", "한 가게에 다시 간 횟수"],
-  ["district", "동네 넓히기", "인증한 구(區) 수"],
-  ["streak", "꾸준함", "기록을 남긴 주 연속"],
-];
+/** 소셜 장: 친구 소식 하나와 모임 화면 넷. 화면은 public/screens/<img>.jpg 입니다. */
+export type SocialId = "friends" | "mt-records" | "mt-map" | "mt-wish" | "mt-trip";
 
-export const PEOPLE: [string, string][] = [["보리차", "종로 보안관"], ["모과", "MZ맛잘알"], ["나", "삼고초려"], ["솔방울", "중구 러버"], ["도토리", "하루 세 끼"]];
-
-/** 커뮤니티 장. 모임 네 가지(mt-*) 다음에 친구 소식 · 랭킹 · 게시판. */
-export type CommId = "mt-home" | "mt-records" | "mt-wish" | "mt-plan" | "friends" | "ranking" | "board";
-
-export const MEETUP_ITEMS: [CommId, string, string][] = [
-  ["mt-home", "모임", "친구 셋 이상이면 모임을 만들어요. 받은 초대와 다가오는 약속, 새 소식이 맨 앞 「전체」에 모여요."],
-  ["mt-records", "함께 쓰는 기록", "사람들과 다녀온 곳의 기록이 한곳에 쌓여요. 어떤 기록을 올릴지는 내가 골라요."],
-  ["mt-wish", "갈래 말래", "가고 싶은 곳을 모임에 담고, 「가고 싶어요」가 많은 순으로 봐요. 내 위시나 기록에서 가져올 수도 있어요."],
-  ["mt-plan", "약속 잡기", "갈래 말래에서 약속을 잡아요. 날짜와 시간을 정하면 부원 누구나 참가할 수 있어요."],
-];
-
-export const OTHER_COMM: [CommId, string, string][] = [
-  ["friends", "친구 소식", "내 기록 하나를 골라 사진과 한 줄을 올리면 친구들에게 보여요. 공감과 댓글로 답하고, 마음에 드는 곳은 위시리스트에 바로 담아요."],
-  ["ranking", "랭킹", "친구끼리, 또는 전체에서. 이번 주 · 이번 달 · 이번 분기로 나눠 겨뤄요."],
-  ["board", "게시판", "맛집 · 카페 · 자유 주제로 글을 올리고 이야기를 나눠요. 다녀온 가게를 붙이면 바로 찾아갈 수 있어요."],
-];
-
-export const MEETUPS: { id: string; name: string; c: string; ch: string; dday?: string; dot?: boolean }[] = [
-  { id: "eul", name: "을지로 점심팟", c: "#b4552d", ch: "을" },
-  { id: "jeju", name: "제주 3박 4일", c: "#4f6b7a", ch: "제", dday: "D-12" },
-  { id: "uni", name: "대학 동기", c: "#6f8455", ch: "동", dot: true },
-  { id: "book", name: "책 모임", c: "#7a6a9a", ch: "책" },
+export const SOCIAL: { id: SocialId; group: string; title: string; short: string; img: string; alt: string; body: string }[] = [
+  { id: "friends", group: "친구", title: "친구 소식", short: "친구 소식", img: "social-feed", alt: "DINARY 소셜 탭 친구 화면: 친구가 올린 소식 카드", body: "친구가 올린 한 끼에 공감하고, 「친구 지도」에서는 친구들이 다녀온 곳을 사진으로 봐요." },
+  { id: "mt-records", group: "모임", title: "함께 쓰는 기록", short: "모임 기록", img: "meetup-records", alt: "DINARY 모임 기록 탭: 모임 사람들이 올린 맛집 기록", body: "셋 이상 모이면 모임을 만들어, 함께 다녀온 곳을 한곳에 쌓아요." },
+  { id: "mt-map", group: "모임", title: "함께 보는 지도", short: "모임 지도", img: "meetup-map", alt: "DINARY 모임 지도 탭: 모임의 기록과 위시를 지도 위 사진 핀으로 보기", body: "모임 사람들이 다녀온 곳과 가고 싶은 곳이 한 지도에 사진 핀으로 모여요." },
+  { id: "mt-wish", group: "모임", title: "위시와 약속", short: "위시 · 약속", img: "meetup-wish", alt: "DINARY 모임 위시 탭: 가고 싶은 가게와 좋아요 수, 약속 잡기 버튼", body: "가고 싶은 곳을 모아 두고, 마음이 모이면 바로 약속을 잡아요." },
+  { id: "mt-trip", group: "모임", title: "여행 일정", short: "여행 일정", img: "meetup-trip", alt: "DINARY 여행 모임 일정 탭: 날짜별 동선 지도와 갈 곳", body: "여행 모임은 날짜별로 갈 곳을 짜고 동선을 지도로 봐요." },
 ];
