@@ -28,6 +28,8 @@ const nextConfig: NextConfig = {
       { source: "/meetup", destination: "/meetup/index.html" },
       // 기록 공유(/r?t=…) 링크 — 받은 사람의 DINARY 앱에서 그 기록 자세히 화면을 엽니다. 기록 내용은 웹에 보이지 않아요.
       { source: "/r", destination: "/r/index.html" },
+      // 위시 폴더 공유(/f?t=…) 링크 — 받은 사람의 DINARY 앱에서 그 폴더를 엽니다. 폴더 내용은 웹에 보이지 않아요.
+      { source: "/f", destination: "/f/index.html" },
       ...(devProxyPath
         ? [{ source: `${devProxyPath}/:path*`, destination: "/:path*" }]
         : []),
