@@ -24,6 +24,14 @@
 <!-- Vercel Web Analytics -->
 <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
 <script defer src="/_vercel/insights/script.js"></script>
+<!-- Google Analytics 4: landing beta pages live outside the Next.js layout. -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0VZ8V5KKRM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-0VZ8V5KKRM');
+</script>
 </head>
 <body>
 <header class="top">

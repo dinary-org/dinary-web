@@ -9,6 +9,13 @@
     if (done[id]) step.classList.add("done");
     var link = step.querySelector("[data-mark]");
     if (link) link.addEventListener("click", function () {
+      // Click intent only; this does not imply tester enrollment or an installation.
+      if (typeof window.gtag === "function") {
+        window.gtag("event", "beta_step_clicked", {
+          beta_platform: /ios/i.test(location.pathname) ? "ios" : "android",
+          beta_step: id
+        });
+      }
       done[id] = 1;
       step.classList.add("done");
       try { localStorage.setItem(KEY, JSON.stringify(done)); } catch (e) {}

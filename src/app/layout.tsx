@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Analytics } from "@vercel/analytics/next";
+import Script from "next/script";
 import { Gowun_Batang, JetBrains_Mono, Noto_Sans_KR } from "next/font/google";
 import { site } from "@/lib/site";
 import "./globals.css";
@@ -58,6 +59,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {children}
         {/* Vercel Web Analytics — 쿠키 없이 방문 수 · 페이지 · 유입 경로 · 기기만 셉니다. */}
         <Analytics />
+        {/* GA4 web stream; public measurement ID, separate from Firebase Android. */}
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-0VZ8V5KKRM" strategy="afterInteractive" />
+        <Script id="dinary-ga4-init" strategy="afterInteractive">{`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-0VZ8V5KKRM');
+        `}</Script>
       </body>
     </html>
   );

@@ -65,4 +65,14 @@ Vercel 에서 이 저장소를 가져오면 Next.js 로 알아서 잡힙니다. 
 
 - 건너뛰기 링크, 랜드마크와 제목 구조, 탭 단추에 `role="tab"` · `aria-selected`, 키보드 포커스 표시.
 - `prefers-reduced-motion` 이면 흐르는 사진 띠 · 등장 애니메이션 · 「기록하기」 자동 넘김을 끕니다.
-- 방문 통계는 [Vercel Web Analytics](https://vercel.com/docs/analytics) 하나뿐입니다(쿠키 없음, `src/app/layout.tsx` 의 `<Analytics />` · 정적 페이지는 `/_vercel/insights/script.js`). Vercel 프로젝트에서 Analytics 를 켜 둬야 모입니다. 입력 양식은 없습니다.
+- 방문 통계는 Vercel Web Analytics 와 GA4 를 함께 사용합니다. Vercel 측정은 기존과 동일하고 GA4 웹 Measurement ID `G-0VZ8V5KKRM` 는 공개 식별자입니다(비밀 키 아님). Google의 웹 분석은 쿠키 등 식별자를 사용할 수 있습니다.
+
+## Google Analytics 4 (GA4)
+
+- 웹 스트림: `G-0VZ8V5KKRM` (DINARY GA4 속성의 *웹* 스트림; Firebase Android 스트림은 변경하지 않음).
+- Next.js 랜딩 페이지: `src/app/layout.tsx` 에 `next/script` 로 설치. 외부 배포 환경변수 없이 배포 가능.
+- Next.js 레이아웃을 거치지 않는 `/beta/android` 와 `/beta/ios` 정적 HTML: `public/beta.html`, `public/beta-ios.html` 에 같은 GA4 태그를 각각 설치하고, `public/beta.js` 에서 단계 링크 **클릭 의도**만 `beta_step_clicked` 이벤트로 전송합니다. 클릭은 가입 완료/앱 설치 완료가 아닙니다.
+- 공유·초대 링크(/r, /f, /invite, /meetup)의 쿼리에는 토큰이 있을 수 있으므로 해당 정적 페이지에는 GA4 웹 태그를 설치하지 않습니다.
+- 개인정보 처리방침: `public/privacy/index.html` 에 웹 GA4 수집 범위와 Google의 쿠키·기술정보 처리를 명시합니다. 필요한 지역의 동의 요건은 별도로 확인하세요.
+
+**검증 및 배포**: `npm ci && npm run lint && npm run typecheck && npm run build && node scripts/check-ga4.mjs`. GitHub PR 워크플로에서도 동일 검사를 실행합니다. PR을 `main` 에 병합하면 연결된 Vercel 배포에 반영됩니다. 배포 후 `https://dinary.app`, `https://dinary.app/beta/android`, `https://dinary.app/beta/ios` 에서 Tag Assistant 와 GA4 Realtime/DebugView 로 웹 스트림 ID 및 페이지뷰를 확인하세요. 모바일 Firebase Analytics 와 웹 트래픽은 같은 GA4 속성에서 스트림별로 구분할 수 있습니다.
